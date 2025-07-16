@@ -27,7 +27,9 @@
 		"dev": "npm run dev:prepare && nuxi dev playground",
 		"dev:build": "nuxi build playground",
 		"dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-		"release": "npm run prepack && changelogen --release && npm publish --access public && git push --follow-tags"
+		"release:patch": "npm run prepack && changelogen --bump patch --release && npm publish --access public && git push --follow-tags",
+		"release:minor": "npm run prepack && changelogen --bump minor --release && npm publish --access public && git push --follow-tags",
+		"release:major": "npm run prepack && changelogen --bump major --release && npm publish --access public && git push --follow-tags"
 	},
 	"dependencies": {
 		"@nuxt/kit": "^4.0.0"
