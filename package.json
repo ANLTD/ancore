@@ -1,6 +1,6 @@
 {
-	"name": "nuxt-ancore",
-	"version": "1.0.2",
+	"name": "@anweb/nuxt-ancore",
+	"version": "1.0.1",
 	"description": "AnCore Nuxt module",
 	"repository": "https://github.com/ANLTD/ancore",
 	"license": "MIT",
