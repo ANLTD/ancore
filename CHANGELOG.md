@@ -5,9 +5,11 @@
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.0.2...v1.0.1)
 
-## v1.0.2
+### 🏡 Chore
 
-[compare changes](https://github.com/ANLTD/ancore/compare/v1.0.1...v1.0.2)
+- **release:** V1.0.1 ([c0eaecc](https://github.com/ANLTD/ancore/commit/c0eaecc))
 
-## v1.0.1
+### ❤️ Contributors
+
+- Andrey ([@ag-anymaster](https://github.com/ag-anymaster))
 
