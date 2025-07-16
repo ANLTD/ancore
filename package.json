@@ -1,0 +1,44 @@
+{
+	"name": "nuxt-ancore",
+	"version": "1.0.0",
+	"description": "AnCore Nuxt module",
+	"repository": "https://github.com/ANLTD/ancore",
+	"license": "MIT",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/types.d.mts",
+			"import": "./dist/module.mjs"
+		}
+	},
+	"main": "./dist/module.mjs",
+	"typesVersions": {
+		"*": {
+			".": [
+				"./dist/types.d.mts"
+			]
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"prepack": "nuxt-module-build build",
+		"dev": "npm run dev:prepare && nuxi dev playground",
+		"dev:build": "nuxi build playground",
+		"dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+		"release": "npm run prepack && changelogen --release && npm publish && git push --follow-tags"
+	},
+	"dependencies": {
+		"@nuxt/kit": "^4.0.0"
+	},
+	"devDependencies": {
+		"@nuxt/devtools": "^2.6.2",
+		"@nuxt/module-builder": "^1.0.1",
+		"@nuxt/schema": "^3.17.7",
+		"@types/node": "latest",
+		"changelogen": "^0.6.2",
+		"nuxt": "^4.0.0",
+		"typescript": "~5.8.3"
+	}
+}
