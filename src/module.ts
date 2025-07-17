@@ -1,21 +1,18 @@
-import { defineNuxtModule, addPlugin, createResolver, addImports, resolveAlias } from '@nuxt/kit'
+import { addImports, addImportsDir, createResolver, defineNuxtModule } from '@nuxt/kit'
+import type { ModuleOptions } from './types'
 
-// Module options TypeScript interface definition
-export interface ModuleOptions {}
 
 export default defineNuxtModule<ModuleOptions>({
 	meta: {
 		name: 'AnCore',
 		configKey: 'ancore',
 	},
-	// Default configuration options of the Nuxt module
 	defaults: {},
-	setup(_options, _nuxt) {
-		const resolver = createResolver(import.meta.url)
+	async setup(_options, _nuxt) {
+		const { resolve } = createResolver(import.meta.url)
 
-		addImports({
-			name: 'api',
-			from: resolver.resolve('runtime/utils/api')
-		})
+		_nuxt.options.runtimeConfig.public.ancore = {}
+
+		addImportsDir(resolve('./runtime/composables'))
 	}
 })

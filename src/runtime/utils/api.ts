@@ -2,12 +2,12 @@ import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 import type { FetchError } from 'ofetch'
 
 
-export default async <TData = unknown, TError = unknown>(
+export const api = <TData = unknown, TError = unknown>(
 	request: NitroFetchRequest,
 	opts: NitroFetchOptions<string>
-) => {
+): Promise<TData> => {
 	try {
-		return await $fetch<TData>(
+		return $fetch<TData>(
 			request,
 			{...opts}
 		)
@@ -15,3 +15,5 @@ export default async <TData = unknown, TError = unknown>(
 		throw error as FetchError<TError>
 	}
 }
+
+export type TApi = typeof api

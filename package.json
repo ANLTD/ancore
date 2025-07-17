@@ -13,7 +13,8 @@
 		"./module": {
 			"types": "./dist/types.d.mts",
 			"import": "./dist/module.mjs"
-		}
+		},
+		"./composables/*": "./dist/runtime/composables/*"
 	},
 	"main": "./dist/module.mjs",
 	"typesVersions": {
