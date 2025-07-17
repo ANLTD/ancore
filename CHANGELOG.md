@@ -1,3 +1,15 @@
+## v1.2.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.1.3...v1.2.0)
+
+### 🚀 Enhancements
+
+- Add useData composable - refactor: improve coreApi method - refactor: add userApi.ts wrapper - chore: configure module function imports ([1d739fc](https://github.com/ANLTD/ancore/commit/1d739fc))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.1.3
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.1.2...v1.1.3)
