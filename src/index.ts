@@ -1,1 +1,1 @@
-export { default as api } from './runtime/utils/api'
+export { default as api } from './utils/api'
