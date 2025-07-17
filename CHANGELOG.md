@@ -1,3 +1,15 @@
+## v1.1.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.1.0...v1.1.1)
+
+### 📦 Build
+
+- Api method import ([707e91d](https://github.com/ANLTD/ancore/commit/707e91d))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.1.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.0.2...v1.1.0)
