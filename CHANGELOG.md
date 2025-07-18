@@ -1,3 +1,23 @@
+## v1.3.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.2.0...v1.3.0)
+
+### 🚀 Enhancements
+
+- Add asyncInit and toQuery functions feat: add useForm and useList composables ([84bd1f0](https://github.com/ANLTD/ancore/commit/84bd1f0))
+
+### 💅 Refactors
+
+- Added aliases #ancore/utils and #ancore/types refactor: improved internal module architecture ([73ac7f4](https://github.com/ANLTD/ancore/commit/73ac7f4))
+
+### 📦 Build
+
+- Fix repack ([5bcedf6](https://github.com/ANLTD/ancore/commit/5bcedf6))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.2.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.1.3...v1.2.0)
