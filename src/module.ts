@@ -1,5 +1,8 @@
 import { addImportsDir, createResolver, defineNuxtModule } from '@nuxt/kit'
-import type { ModuleOptions } from '#ancore/types'
+
+
+// TYPES
+export interface ModuleOptions {}
 
 
 export default defineNuxtModule<ModuleOptions>({
