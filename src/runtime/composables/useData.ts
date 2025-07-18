@@ -1,7 +1,7 @@
 import type { NitroFetchRequest } from 'nitropack'
 import { computed, ref, type Ref, type ComputedRef  } from 'vue'
 import { useAsyncData } from '#app'
-import { userApi } from '../../utils'
+import { userApi } from '#ancore/utils'
 
 
 // TYPES
@@ -12,8 +12,8 @@ interface TUseData<TData, TError> {
 	init: () => Promise<void>,
 	loading: ComputedRef<boolean>,
 	request: Ref<NitroFetchRequest>
-	data: Ref<TData>
-	error: Ref<TError>
+	data: ComputedRef<TData>
+	error: ComputedRef<TError>
 	status: ReturnType<typeof useAsyncData>['status']
 }
 
@@ -51,8 +51,8 @@ export const useData = <TData = unknown, TError = unknown>(
 
 		loading,
 		request,
-		data: data as Ref<TData>,
-		error: error as Ref<TError>,
+		data: data as ComputedRef<TData>,
+		error: error as ComputedRef<TError>,
 		status
 	}
 }

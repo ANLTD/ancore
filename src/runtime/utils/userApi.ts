@@ -1,6 +1,6 @@
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 import { useNuxtApp } from '#app'
-import { api as coreApi } from '../runtime/utils'
+import { api as coreApi } from '#ancore/utils'
 
 
 export const userApi = <TData = unknown, TError = unknown>(
