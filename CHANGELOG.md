@@ -1,3 +1,16 @@
+## v1.3.2
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.3.1...v1.3.2)
+
+### 📦 Build
+
+- Auto import utils ([de190dc](https://github.com/ANLTD/ancore/commit/de190dc))
+- Auto import utils ([bba1076](https://github.com/ANLTD/ancore/commit/bba1076))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.3.1
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.3.0...v1.3.1)
