@@ -7,12 +7,11 @@
 	"type": "module",
 	"exports": {
 		".": {
-			"types": "./dist/index.d.mts",
-			"import": "./dist/index.mjs"
-		},
-		"./module": {
-			"types": "./dist/types.d.mts",
+			"types": "./dist/module.d.mts",
 			"import": "./dist/module.mjs"
+		},
+		"./runtime": {
+			"import": "./dist/runtime/index.mjs"
 		},
 		"./composables/*": "./dist/runtime/composables/*"
 	},
