@@ -1,3 +1,16 @@
+## v1.3.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.3.0...v1.3.1)
+
+### 📦 Build
+
+- Fix export utils ([49a0c42](https://github.com/ANLTD/ancore/commit/49a0c42))
+- Fix export utils ([78c1399](https://github.com/ANLTD/ancore/commit/78c1399))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.3.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.2.0...v1.3.0)
