@@ -16,4 +16,4 @@ export const coreApi = <TData = unknown, TError = unknown>(
 	}
 }
 
-export type TApi = typeof coreApi
+export type TApi = <TData, TError>(request: NitroFetchRequest, opts: NitroFetchOptions<string>) => Promise<TData>
