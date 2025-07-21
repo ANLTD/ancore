@@ -1,3 +1,15 @@
+## v1.3.3
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.3.2...v1.3.3)
+
+### 🩹 Fixes
+
+- Fix $api type ([eb44154](https://github.com/ANLTD/ancore/commit/eb44154))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.3.2
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.3.1...v1.3.2)
