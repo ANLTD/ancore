@@ -104,7 +104,7 @@ export default <TData, TFilter = unknown, TWS extends TWSDefault = TWSDefault>(c
 		error,
 		execute,
 		status
-	} = useAsyncData(
+	} = useAsyncData<TResponseList<TData>>(
 		key,
 		() => userApi<TResponseList<TData>>(config.request, { method: 'GET', query: filter.value }),
 		{ immediate: false }

@@ -1,5 +1,5 @@
-import { api as coreApi } from '@anweb/nuxt-ancore'
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
+import { coreApi } from '#ancore/utils'
 
 
 export default defineNuxtPlugin( ()  => {

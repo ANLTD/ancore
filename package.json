@@ -7,14 +7,9 @@
 	"type": "module",
 	"exports": {
 		".": {
-			"types": "./dist/runtime/index.d.ts",
-			"import": "./dist/runtime/index.js"
-		},
-		"./module": {
 			"types": "./dist/types.d.mts",
 			"import": "./dist/module.mjs"
-		},
-		"./utils/*": "./dist/runtime/utils/*"
+		}
 	},
 	"main": "./dist/module.mjs",
 	"typesVersions": {

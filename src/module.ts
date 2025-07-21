@@ -15,9 +15,9 @@ export default defineNuxtModule<ModuleOptions>({
 		const { resolve } = createResolver(import.meta.url)
 
 		_nuxt.options.runtimeConfig.public.ancore = {}
-		_nuxt.options.alias['#ancore/utils'] = resolve('./runtime/utils')
 		_nuxt.options.alias['#ancore/types'] = resolve('./runtime/types')
 
 		addImportsDir(resolve('./runtime/composables'))
+		addImportsDir(resolve('./runtime/utils'))
 	}
 })

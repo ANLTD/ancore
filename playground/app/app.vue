@@ -13,8 +13,7 @@
 
 <script setup lang="ts">
 	// TYPES
-
-	import { asyncInit } from '@anweb/nuxt-ancore'
+	import { asyncInit } from '#ancore/utils'
 
 	interface TUser {
 		id: string

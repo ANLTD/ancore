@@ -7,7 +7,6 @@ export default defineNuxtConfig({
 		'@anweb/nuxt-ancore': fileURLToPath(new URL('../src/index.ts', import.meta.url))
 	},
 	ancore: {
-		apiPath: './utils/ee'
 	},
 	devtools: { enabled: true },
 })

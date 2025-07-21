@@ -2,7 +2,7 @@ import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 import type { FetchError } from 'ofetch'
 
 
-export const api = <TData = unknown, TError = unknown>(
+export const coreApi = <TData = unknown, TError = unknown>(
 	request: NitroFetchRequest,
 	opts: NitroFetchOptions<string>
 ): Promise<TData> => {
@@ -16,4 +16,4 @@ export const api = <TData = unknown, TError = unknown>(
 	}
 }
 
-export type TApi = typeof api
+export type TApi = typeof coreApi
