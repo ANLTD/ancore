@@ -1,3 +1,15 @@
+## v1.3.4
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.3.3...v1.3.4)
+
+### 🩹 Fixes
+
+- Fix import utils ([49f2d17](https://github.com/ANLTD/ancore/commit/49f2d17))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.3.3
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.3.2...v1.3.3)
