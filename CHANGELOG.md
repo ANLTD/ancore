@@ -1,3 +1,7 @@
+## v1.3.5
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.3.4...v1.3.5)
+
 ## v1.3.4
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.3.3...v1.3.4)
