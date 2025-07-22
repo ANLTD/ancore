@@ -13,8 +13,6 @@
 
 <script setup lang="ts">
 	// TYPES
-	import { asyncInit } from '#ancore/utils'
-
 	interface TUser {
 		id: string
 		name: string

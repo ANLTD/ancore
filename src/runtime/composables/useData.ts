@@ -1,7 +1,7 @@
 import type { NitroFetchRequest } from 'nitropack'
 import { computed, ref, type Ref, type ComputedRef  } from 'vue'
 import { useAsyncData } from '#app'
-import { userApi } from '#ancore/utils'
+import { userApi } from '../utils'
 
 
 // TYPES

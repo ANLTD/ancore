@@ -1,12 +1,10 @@
-import { fileURLToPath } from 'node:url'
+import { api } from './app/utils/api'
 
 
 export default defineNuxtConfig({
 	modules: ['../src/module'],
-	alias: {
-		'@anweb/nuxt-ancore': fileURLToPath(new URL('../src/index.ts', import.meta.url))
-	},
 	ancore: {
+		api: api
 	},
 	devtools: { enabled: true },
 })

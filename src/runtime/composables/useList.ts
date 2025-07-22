@@ -3,7 +3,7 @@ import { useEventBus, type UseEventBusReturn } from '@vueuse/core'
 import { computed, ref, reactive, watch } from 'vue'
 import { useAsyncData } from '#app'
 import type { TResponseList, TWS as TWSDefault } from '#ancore/types'
-import { userApi, toQuery } from '#ancore/utils'
+import { userApi, toQuery } from '../utils'
 
 
 // TYPES
