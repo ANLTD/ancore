@@ -1,10 +1,9 @@
 import { addImportsDir, createResolver, defineNuxtModule } from '@nuxt/kit'
-import type { TApi } from './runtime/types'
 
 
 // TYPES
 export interface ModuleOptions {
-	api?: TApi
+	api?: string
 }
 
 
@@ -15,12 +14,14 @@ export default defineNuxtModule<ModuleOptions>({
 	},
 	defaults: {},
 	async setup(_options, _nuxt) {
-		const { resolve } = createResolver(import.meta.url)
+		const { resolve, resolvePath } = createResolver(import.meta.url)
 
-		_nuxt.options.runtimeConfig.public.ancore = {
-			api: _options.api
-		}
+		_nuxt.options.runtimeConfig.public = {}
+
 		_nuxt.options.alias['#ancore/types'] = resolve('./runtime/types')
+		if (_options.api) {
+			_nuxt.options.alias['#ancore/customApi'] = await resolvePath(_options.api)
+		}
 
 		addImportsDir(resolve('./runtime/composables'))
 		addImportsDir(resolve('./runtime/utils'))
