@@ -1,3 +1,15 @@
+## v1.3.6
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.3.5...v1.3.6)
+
+### 🩹 Fixes
+
+- Fix import custom api ([4d8e3f1](https://github.com/ANLTD/ancore/commit/4d8e3f1))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.3.5
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.3.4...v1.3.5)
