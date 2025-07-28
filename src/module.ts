@@ -1,4 +1,4 @@
-import { addImportsDir, createResolver, defineNuxtModule, addPlugin } from '@nuxt/kit'
+import { addImportsDir, createResolver, defineNuxtModule, addPlugin, addComponentsDir } from '@nuxt/kit'
 import type { InitOptions } from 'i18next'
 
 
@@ -28,6 +28,11 @@ export default defineNuxtModule<ModuleOptions>({
 		if (_options.api) {
 			_nuxt.options.alias['#ancore/customApi'] = await resolvePath(_options.api)
 		}
+
+		// COMPONENTS
+		addComponentsDir({
+			path: resolve('./runtime/components')
+		})
 
 		// COMPOSABLES
 		addImportsDir(resolve('./runtime/composables'))

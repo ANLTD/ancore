@@ -10,6 +10,13 @@
 	  <Test v-if="show" />
 
 	  <div>{{t('GuideDashboard')}}</div>
+
+	  <AnTab :show="true">
+		  123
+	  </AnTab>
+	  <AnTab :show="false">
+		  333
+	  </AnTab>
   </div>
 </template>
 
