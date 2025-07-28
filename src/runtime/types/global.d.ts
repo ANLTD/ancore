@@ -1,3 +1,4 @@
+import type { InitOptions } from 'i18next'
 import type { ModuleOptions } from '../../module'
 import type { TApi } from '#ancore/types'
 
@@ -11,6 +12,7 @@ declare module 'nuxt/schema' {
 	}
 
 	interface PublicRuntimeConfig {
+		i18n?: InitOptions<unknown>
 	}
 }
 

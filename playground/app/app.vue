@@ -8,6 +8,8 @@
 	  <div> {{list.items}}</div>
 
 	  <Test v-if="show" />
+
+	  <div>{{t('GuideDashboard')}}</div>
   </div>
 </template>
 
@@ -19,6 +21,14 @@
 		info?: string
 	}
 	type TForm = Required<Pick<TUser, 'info'>>
+
+	const resources = {
+		en: {
+			GuideDashboard: 'Guide Dashboard',
+			TouristDashboard: 'Tourist Dashboard'
+		}
+	}
+	const { t } = useI18n(resources, import.meta.url)
 
 	// DATA
 	const show = ref(false)
@@ -41,6 +51,7 @@
 		if (!valid.pass) return
 		list.filter.value.info = form.state.value.info
 	})
+
 
 	// INIT
 	await asyncInit(list.init)

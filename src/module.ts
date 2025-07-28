@@ -1,9 +1,11 @@
-import { addImportsDir, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addImportsDir, createResolver, defineNuxtModule, addPlugin } from '@nuxt/kit'
+import type { InitOptions } from 'i18next'
 
 
 // TYPES
 export interface ModuleOptions {
 	api?: string
+	i18n?: InitOptions<unknown>
 }
 
 
@@ -16,14 +18,32 @@ export default defineNuxtModule<ModuleOptions>({
 	async setup(_options, _nuxt) {
 		const { resolve, resolvePath } = createResolver(import.meta.url)
 
-		_nuxt.options.runtimeConfig.public = {}
+		// CONFIG
+		_nuxt.options.runtimeConfig.public = {
+			i18n: _options.i18n
+		}
 
+		// ALIASES
 		_nuxt.options.alias['#ancore/types'] = resolve('./runtime/types')
 		if (_options.api) {
 			_nuxt.options.alias['#ancore/customApi'] = await resolvePath(_options.api)
 		}
 
+		// COMPOSABLES
 		addImportsDir(resolve('./runtime/composables'))
+
+		// UTILS
 		addImportsDir(resolve('./runtime/utils'))
+
+		// I18N
+		if (_options.i18n) {
+			for (const lng in _options.i18n.resources) {
+				if (!_options.i18n.resources[lng]) continue
+				const path = await resolvePath(_options.i18n.resources[lng].translation as string)
+				_options.i18n.resources[lng].translation = structuredClone((await import(path)).default)
+			}
+
+			addPlugin(resolve('./runtime/plugins/i18n.ts'))
+		}
 	}
 })
