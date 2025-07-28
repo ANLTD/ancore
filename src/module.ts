@@ -1,5 +1,6 @@
 import { addImportsDir, createResolver, defineNuxtModule, addPlugin, addComponentsDir } from '@nuxt/kit'
 import type { InitOptions } from 'i18next'
+import { pathToFileURL } from 'node:url'
 
 
 // TYPES
@@ -45,7 +46,8 @@ export default defineNuxtModule<ModuleOptions>({
 			for (const lng in _options.i18n.resources) {
 				if (!_options.i18n.resources[lng]) continue
 				const path = await resolvePath(_options.i18n.resources[lng].translation as string)
-				_options.i18n.resources[lng].translation = structuredClone((await import(path)).default)
+				const fileUrl = pathToFileURL(path).href
+				_options.i18n.resources[lng].translation = structuredClone((await import(fileUrl)).default)
 			}
 
 			addPlugin(resolve('./runtime/plugins/i18n.ts'))
