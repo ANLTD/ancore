@@ -50,7 +50,7 @@ export default defineNuxtModule<ModuleOptions>({
 				_options.i18n.resources[lng].translation = structuredClone((await import(fileUrl, { assert: { type: 'json' } })).default)
 			}
 
-			addPlugin(resolve('./runtime/plugins/i18n.ts'))
+			addPlugin(resolve('./runtime/plugins/i18n'))
 		}
 	}
 })
