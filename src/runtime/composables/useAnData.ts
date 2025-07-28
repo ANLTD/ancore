@@ -8,7 +8,7 @@ import { userApi } from '../utils'
 interface TConfig {
 	request: NitroFetchRequest
 }
-interface TUseData<TData, TError> {
+interface TUseAnData<TData, TError> {
 	init: () => Promise<void>,
 	loading: ComputedRef<boolean>,
 	request: Ref<NitroFetchRequest>
@@ -18,9 +18,9 @@ interface TUseData<TData, TError> {
 }
 
 
-export const useData = <TData = unknown, TError = unknown>(
+export const useAnData = <TData = unknown, TError = unknown>(
 	config: TConfig
-): TUseData<TData, TError> => {
+): TUseAnData<TData, TError> => {
 	// DATA
 	const request = ref<NitroFetchRequest>(config.request)
 

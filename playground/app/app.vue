@@ -28,11 +28,11 @@
 			TouristDashboard: 'Tourist Dashboard'
 		}
 	}
-	const { t } = useI18n(resources, import.meta.url)
+	const { t } = useAnI18n(resources, import.meta.url)
 
 	// DATA
 	const show = ref(false)
-	const form = useForm<TForm>({
+	const form = useAnForm<TForm>({
 		rules: {
 			info: {type: 'string', required: true, message: 'enter Info'},
 		},
@@ -40,7 +40,7 @@
 			info: ''
 		}
 	})
-	const list = useList<TUser, {info: string}>({
+	const list = useAnList<TUser, {info: string}>({
 		request: '/api/users',
 		filter: {info: form.state.value.info}
 	})
