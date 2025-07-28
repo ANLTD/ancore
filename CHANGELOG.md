@@ -1,3 +1,15 @@
+## v1.4.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.4.0...v1.4.1)
+
+### 🩹 Fixes
+
+- Absolute import file in i18n ([867fe29](https://github.com/ANLTD/ancore/commit/867fe29))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.4.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.3.6...v1.4.0)
