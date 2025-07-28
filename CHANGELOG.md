@@ -1,3 +1,20 @@
+## v1.4.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.3.6...v1.4.0)
+
+### 🚀 Enhancements
+
+- Added i18next ([7c8380a](https://github.com/ANLTD/ancore/commit/7c8380a))
+- Added component AnTab ([c31f775](https://github.com/ANLTD/ancore/commit/c31f775))
+
+### 💅 Refactors
+
+- Added aliases for use ([ed303f9](https://github.com/ANLTD/ancore/commit/ed303f9))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.3.6
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.3.5...v1.3.6)
