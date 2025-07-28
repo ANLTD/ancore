@@ -1,3 +1,15 @@
+## v1.4.2
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.4.1...v1.4.2)
+
+### 🩹 Fixes
+
+- Json import resource for i18n ([e1b1f89](https://github.com/ANLTD/ancore/commit/e1b1f89))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.4.1
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.4.0...v1.4.1)
