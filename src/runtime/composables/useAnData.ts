@@ -27,7 +27,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 
 	// COMPUTED
 	const loading = computed((): boolean => {
-		return AData.status.value === 'pending'
+		return status.value === 'pending'
 	})
 	const key = computed((): string => {
 		return request.value.toString()
@@ -35,19 +35,24 @@ export const useAnData = <TData = unknown, TError = unknown>(
 
 
 	// INIT
-	const AData = useAsyncData<TData, TError>(
+	const {
+		data,
+		error,
+		execute,
+		status
+	} = useAsyncData<TData, TError>(
 		key,
 		() => userApi(request.value, { method: 'GET' }),
 		{ immediate: false }
 	)
 
 	return {
-		init: AData.execute,
+		init: execute,
 
 		loading,
 		request,
-		data: AData.data as ComputedRef<TData>,
-		error: AData.error as ComputedRef<TError>,
-		status: AData.status
+		data: data as ComputedRef<TData>,
+		error: error as ComputedRef<TError>,
+		status
 	}
 }
