@@ -1,3 +1,15 @@
+## v1.4.4
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.4.3...v1.4.4)
+
+### 🩹 Fixes
+
+- Fix types in toQuery ([75e3960](https://github.com/ANLTD/ancore/commit/75e3960))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.4.3
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.4.2...v1.4.3)
