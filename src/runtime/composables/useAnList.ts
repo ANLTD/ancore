@@ -42,7 +42,7 @@ export default <TData, TFilter = unknown, TWS extends TWSDefault = TWSDefault>(c
 			filter.value = { ...config.filter }
 		}
 
-		await execute()
+		await AData.execute()
 
 		refresh()
 
@@ -71,7 +71,7 @@ export default <TData, TFilter = unknown, TWS extends TWSDefault = TWSDefault>(c
 		inited.value = true
 	}
 	const refresh = () => {
-		if (!data.value) return
+		if (!AData.data.value) return
 
 		if (!filter.value.skip) {
 			count.value = null
@@ -79,13 +79,13 @@ export default <TData, TFilter = unknown, TWS extends TWSDefault = TWSDefault>(c
 		}
 
 		if (config.reverse) {
-			items.unshift(...data.value.items)
+			items.unshift(...AData.data.value.items)
 		} else {
-			items.push(...data.value.items)
+			items.push(...AData.data.value.items)
 
 		}
 
-		count.value = data.value.count
+		count.value = AData.data.value.count
 	}
 
 
@@ -94,17 +94,12 @@ export default <TData, TFilter = unknown, TWS extends TWSDefault = TWSDefault>(c
 		return config.request + '?' + toQuery(filter.value)
 	})
 	const loading = computed((): boolean => {
-		return status.value === 'pending'
+		return AData.status.value === 'pending'
 	})
 
 
 	// INIT
-	const {
-		data,
-		error,
-		execute,
-		status
-	} = useAsyncData<TResponseList<TData>>(
+	const AData = useAsyncData<TResponseList<TData>>(
 		key,
 		() => userApi<TResponseList<TData>>(config.request, { method: 'GET', query: filter.value }),
 		{ immediate: false }
@@ -112,7 +107,7 @@ export default <TData, TFilter = unknown, TWS extends TWSDefault = TWSDefault>(c
 
 
 	// WATCHES
-	watch(data, refresh)
+	watch(AData, refresh)
 
 
 	return {
@@ -123,7 +118,7 @@ export default <TData, TFilter = unknown, TWS extends TWSDefault = TWSDefault>(c
 		loading,
 		items,
 		count,
-		error,
-		status
+		error: AData.error,
+		status: AData.status
 	}
 }
