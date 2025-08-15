@@ -1,3 +1,15 @@
+## v1.4.5
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.4.4...v1.4.5)
+
+### 🩹 Fixes
+
+- Fix destructuring useAsyncData ([d9878b0](https://github.com/ANLTD/ancore/commit/d9878b0))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.4.4
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.4.3...v1.4.4)
