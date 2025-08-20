@@ -1,3 +1,15 @@
+## v1.5.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.4.7...v1.5.0)
+
+### 🚀 Enhancements
+
+- Added reset function in useAnForm ([a969d09](https://github.com/ANLTD/ancore/commit/a969d09))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.4.7
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.4.6...v1.4.7)
