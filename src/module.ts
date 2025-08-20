@@ -21,6 +21,7 @@ export default defineNuxtModule<ModuleOptions>({
 
 		// CONFIG
 		_nuxt.options.runtimeConfig.public = {
+			..._nuxt.options.runtimeConfig.public,
 			i18n: _options.i18n
 		}
 
