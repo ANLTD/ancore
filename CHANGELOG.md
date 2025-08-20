@@ -1,3 +1,15 @@
+## v1.7.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.6.0...v1.7.0)
+
+### 🚀 Enhancements
+
+- OnResponse in useAnData fix: renderRaw to onResponse in useAnList ([2c071b1](https://github.com/ANLTD/ancore/commit/2c071b1))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.6.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.5.1...v1.6.0)
