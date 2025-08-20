@@ -98,7 +98,8 @@ export default <T = unknown>(params: TFormParams<T>) => {
 			reset: () => {
 				state.value = first.value
 				void nextTick(History.clear)
-			}
+			},
+			commit: History.clear
 		}
 	}
 }

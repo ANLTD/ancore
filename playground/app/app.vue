@@ -1,8 +1,9 @@
 <template>
   <div>
     Nuxt module playground!<br>
-	  <input v-model="form.state.value.info" />
-	  <div>{{  form.validator.errors.value?.info?.[0]?.message }}</div>
+	  <input v-model="form.state.value.info" /><button @click="form.history.commit">Commit</button><button @click="form.history.reset">Reset</button>
+	  <div>isChanged: {{form.history.isChanged}}</div>
+	  <div>valid: {{  form.validator.errors.value?.info?.[0]?.message }}</div>
 
 	  <div @click="show= true"> {{list.count.value}}</div>
 	  <div> {{list.items}}</div>
