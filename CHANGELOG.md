@@ -1,3 +1,15 @@
+## v1.5.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.5.0...v1.5.1)
+
+### 🩹 Fixes
+
+- Nuxtconfig ([2713a7d](https://github.com/ANLTD/ancore/commit/2713a7d))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.5.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.4.7...v1.5.0)
