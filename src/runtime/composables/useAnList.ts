@@ -1,4 +1,4 @@
-import type { NitroFetchRequest } from 'nitropack'
+import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 import { useEventBus, type UseEventBusReturn } from '@vueuse/core'
 import { computed, ref, reactive, watch } from 'vue'
 import { useAsyncData } from '#app'
@@ -19,7 +19,7 @@ interface TConfig<TData, TFilter, TWS extends TWSDefault> {
 		type: TWS['type']
 		callback: (list: TData[], count: number, data: any) => number | void
 	}[]
-	renderRaw?: (data: unknown) => TResponseList<TData>
+	apiConfig?: NitroFetchOptions<string>
 }
 
 
@@ -74,21 +74,19 @@ export default <TData, TFilter = unknown, TWS extends TWSDefault = TWSDefault>(c
 	const refresh = () => {
 		if (!data.value) return
 
-		const tempData = config.renderRaw ? config.renderRaw(data.value) : data.value
-
 		if (!filter.value.skip) {
 			count.value = null
 			items.length = 0
 		}
 
 		if (config.reverse) {
-			items.unshift(...tempData.items)
+			items.unshift(...data.value.items)
 		} else {
-			items.push(...tempData.items)
+			items.push(...data.value.items)
 
 		}
 
-		count.value = tempData.count
+		count.value = data.value.count
 	}
 
 
@@ -109,7 +107,10 @@ export default <TData, TFilter = unknown, TWS extends TWSDefault = TWSDefault>(c
 		status
 	} = useAsyncData<TResponseList<TData>>(
 		key,
-		() => userApi<TResponseList<TData>>(config.request, { method: 'GET', query: filter.value }),
+		() => userApi<TResponseList<TData>>(
+			config.request,
+			{ method: 'GET', query: filter.value, ...(config.apiConfig || {}) }
+		),
 		{ immediate: false }
 	)
 

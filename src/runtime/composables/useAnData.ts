@@ -1,4 +1,4 @@
-import type { NitroFetchRequest } from 'nitropack'
+import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 import { computed, ref, type Ref, type ComputedRef  } from 'vue'
 import { useAsyncData } from '#app'
 import { userApi } from '../utils'
@@ -7,6 +7,7 @@ import { userApi } from '../utils'
 // TYPES
 interface TConfig {
 	request: NitroFetchRequest
+	apiConfig?: NitroFetchOptions<string>
 }
 interface TUseAnData<TData, TError> {
 	init: () => Promise<void>,
@@ -42,7 +43,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 		status
 	} = useAsyncData<TData, TError>(
 		key,
-		() => userApi(request.value, { method: 'GET' }),
+		() => userApi(request.value, { method: 'GET', ...(config.apiConfig || {}) }),
 		{ immediate: false }
 	)
 

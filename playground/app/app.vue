@@ -30,7 +30,6 @@
 		info?: string
 	}
 	type TForm = Required<Pick<TUser, 'info'>>
-	type TUsers = TUser[]
 
 	const resources = {
 		en: {
@@ -53,11 +52,15 @@
 	const list = useAnList<TUser, {info: string}>({
 		request: '/api/users',
 		filter: {info: form.state.value.info},
-		renderRaw: (data): TResponseList<TUser> => {
-			const arr = data as TUser[]
-			return {
-				count: arr.length,
-				items: arr
+		apiConfig: {
+			onResponse: (ctx) => {
+				const arr = ctx.response._data as object[]
+				if (Array.isArray(arr)) {
+					ctx.response._data = {
+						items: arr,
+						count: arr.length
+					}
+				}
 			}
 		}
 	})
