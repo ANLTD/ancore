@@ -19,6 +19,7 @@ interface TConfig<TData, TFilter, TWS extends TWSDefault> {
 		type: TWS['type']
 		callback: (list: TData[], count: number, data: any) => number | void
 	}[]
+	renderRaw?: (data: unknown) => TResponseList<TData>
 }
 
 
@@ -73,19 +74,21 @@ export default <TData, TFilter = unknown, TWS extends TWSDefault = TWSDefault>(c
 	const refresh = () => {
 		if (!data.value) return
 
+		const tempData = config.renderRaw ? config.renderRaw(data.value) : data.value
+
 		if (!filter.value.skip) {
 			count.value = null
 			items.length = 0
 		}
 
 		if (config.reverse) {
-			items.unshift(...data.value.items)
+			items.unshift(...tempData.items)
 		} else {
-			items.push(...data.value.items)
+			items.push(...tempData.items)
 
 		}
 
-		count.value = data.value.count
+		count.value = tempData.count
 	}
 
 

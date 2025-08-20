@@ -22,6 +22,7 @@
 </template>
 
 <script setup lang="ts">
+	import type { TResponseList } from '#ancore/types'
 	// TYPES
 	interface TUser {
 		id: string
@@ -29,6 +30,7 @@
 		info?: string
 	}
 	type TForm = Required<Pick<TUser, 'info'>>
+	type TUsers = TUser[]
 
 	const resources = {
 		en: {
@@ -50,7 +52,14 @@
 	})
 	const list = useAnList<TUser, {info: string}>({
 		request: '/api/users',
-		filter: {info: form.state.value.info}
+		filter: {info: form.state.value.info},
+		renderRaw: (data): TResponseList<TUser> => {
+			const arr = data as TUser[]
+			return {
+				count: arr.length,
+				items: arr
+			}
+		}
 	})
 
 
