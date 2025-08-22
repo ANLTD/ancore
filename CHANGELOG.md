@@ -1,3 +1,15 @@
+## v1.7.5
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.7.4...v1.7.5)
+
+### 🩹 Fixes
+
+- UseAnData events types add null ([9756360](https://github.com/ANLTD/ancore/commit/9756360))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.7.4
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.7.3...v1.7.4)
