@@ -1,33 +1,25 @@
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
-import { useEventBus, type UseEventBusReturn } from '@vueuse/core'
+import { type UseEventBusReturn } from '@vueuse/core'
 import { computed, ref, reactive, watch } from 'vue'
 import { useAsyncData } from '#app'
-import type { TResponseList, TWS as TWSDefault } from '#ancore/types'
+import type { TResponseList } from '#ancore/types'
 import { userApi, toQuery } from '../utils'
 
 
 // TYPES
-interface TConfig<TData, TFilter, TWS extends TWSDefault> {
+interface TConfig<TData, TFilter> {
 	request: NitroFetchRequest
 	filter?: TFilter
 	reverse?: boolean
 	events?: {
 		bus: UseEventBusReturn<any, any>
-		callback: (list: TData[], count: number, data: any) => number | void
-	}[]
-	ws?: {
-		type: TWS['type']
-		callback: (list: TData[], count: number, data: any) => number | void
+		callback: (list: TData[], count: number, data: any) => number | undefined
 	}[]
 	apiConfig?: NitroFetchOptions<string>
 }
 
 
-export default <TData, TFilter = unknown, TWS extends TWSDefault = TWSDefault>(config: TConfig<TData, TFilter, TWS>) => {
-	// USE
-	const busWS = useEventBus<TWS>('ws')
-
-
+export default <TData, TFilter = unknown>(config: TConfig<TData, TFilter>) => {
 	// DATA
 	const inited = ref<boolean>(false)
 	const filter = ref<Partial<TFilter>>(config.filter || {})
@@ -51,22 +43,11 @@ export default <TData, TFilter = unknown, TWS extends TWSDefault = TWSDefault>(c
 			for (const event of config.events) {
 				event.bus.on((data) => {
 					const newCount = event.callback(items, count.value || 0, data)
-					if (newCount || newCount === 0) {
+					if (newCount !== undefined) {
 						count.value = newCount
 					}
 				})
 			}
-		}
-		if (config.ws) {
-			busWS.on((data) => {
-				const event = config.ws?.find(item => item.type === data.type)
-				if (event) {
-					const newCount = event.callback(items, count.value || 0, data.data)
-					if (newCount || newCount === 0) {
-						count.value = newCount
-					}
-				}
-			})
 		}
 
 		inited.value = true
