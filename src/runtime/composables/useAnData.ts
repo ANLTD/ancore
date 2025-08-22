@@ -17,6 +17,7 @@ interface TConfig<TData> {
 }
 interface TUseAnData<TData, TError> {
 	init: () => Promise<void>,
+	set: (data: TData) => void,
 	loading: ComputedRef<boolean>,
 	request: Ref<NitroFetchRequest>
 	data: ComputedRef<TData>
@@ -64,11 +65,14 @@ export const useAnData = <TData = unknown, TError = unknown>(
 
 	return {
 		init: execute,
+		set: (newDate: TData) => {
+			data.value = newDate as PickFrom<TData, KeysOf<TData>> | undefined
+		},
 
 		loading,
 		request,
 		data: data as ComputedRef<TData>,
 		error: error as ComputedRef<TError>,
-		status
+		status,
 	}
 }
