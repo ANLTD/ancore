@@ -1,3 +1,15 @@
+## v1.8.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.7.5...v1.8.0)
+
+### 🚀 Enhancements
+
+- UseAnData new method set ([be68be7](https://github.com/ANLTD/ancore/commit/be68be7))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.7.5
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.7.4...v1.7.5)
