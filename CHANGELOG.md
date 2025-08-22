@@ -1,3 +1,15 @@
+## v1.7.2
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.7.1...v1.7.2)
+
+### 🩹 Fixes
+
+- Events in useAnData fix: remove ws from useAnList ([6606bdf](https://github.com/ANLTD/ancore/commit/6606bdf))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.7.1
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.7.0...v1.7.1)
