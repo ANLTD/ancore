@@ -12,7 +12,7 @@ interface TConfig<TData> {
 	apiConfig?: NitroFetchOptions<string>
 	events?: {
 		bus: UseEventBusReturn<any, any>
-		callback: (target: TData | undefined, updated: Partial<TData>) => TData | undefined
+		callback: (target: TData | undefined, updated: Partial<TData>) => TData | undefined | null
 	}[]
 }
 interface TUseAnData<TData, TError> {
