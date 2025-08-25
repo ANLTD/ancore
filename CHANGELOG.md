@@ -1,3 +1,15 @@
+## v1.8.2
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.8.1...v1.8.2)
+
+### 🩹 Fixes
+
+- UseAnData useAnList events ([4a7a9c2](https://github.com/ANLTD/ancore/commit/4a7a9c2))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.8.1
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.8.0...v1.8.1)
