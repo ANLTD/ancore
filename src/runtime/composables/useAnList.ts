@@ -12,8 +12,8 @@ interface TConfig<TData, TFilter> {
 	filter?: TFilter
 	reverse?: boolean
 	events?: {
-		bus: UseEventBusReturn<any, any>
-		callback: (list: TData[], count: number, data: any) => number | undefined
+		bus: UseEventBusReturn<unknown, unknown>
+		callback: (list: TData[], count: number, event: unknown, payload: unknown, setCount: (value: number) => void) => void
 	}[]
 	apiConfig?: NitroFetchOptions<string>
 }
@@ -41,11 +41,8 @@ export default <TData, TFilter = unknown>(config: TConfig<TData, TFilter>) => {
 
 		if (config.events) {
 			for (const event of config.events) {
-				event.bus.on((data) => {
-					const newCount = event.callback(items, count.value || 0, data)
-					if (newCount !== undefined) {
-						count.value = newCount
-					}
+				event.bus.on((event_type, payload) => {
+					event.callback(items, count.value || 0, event_type, payload, setCount)
 				})
 			}
 		}
@@ -56,7 +53,7 @@ export default <TData, TFilter = unknown>(config: TConfig<TData, TFilter>) => {
 		if (!data.value) return
 
 		if (!filter.value.skip) {
-			count.value = null
+			setCount(null)
 			items.length = 0
 		}
 
@@ -67,7 +64,10 @@ export default <TData, TFilter = unknown>(config: TConfig<TData, TFilter>) => {
 
 		}
 
-		count.value = data.value.count
+		setCount(data.value.count)
+	}
+	const setCount = (value: number | null) => {
+		count.value = value
 	}
 
 

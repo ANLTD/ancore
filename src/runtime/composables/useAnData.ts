@@ -11,8 +11,8 @@ interface TConfig<TData> {
 	request: NitroFetchRequest
 	apiConfig?: NitroFetchOptions<string>
 	events?: {
-		bus: UseEventBusReturn<any, any>
-		callback: (target: TData | undefined, updated: Partial<TData>) => TData | undefined | null
+		bus: UseEventBusReturn<unknown, unknown>
+		callback: (target: TData, event: unknown, payload: unknown, set: (value: TData) => void) => void
 	}[]
 }
 interface TUseAnData<TData, TError> {
@@ -31,6 +31,12 @@ export const useAnData = <TData = unknown, TError = unknown>(
 ): TUseAnData<TData, TError> => {
 	// DATA
 	const request = ref<NitroFetchRequest>(config.request)
+
+
+	// METHODS
+	const set = (value: TData) => {
+		data.value = value as PickFrom<TData, KeysOf<TData>> | undefined
+	}
 
 
 	// COMPUTED
@@ -55,9 +61,8 @@ export const useAnData = <TData = unknown, TError = unknown>(
 	)
 	if (config.events) {
 		for (const event of config.events) {
-			event.bus.on((updated: TData) => {
-				const result = event.callback(data.value as TData, updated)
-				if (result !== undefined) data.value = { ...result } as PickFrom<TData, KeysOf<TData>> | undefined
+			event.bus.on((event_type, payload) => {
+				event.callback(data.value as TData, event_type, payload, set)
 			})
 		}
 	}
@@ -65,9 +70,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 
 	return {
 		init: execute,
-		set: (newDate: TData) => {
-			data.value = newDate as PickFrom<TData, KeysOf<TData>> | undefined
-		},
+		set,
 
 		loading,
 		request,
