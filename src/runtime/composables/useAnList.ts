@@ -7,19 +7,23 @@ import { userApi, toQuery } from '../utils'
 
 
 // TYPES
-interface TConfig<TData, TFilter> {
+interface TEventBase {
+	event: string
+	payload: unknown
+}
+interface TConfig<TData, TFilter, TEvents extends TEventBase> {
 	request: NitroFetchRequest
 	filter?: TFilter
 	reverse?: boolean
 	events?: {
-		bus: UseEventBusReturn<unknown, unknown>
-		callback: (list: TData[], count: number, event: unknown, payload: unknown, setCount?: (value: number) => void) => void
+		bus: UseEventBusReturn<TEvents['event'], TEvents['payload']>
+		callback: (list: TData[], count: number, event: TEvents['event'], payload: TEvents['payload'], setCount?: (value: number) => void) => void
 	}[]
 	apiConfig?: NitroFetchOptions<string>
 }
 
 
-export default <TData, TFilter = unknown>(config: TConfig<TData, TFilter>) => {
+export default <TData, TFilter = unknown, TEvents extends TEventBase = TEventBase>(config: TConfig<TData, TFilter, TEvents>) => {
 	// DATA
 	const inited = ref<boolean>(false)
 	const filter = ref<Partial<TFilter>>(config.filter || {})

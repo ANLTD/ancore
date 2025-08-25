@@ -7,12 +7,16 @@ import type { KeysOf, PickFrom } from '#app/composables/asyncData'
 
 
 // TYPES
-interface TConfig<TData> {
+interface TEventBase {
+	event: string
+	payload: unknown
+}
+interface TConfig<TData, TEvents extends TEventBase> {
 	request: NitroFetchRequest
 	apiConfig?: NitroFetchOptions<string>
 	events?: {
-		bus: UseEventBusReturn<unknown, unknown>
-		callback: (target: TData, event: unknown, payload: unknown, set: (value: TData) => void) => void
+		bus: UseEventBusReturn<TEvents['event'], TEvents['payload']>
+		callback: (target: TData, event: TEvents['event'], payload: TEvents['payload'], set: (value: TData) => void) => void
 	}[]
 }
 interface TUseAnData<TData, TError> {
@@ -26,8 +30,8 @@ interface TUseAnData<TData, TError> {
 }
 
 
-export const useAnData = <TData = unknown, TError = unknown>(
-	config: TConfig<TData>
+export const useAnData = <TData = unknown, TError = unknown, TEvents extends TEventBase = TEventBase>(
+	config: TConfig<TData, TEvents>
 ): TUseAnData<TData, TError> => {
 	// DATA
 	const request = ref<NitroFetchRequest>(config.request)
