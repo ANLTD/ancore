@@ -1,3 +1,15 @@
+## v1.8.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.8.0...v1.8.1)
+
+### 🩹 Fixes
+
+- UseAnData useAnList events ([ef4afbd](https://github.com/ANLTD/ancore/commit/ef4afbd))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.8.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.7.5...v1.8.0)
