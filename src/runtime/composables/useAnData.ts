@@ -1,33 +1,28 @@
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 import { computed, ref, type Ref, type ComputedRef  } from 'vue'
+import type { KeysOf, PickFrom } from '#app/composables/asyncData'
 import { useAsyncData } from '#app'
 import { userApi } from '../utils'
-import type { UseEventBusReturn } from '@vueuse/core'
-import type { KeysOf, PickFrom } from '#app/composables/asyncData'
 
 
 // TYPES
-interface TConfig<TData> {
+interface TConfig {
 	request: NitroFetchRequest
 	apiConfig?: NitroFetchOptions<string>
-	events?: {
-		bus: UseEventBusReturn<any, any>
-		callback: (target: TData, event: any, payload: any, set: (value: TData) => void) => void
-	}[]
 }
 interface TUseAnData<TData, TError> {
 	init: () => Promise<void>,
 	set: (data: TData) => void,
 	loading: ComputedRef<boolean>,
 	request: Ref<NitroFetchRequest>
-	data: ComputedRef<TData>
+	data: ComputedRef
 	error: ComputedRef<TError>
 	status: ReturnType<typeof useAsyncData>['status']
 }
 
 
 export const useAnData = <TData = unknown, TError = unknown>(
-	config: TConfig<TData>
+	config: TConfig
 ): TUseAnData<TData, TError> => {
 	// DATA
 	const request = ref<NitroFetchRequest>(config.request)
@@ -59,13 +54,6 @@ export const useAnData = <TData = unknown, TError = unknown>(
 		() => userApi(request.value, { method: 'GET', ...(config.apiConfig || {}) }),
 		{ immediate: false }
 	)
-	if (config.events) {
-		for (const event of config.events) {
-			event.bus.on((event_type, payload) => {
-				event.callback(data.value as TData, event_type, payload, set)
-			})
-		}
-	}
 
 
 	return {

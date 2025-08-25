@@ -1,5 +1,4 @@
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
-import { type UseEventBusReturn } from '@vueuse/core'
 import { computed, ref, reactive, watch } from 'vue'
 import { useAsyncData } from '#app'
 import type { TResponseList } from '#ancore/types'
@@ -7,19 +6,15 @@ import { userApi, toQuery } from '../utils'
 
 
 // TYPES
-interface TConfig<TData, TFilter> {
+interface TConfig<TFilter> {
 	request: NitroFetchRequest
 	filter?: TFilter
 	reverse?: boolean
-	events?: {
-		bus: UseEventBusReturn<any, any>
-		callback: (list: TData[], count: number, event: any, payload: any, setCount?: (value: number) => void) => void
-	}[]
 	apiConfig?: NitroFetchOptions<string>
 }
 
 
-export default <TData, TFilter = unknown>(config: TConfig<TData, TFilter>) => {
+export default <TData, TFilter = unknown>(config: TConfig<TFilter>) => {
 	// DATA
 	const inited = ref<boolean>(false)
 	const filter = ref<Partial<TFilter>>(config.filter || {})
@@ -38,14 +33,6 @@ export default <TData, TFilter = unknown>(config: TConfig<TData, TFilter>) => {
 		await execute()
 
 		refresh()
-
-		if (config.events) {
-			for (const event of config.events) {
-				event.bus.on((event_type, payload) => {
-					event.callback(items, count.value || 0, event_type, payload, setCount)
-				})
-			}
-		}
 
 		inited.value = true
 	}
