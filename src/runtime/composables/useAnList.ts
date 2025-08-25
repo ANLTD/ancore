@@ -13,7 +13,7 @@ interface TConfig<TData, TFilter> {
 	reverse?: boolean
 	events?: {
 		bus: UseEventBusReturn<unknown, unknown>
-		callback: (list: TData[], count: number, event: unknown, payload: unknown, setCount: (value: number) => void) => void
+		callback: (list: TData[], count: number, event: unknown, payload: unknown, setCount?: (value: number) => void) => void
 	}[]
 	apiConfig?: NitroFetchOptions<string>
 }
