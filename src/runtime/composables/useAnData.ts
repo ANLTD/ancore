@@ -15,7 +15,7 @@ interface TUseAnData<TData, TError> {
 	set: (data: TData) => void,
 	loading: ComputedRef<boolean>,
 	request: Ref<NitroFetchRequest>
-	data: ComputedRef<TData>
+	data: Ref<PickFrom<TData, KeysOf<TData>> | undefined, PickFrom<TData, KeysOf<TData>> | undefined>
 	error: ComputedRef<TError>
 	status: ReturnType<typeof useAsyncData>['status']
 }
@@ -62,7 +62,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 
 		loading,
 		request,
-		data: data as ComputedRef<TData>,
+		data,
 		error: error as ComputedRef<TError>,
 		status,
 	}
