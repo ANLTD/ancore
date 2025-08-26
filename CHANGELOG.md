@@ -1,3 +1,15 @@
+## v1.8.6
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.8.5...v1.8.6)
+
+### 🩹 Fixes
+
+- UseAnData type data ([20a7378](https://github.com/ANLTD/ancore/commit/20a7378))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.8.5
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.8.4...v1.8.5)
