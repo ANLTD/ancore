@@ -15,7 +15,7 @@ interface TUseAnData<TData, TError> {
 	set: (data: TData) => void,
 	loading: ComputedRef<boolean>,
 	request: Ref<NitroFetchRequest>
-	data: ComputedRef
+	data: ComputedRef<TData>
 	error: ComputedRef<TError>
 	status: ReturnType<typeof useAsyncData>['status']
 }
