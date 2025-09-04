@@ -1,4 +1,4 @@
-import SHA256 from 'crypto-js/sha256'
+import { SHA256 } from 'crypto-js'
 
 
 export const getJSONHash = (obj: object): string => {
