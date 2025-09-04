@@ -37,7 +37,7 @@
 			TouristDashboard: 'Tourist Dashboard'
 		}
 	}
-	const { t } = useAnI18n(resources, import.meta.url)
+	const { t } = useAnI18n(resources)
 
 	// DATA
 	const show = ref(false)

@@ -36,12 +36,14 @@
 		"@vueuse/core": "^13.5.0",
 		"@vueuse/integrations": "^13.5.0",
 		"async-validator": "^4.2.5",
+		"crypto-js": "^4.2.0",
 		"i18next": "^25.3.2"
 	},
 	"devDependencies": {
 		"@nuxt/devtools": "^2.6.2",
 		"@nuxt/module-builder": "^1.0.1",
 		"@nuxt/schema": "^4.0.1",
+		"@types/crypto-js": "^4.2.2",
 		"@types/node": "latest",
 		"changelogen": "^0.6.2",
 		"nuxt": "^4.0.1",

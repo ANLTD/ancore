@@ -1,8 +1,11 @@
 import i18next from 'i18next'
+import { getJSONHash } from '../utils'
 
 
-export default (resources?: Record<string, any>, ns?: string) => {
-	if (!ns) return { t: i18next.t }
+export default (resources?: Record<string, any>) => {
+	if (!resources) return { t: i18next.t }
+
+	const ns = getJSONHash(resources)
 
 	for (const lang in resources) {
 		if (!i18next.hasResourceBundle(lang, ns)) {
