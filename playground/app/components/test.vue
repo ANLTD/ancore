@@ -5,7 +5,7 @@
 		info?: string
 	}
 	const user = useAnData<TUser>({ request: '/api/users/2' })
-	const { t } = useAnI18n()
+	const { t } = await useAnI18n()
 	await asyncInit(user.init)
 </script>
 
