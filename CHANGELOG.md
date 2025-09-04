@@ -1,3 +1,15 @@
+## v1.9.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.8.7...v1.9.0)
+
+### 🚀 Enhancements
+
+- New util getJSONHash fix: useAnI18n ns ([07902ae](https://github.com/ANLTD/ancore/commit/07902ae))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.8.7
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.8.6...v1.8.7)
