@@ -1,3 +1,15 @@
+## v1.9.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.9.0...v1.9.1)
+
+### 🩹 Fixes
+
+- GetJSONHash import SHA256 ([f9de2b9](https://github.com/ANLTD/ancore/commit/f9de2b9))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.9.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.8.7...v1.9.0)
