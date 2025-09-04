@@ -1,3 +1,15 @@
+## v1.9.2
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.9.1...v1.9.2)
+
+### 🩹 Fixes
+
+- GetJSONHash await crypto hash ([ac03d0d](https://github.com/ANLTD/ancore/commit/ac03d0d))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.9.1
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.9.0...v1.9.1)
