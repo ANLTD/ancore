@@ -1,3 +1,15 @@
+## v1.9.3
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.9.2...v1.9.3)
+
+### 🩹 Fixes
+
+- GetJSONHash remove async ([c6f39a2](https://github.com/ANLTD/ancore/commit/c6f39a2))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.9.2
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.9.1...v1.9.2)
