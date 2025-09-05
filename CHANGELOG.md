@@ -1,3 +1,15 @@
+## v1.9.4
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.9.3...v1.9.4)
+
+### 🩹 Fixes
+
+- GetJSONHash change lib ([3e86c77](https://github.com/ANLTD/ancore/commit/3e86c77))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.9.3
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.9.2...v1.9.3)
