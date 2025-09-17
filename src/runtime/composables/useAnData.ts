@@ -37,7 +37,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 		const Data = await useAsyncData<TData, TError, TData>(
 			key,
 			() => userApi(
-				config.value.request,
+				key.value,
 				{ method: 'GET', ...(config.value.apiConfig || {}) }
 			)
 		)
@@ -54,9 +54,8 @@ export const useAnData = <TData = unknown, TError = unknown>(
 	// COMPUTED
 	const key = computed((): string => {
 		let url = config.value.request.toString()
-
 		for (const key in config.value.params) {
-			url.replace(`:${key}`, encodeURIComponent(String(config.value.params[key])))
+			url = url.replace(`:${key}`, encodeURIComponent(String(config.value.params[key])))
 		}
 
 		let query = ''

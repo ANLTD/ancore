@@ -51,7 +51,10 @@
 		}
 	})
 	const list = useAnList<TUser, {info: string}>({
-		request: '/api/users',
+		request: '/api/:users',
+		params:{
+			users: 'users'
+		},
 		filter: {info: form.state.value.info},
 		apiConfig: {
 			onResponse: (ctx) => {
