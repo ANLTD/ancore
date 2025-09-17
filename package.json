@@ -1,6 +1,6 @@
 {
 	"name": "@anweb/nuxt-ancore",
-	"version": "1.9.6",
+	"version": "1.9.4",
 	"description": "AnCore Nuxt module",
 	"repository": "https://github.com/ANLTD/ancore",
 	"license": "MIT",
@@ -27,9 +27,9 @@
 		"dev": "npm run dev:prepare && nuxi dev playground",
 		"dev:build": "nuxi build playground",
 		"dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-		"release:patch": "npm run prepack && changelogen --bump patch --release && npm publish --access public && git push --follow-tags",
-		"release:minor": "npm run prepack && changelogen --bump minor --release && npm publish --access public && git push --follow-tags",
-		"release:major": "npm run prepack && changelogen --bump major --release && npm publish --access public && git push --follow-tags"
+		"release:patch": "npm run prepack && changelogen --patch --release && npm publish --access public && git push --follow-tags",
+		"release:minor": "npm run prepack && changelogen --minor --release && npm publish --access public && git push --follow-tags",
+		"release:major": "npm run prepack && changelogen --major --release && npm publish --access public && git push --follow-tags"
 	},
 	"dependencies": {
 		"@noble/hashes": "^2.0.0",
