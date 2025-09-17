@@ -46,7 +46,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 
 		watch(Data.data, () => data.value = Data.data.value, {immediate: true})
 		watch(Data.error, () => error.value = Data.error.value, {immediate: true})
-		watch(Data.status, () => error.value = Data.status.value, {immediate: true})
+		watch(Data.status, () => status.value = Data.status.value, {immediate: true})
 	}
 	const set = (value: TData) => {
 		data.value = value as PickFrom<TData, KeysOf<TData>> | undefined
