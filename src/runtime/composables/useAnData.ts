@@ -38,8 +38,8 @@ export const useAnData = <TData = unknown, TError = unknown>(
 			key,
 			() => userApi(
 				key.value,
-				{ method: 'GET', ...(config.value.apiConfig || {}) }
-			)
+				{ method: 'GET', ...(config.value.apiConfig || {}) },
+			), {immediate: true}
 		)
 
 		watch(Data.data, () => data.value = Data.data.value, {immediate: true})

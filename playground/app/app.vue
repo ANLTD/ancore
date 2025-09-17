@@ -51,10 +51,7 @@
 		}
 	})
 	const list = useAnList<TUser, {info: string}>({
-		request: '/api/:users',
-		params:{
-			users: 'users'
-		},
+		request: '/api/users',
 		filter: {info: form.state.value.info},
 		apiConfig: {
 			onResponse: (ctx) => {
@@ -70,14 +67,15 @@
 	})
 
 
-	watch(() => form.state.value.info, async () => {
-		const valid = await form.validator.check()
-		if (!valid.pass) return
-		list.filter.info = form.state.value.info
-	})
+	// watch(() => form.state.value.info, async () => {
+	// 	const valid = await form.validator.check()
+	// 	if (!valid.pass) return
+	// 	list.filter.info = form.state.value.info
+	// })
 
-	list.filter.info = 'sdf'
+	// list.filter.info = 'sdf'
 
 	// INIT
-	await asyncInit(list.init)
+	onMounted(list.init)
+	// await asyncInit(list.init)
 </script>
