@@ -1,61 +1,74 @@
-import type { Rules } from 'async-validator'
+import { computed, ref, nextTick, watch } from 'vue'
+import { useRefHistory } from '@vueuse/core'
+import type { RuleItem, Rules } from 'async-validator'
 import {
-	type AsyncValidatorError,
 	useAsyncValidator,
 	type UseAsyncValidatorExecuteReturn
 } from '@vueuse/integrations/useAsyncValidator'
-import { useRefHistory } from '@vueuse/core'
-import { computed, ref, nextTick, watchEffect, watch } from 'vue'
 
 
 
 // TYPES
-interface TFormParams<T> {
-	rules?: Rules
-	empty: Record<keyof T, unknown>
-	data?: Partial<T> | null
+interface TStructureItem<TData> {
+	default: TData
+	rules?: RuleItem[]
+}
+interface TFormParams<TForm> {
+	structure: Record<keyof TForm, TStructureItem<TForm[keyof TForm]>>
+	data?: Partial<TForm> | null
 }
 
 
-export default <T = unknown>(params: TFormParams<T>) => {
+export const useAnForm = <TForm extends Record<string, unknown>>(params: TFormParams<TForm>) => {
 	// DATA
-	const state = ref<T>((params.empty ? {...params.empty} : {}) as T)
-	const keys = Object.keys(params.empty) as (keyof T)[]
+	const state = ref(Object.fromEntries(Object.entries(params.structure).map(([k, v]) => [k, params.data?.[k as keyof typeof params.structure] ?? (v as TStructureItem<TForm[typeof k]>).default])) as TForm)
+	const keys = Object.keys(state.value) as (keyof TForm)[]
 	let validatorExecute: () => Promise<UseAsyncValidatorExecuteReturn>
-	const validatorErrors = ref<AsyncValidatorError['fields'] | undefined>()
 	const History = useRefHistory(state, {deep: true})
+	const errors = ref<Partial<Record<keyof TForm, string>>>({})
 
 
 	// METHODS
 	const init = () => {
 		if (params.data) merge(params.data)
-		if (params.rules) initValidate()
+		initValidate()
 		void nextTick(History.clear)
 	}
-	const merge = (data: Partial<T>) => {
+	const merge = (data: Partial<TForm>) => {
 		for (const key of keys) {
 			state.value[key] = data[key]
 		}
 	}
 	const initValidate = () => {
-		if (!params.rules) return
+		const rules: Rules = {}
+		for (const key of keys) {
+			if (!params.structure[key].rules) continue
+			rules[key as string] = params.structure[key].rules
+		}
 
 		const validator = useAsyncValidator(
 			state,
-			params.rules,
+			rules,
 			{manual: true}
 		)
 
 		validatorExecute = validator.execute
-		watchEffect(() => {
-			validatorErrors.value = validator.errorFields.value
+		watch(validator.errorFields, () => {
+			errors.value = {}
+
+			for (const key in validator.errorFields.value) {
+				const fieldErrors = validator.errorFields.value[key]
+				if (fieldErrors?.[0]) {
+					errors.value[key] = fieldErrors[0].message
+				}
+			}
 		})
 	}
 
 
 	// COMPUTED
 	const first = computed(() => {
-		return History.history.value.at(-1)?.snapshot as T
+		return History.history.value.at(-1)?.snapshot as TForm
 	})
 	const isChanged = computed((): boolean => {
 		if (History.history.value.length === 1) return false
@@ -69,9 +82,7 @@ export default <T = unknown>(params: TFormParams<T>) => {
 
 	// WATCHES
 	watch(state, () => {
-		if (validatorErrors.value) {
-			validatorErrors.value = undefined
-		}
+		errors.value = {}
 	}, {deep: true})
 
 
@@ -82,7 +93,7 @@ export default <T = unknown>(params: TFormParams<T>) => {
 	return {
 		state,
 
-		merge: (data: T) => {
+		merge: (data: TForm) => {
 			merge(data)
 		},
 
@@ -90,7 +101,7 @@ export default <T = unknown>(params: TFormParams<T>) => {
 			check: () => {
 				return validatorExecute()
 			},
-			errors: validatorErrors
+			errors
 		},
 
 		history: {
