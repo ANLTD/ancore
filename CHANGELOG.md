@@ -1,3 +1,15 @@
+## v1.10.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.9.6...v1.10.0)
+
+### 🩹 Fixes
+
+- Changelog ([b2b2210](https://github.com/ANLTD/ancore/commit/b2b2210))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.9.4
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.9.3...v1.9.4)
