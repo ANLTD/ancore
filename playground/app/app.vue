@@ -76,6 +76,8 @@
 	// list.filter.info = 'sdf'
 
 	// INIT
-	onMounted(list.init)
+	onMounted(() => {
+			list.init()
+	})
 	// await asyncInit(list.init)
 </script>

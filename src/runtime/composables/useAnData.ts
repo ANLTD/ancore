@@ -34,13 +34,15 @@ export const useAnData = <TData = unknown, TError = unknown>(
 
 	// METHODS
 	const init = async () => {
-		const Data = await useAsyncData<TData, TError, TData>(
+		const Data = useAsyncData<TData, TError, TData>(
 			key,
 			() => userApi(
 				key.value,
 				{ method: 'GET', ...(config.value.apiConfig || {}) },
-			), {immediate: true}
+			), {immediate: false}
 		)
+
+		await Data.execute()
 
 		watch(Data.data, () => data.value = Data.data.value, {immediate: true})
 		watch(Data.error, () => error.value = Data.error.value, {immediate: true})
