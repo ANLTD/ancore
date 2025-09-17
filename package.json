@@ -33,19 +33,19 @@
 	},
 	"dependencies": {
 		"@noble/hashes": "^2.0.0",
-		"@nuxt/kit": "^4.1.0",
+		"@nuxt/kit": "^4.1.2",
 		"@vueuse/core": "^13.9.0",
 		"@vueuse/integrations": "^13.9.0",
 		"async-validator": "^4.2.5",
-		"i18next": "^25.5.0"
+		"i18next": "^25.5.2"
 	},
 	"devDependencies": {
 		"@nuxt/devtools": "^2.6.3",
 		"@nuxt/module-builder": "^1.0.2",
-		"@nuxt/schema": "^4.1.0",
+		"@nuxt/schema": "^4.1.2",
 		"@types/node": "latest",
 		"changelogen": "^0.6.2",
-		"nuxt": "^4.1.0",
+		"nuxt": "^4.1.2",
 		"typescript": "~5.9.2"
 	}
 }

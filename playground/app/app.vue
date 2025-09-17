@@ -22,7 +22,6 @@
 </template>
 
 <script setup lang="ts">
-	import type { TResponseList } from '#ancore/types'
 	// TYPES
 	interface TUser {
 		id: string
@@ -42,11 +41,13 @@
 	// DATA
 	const show = ref(false)
 	const form = useAnForm<TForm>({
-		rules: {
-			info: {type: 'string', required: true, message: 'enter Info'},
-		},
-		empty: {
-			info: ''
+		structure: {
+			info: {
+				default: '',
+				rules: [
+					{type: 'string', required: true, message: 'enter Info'}
+				]
+			}
 		}
 	})
 	const list = useAnList<TUser, {info: string}>({
@@ -69,9 +70,10 @@
 	watch(() => form.state.value.info, async () => {
 		const valid = await form.validator.check()
 		if (!valid.pass) return
-		list.filter.value.info = form.state.value.info
+		list.filter.info = form.state.value.info
 	})
 
+	list.filter.info = 'sdf'
 
 	// INIT
 	await asyncInit(list.init)
