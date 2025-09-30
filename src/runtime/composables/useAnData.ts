@@ -1,6 +1,6 @@
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
-import { computed, ref, type Ref, type ComputedRef, watch } from 'vue'
-import { type AsyncDataRequestStatus, useAsyncData } from '#app'
+import { computed, ref, type Ref, type ComputedRef, watch, onMounted } from 'vue'
+import { type AsyncDataRequestStatus, useAsyncData, useFetch } from '#app'
 import type { KeysOf, PickFrom } from '#app/composables/asyncData'
 import { toQuery, userApi } from '../utils'
 
@@ -30,23 +30,41 @@ export const useAnData = <TData = unknown, TError = unknown>(
 	const data = ref<TData | undefined>(undefined)
 	const error = ref<TError | undefined>(undefined)
 	const status = ref<AsyncDataRequestStatus>('idle')
+	const isMounted = ref(false)
 
 
 	// METHODS
 	const init = async () => {
-		const Data = useAsyncData<TData, TError, TData>(
-			key,
-			() => userApi(
-				key.value,
-				{ method: 'GET', ...(config.value.apiConfig || {}) },
-			), {immediate: false}
-		)
+		if (isMounted.value) {
+			const execute = () => {
+				status.value = 'pending'
+				userApi<TData, TError>(
+					key.value,
+					{ method: 'GET', ...(config.value.apiConfig || {}) },
+				).then((response: TData) => {
+					status.value = 'success'
+					data.value = response
+				}).catch((e: TError) => {
+					status.value = 'error'
+					error.value = e
+				})
+			}
+			watch(() => key.value, execute, { immediate: true, deep: true })
+		} else {
+			const Data = useAsyncData<TData, TError, TData>(
+				key,
+				() => userApi(
+					key.value,
+					{ method: 'GET', ...(config.value.apiConfig || {}) },
+				), {immediate: false}
+			)
 
-		await Data.execute()
+			await Data.execute()
 
-		watch(Data.data, () => data.value = Data.data.value, {immediate: true})
-		watch(Data.error, () => error.value = Data.error.value, {immediate: true})
-		watch(Data.status, () => status.value = Data.status.value, {immediate: true})
+			watch(Data.data, () => data.value = Data.data.value, {immediate: true})
+			watch(Data.error, () => error.value = Data.error.value, {immediate: true})
+			watch(Data.status, () => status.value = Data.status.value, {immediate: true})
+		}
 	}
 	const set = (value: TData) => {
 		data.value = value as PickFrom<TData, KeysOf<TData>> | undefined
@@ -68,6 +86,12 @@ export const useAnData = <TData = unknown, TError = unknown>(
 		return url + query
 	})
 	const loading = computed((): boolean => status.value === 'pending')
+
+
+	// EVENTS
+	onMounted(() => {
+		isMounted.value = true
+	})
 
 
 	return {

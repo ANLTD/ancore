@@ -19,9 +19,16 @@ interface TFormParams<TForm> {
 }
 
 
-export const useAnForm = <TForm extends Record<string, unknown>>(params: TFormParams<TForm>) => {
+export const useAnForm = <TForm extends object>(params: TFormParams<TForm>) => {
 	// DATA
-	const state = ref(Object.fromEntries(Object.entries(params.structure).map(([k, v]) => [k, params.data?.[k as keyof typeof params.structure] ?? (v as TStructureItem<TForm[typeof k]>).default])) as TForm)
+	const state = ref<TForm>(
+		Object.fromEntries(
+			Object.entries(params.structure).map(([k, v]) => {
+				const key = k as keyof TForm
+				return [key, params.data?.[key] ?? (v as TStructureItem<TForm[typeof key]>).default]
+			})
+		) as TForm
+	)
 	const keys = Object.keys(state.value) as (keyof TForm)[]
 	let validatorExecute: () => Promise<UseAsyncValidatorExecuteReturn>
 	const History = useRefHistory(state, {deep: true})

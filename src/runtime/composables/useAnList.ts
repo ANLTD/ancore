@@ -1,7 +1,7 @@
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 import { ref, reactive, watch, computed } from 'vue'
 import type { TResponseList } from '#ancore/types'
-import { useAnData} from './useAnData'
+import { useAnData } from './useAnData'
 
 
 // TYPES

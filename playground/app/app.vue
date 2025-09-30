@@ -28,7 +28,10 @@
 		name: string
 		info?: string
 	}
-	type TForm = Required<Pick<TUser, 'info'>>
+	interface TForm {
+		info: string
+		text?: string
+	}
 
 	const resources = {
 		en: {
@@ -47,6 +50,9 @@
 				rules: [
 					{type: 'string', required: true, message: 'enter Info'}
 				]
+			},
+			text: {
+				default: ''
 			}
 		}
 	})
@@ -67,13 +73,13 @@
 	})
 
 
-	// watch(() => form.state.value.info, async () => {
-	// 	const valid = await form.validator.check()
-	// 	if (!valid.pass) return
-	// 	list.filter.info = form.state.value.info
-	// })
+	watch(() => form.state.value.info, async () => {
+		const valid = await form.validator.check()
+		if (!valid.pass) return
+		list.filter.info = form.state.value.info
+	})
 
-	// list.filter.info = 'sdf'
+	list.filter.info = 'sdf'
 
 	// INIT
 	onMounted(() => {
