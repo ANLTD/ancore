@@ -1,3 +1,15 @@
+## v1.10.6
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.10.5...v1.10.6)
+
+### 💅 Refactors
+
+- Handling the warning in useAnData when it’s called after mounting Fixed: fix type of TForm in useAnForm ([04f91f2](https://github.com/ANLTD/ancore/commit/04f91f2))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.10.5
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.10.4...v1.10.5)
