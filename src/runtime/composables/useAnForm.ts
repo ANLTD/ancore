@@ -7,25 +7,20 @@ import {
 } from '@vueuse/integrations/useAsyncValidator'
 
 
-
 // TYPES
 interface TStructureItem<TData> {
 	default: TData
 	rules?: RuleItem[]
 }
-interface TFormParams<TForm> {
-	structure: Record<keyof TForm, TStructureItem<TForm[keyof TForm]>>
-	data?: Partial<TForm> | null
-}
 
 
-export const useAnForm = <TForm extends object>(params: TFormParams<TForm>) => {
+export const useAnForm = <TForm extends object>(params: Record<keyof TForm, TStructureItem<TForm[keyof TForm]>>, data?: Partial<TForm> | null) => {
 	// DATA
 	const state = ref<TForm>(
 		Object.fromEntries(
-			Object.entries(params.structure).map(([k, v]) => {
+			Object.entries(params).map(([k, v]) => {
 				const key = k as keyof TForm
-				return [key, params.data?.[key] ?? (v as TStructureItem<TForm[typeof key]>).default]
+				return [key, data?.[key] ?? (v as TStructureItem<TForm[typeof key]>).default]
 			})
 		) as TForm
 	)
@@ -37,7 +32,7 @@ export const useAnForm = <TForm extends object>(params: TFormParams<TForm>) => {
 
 	// METHODS
 	const init = () => {
-		if (params.data) merge(params.data)
+		if (data) merge(data)
 		initValidate()
 		void nextTick(History.clear)
 	}
@@ -49,8 +44,8 @@ export const useAnForm = <TForm extends object>(params: TFormParams<TForm>) => {
 	const initValidate = () => {
 		const rules: Rules = {}
 		for (const key of keys) {
-			if (!params.structure[key].rules) continue
-			rules[key as string] = params.structure[key].rules
+			if (!params[key].rules) continue
+			rules[key as string] = params[key].rules
 		}
 
 		const validator = useAsyncValidator(

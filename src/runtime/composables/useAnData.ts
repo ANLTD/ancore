@@ -1,6 +1,6 @@
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 import { computed, ref, type Ref, type ComputedRef, watch, onMounted } from 'vue'
-import { type AsyncDataRequestStatus, useAsyncData, useFetch } from '#app'
+import { type AsyncDataRequestStatus, useAsyncData } from '#app'
 import type { KeysOf, PickFrom } from '#app/composables/asyncData'
 import { toQuery, userApi } from '../utils'
 
