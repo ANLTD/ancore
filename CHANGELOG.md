@@ -1,3 +1,15 @@
+## v1.10.7
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.10.6...v1.10.7)
+
+### 💅 Refactors
+
+- UseAnForm now takes structure as the first argument and data as the second argument. ([142a77e](https://github.com/ANLTD/ancore/commit/142a77e))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.10.6
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.10.5...v1.10.6)
