@@ -1,26 +1,3 @@
-<template>
-  <div>
-    Nuxt module playground!<br>
-	  <input v-model="form.state.value.info" /><button @click="form.history.commit">Commit</button><button @click="form.history.reset">Reset</button>
-	  <div>isChanged: {{form.history.isChanged}}</div>
-	  <div>valid: {{  form.validator.errors.value.info }}</div>
-
-	  <div @click="show= true"> {{list.count.value}}</div>
-	  <div> {{list.items}}</div>
-
-	  <Test v-if="show" />
-
-	  <div>{{t('GuideDashboard')}}</div>
-
-	  <AnTab :show="true">
-		  123
-	  </AnTab>
-	  <AnTab :show="false">
-		  333
-	  </AnTab>
-  </div>
-</template>
-
 <script setup lang="ts">
 	// TYPES
 	interface TUser {
@@ -37,23 +14,26 @@
 		en: {
 			GuideDashboard: 'Guide Dashboard',
 			TouristDashboard: 'Tourist Dashboard'
+		},
+		ru: {
+			GuideDashboard: 'Гид: Главная',
+			TouristDashboard: 'Турист: Главная'
 		}
 	}
-	const { t } = useAnI18n(resources)
+	const { t, lang, set } = useAnI18n(resources)
+
 
 	// DATA
 	const show = ref(false)
 	const form = useAnForm<TForm>({
-		structure: {
-			info: {
-				default: '',
-				rules: [
-					{type: 'string', required: true, message: 'enter Info'}
-				]
-			},
-			text: {
-				default: ''
-			}
+		info: {
+			default: '',
+			rules: [
+				{type: 'string', required: true, message: 'enter Info'}
+			]
+		},
+		text: {
+			default: ''
 		}
 	})
 	const list = useAnList<TUser, {info: string}>({
@@ -72,6 +52,13 @@
 		}
 	})
 
+	const setLang = (lng: string) => {
+		if (set) {
+			set(lng)
+			location.reload()
+		}
+	}
+
 
 	watch(() => form.state.value.info, async () => {
 		const valid = await form.validator.check()
@@ -82,8 +69,35 @@
 	list.filter.info = 'sdf'
 
 	// INIT
-	onMounted(() => {
-			list.init()
-	})
-	// await asyncInit(list.init)
+	// onMounted(() => {
+	// 	list.init()
+	// })
+	await asyncInit(list.init)
 </script>
+
+
+<template>
+  <div>
+    Nuxt module playground!<br>
+	  <input v-model="form.state.value.info" /><button @click="form.history.commit">Commit</button><button @click="form.history.reset">Reset</button>
+	  <div>isChanged: {{form.history.isChanged}}</div>
+	  <div>valid: {{  form.validator.errors.value.info }}</div>
+
+	  <div @click="show= true"> {{list.count.value}}</div>
+	  <div> {{list.items}}</div>
+
+	  <Test v-if="show" />
+
+	  <div>{{t('GuideDashboard')}}</div>
+	  <div>
+		  language: {{ lang }} <a @click="setLang('en')">EN</a><a @click="setLang('ru')">RU</a>
+	  </div>
+
+	  <AnTab :show="true">
+		  123
+	  </AnTab>
+	  <AnTab :show="false">
+		  333
+	  </AnTab>
+  </div>
+</template>

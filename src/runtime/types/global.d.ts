@@ -12,7 +12,9 @@ declare module 'nuxt/schema' {
 	}
 
 	interface PublicRuntimeConfig {
-		i18n?: InitOptions<unknown>
+		i18n?: InitOptions<unknown> & {
+			cookie?: string
+		}
 	}
 }
 

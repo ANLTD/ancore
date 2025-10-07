@@ -1,12 +1,12 @@
 import { addImportsDir, createResolver, defineNuxtModule, addPlugin, addComponentsDir } from '@nuxt/kit'
-import type { InitOptions } from 'i18next'
 import { pathToFileURL } from 'node:url'
+import type { PublicRuntimeConfig } from 'nuxt/schema'
 
 
 // TYPES
 export interface ModuleOptions {
 	api?: string
-	i18n?: InitOptions<unknown>
+	i18n?: PublicRuntimeConfig['i18n']
 }
 
 

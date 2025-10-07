@@ -6,10 +6,14 @@ export default defineNuxtConfig({
 		i18n: {
 			lng: 'en',
 			fallbackLng: 'en',
-			supportedLngs: ['en'],
+			cookie: 'test-lang',
+			supportedLngs: ['en', 'ru'],
 			resources: {
 				en: {
 					translation: '~~/locales/en.json'
+				},
+				ru: {
+					translation: '~~/locales/ru.json'
 				}
 			}
 		}
