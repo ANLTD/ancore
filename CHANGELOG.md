@@ -1,3 +1,15 @@
+## v1.10.8
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.10.7...v1.10.8)
+
+### 💅 Refactors
+
+- Change js-sha256 lib ([e1f0eb8](https://github.com/ANLTD/ancore/commit/e1f0eb8))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.10.7
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.10.6...v1.10.7)
