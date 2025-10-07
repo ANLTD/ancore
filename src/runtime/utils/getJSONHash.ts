@@ -1,10 +1,7 @@
-import { sha256 } from '@noble/hashes/sha2'
-import { utf8ToBytes, bytesToHex } from '@noble/hashes/utils'
+import { sha256 } from 'js-sha256'
 
 
 export const getJSONHash = (obj: object): string => {
-	const s = JSON.stringify(obj)
-	const bytes = utf8ToBytes(s)
-	const digest = sha256(bytes)
-	return bytesToHex(digest)
+	const json = JSON.stringify(obj)
+	return sha256(json)
 }
