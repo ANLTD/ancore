@@ -47,7 +47,9 @@ export const useAnForm = <
 			state.value[key] = data[key]
 		}
 
-		void nextTick(History.clear)
+		if (commit) {
+			void nextTick(History.clear)
+		}
 	}
 	const initValidate = () => {
 		const rules: Rules = {}
