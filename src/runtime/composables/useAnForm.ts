@@ -14,7 +14,13 @@ interface TStructureItem<TData> {
 }
 
 
-export const useAnForm = <TForm extends object>(params: Record<keyof TForm, TStructureItem<TForm[keyof TForm]>>, data?: Partial<TForm> | null) => {
+export const useAnForm = <
+	TForm extends object,
+	TData extends Partial<TForm> | null | (Record<string, any> & Partial<TForm>) = Partial<TForm> | null
+>(
+	params: Record<keyof TForm, TStructureItem<TForm[keyof TForm]>>,
+	data?: TData
+) => {
 	// DATA
 	const state = ref<TForm>(
 		Object.fromEntries(
@@ -36,10 +42,12 @@ export const useAnForm = <TForm extends object>(params: Record<keyof TForm, TStr
 		initValidate()
 		void nextTick(History.clear)
 	}
-	const merge = (data: Partial<TForm>) => {
+	const merge = (data: Partial<TForm>, commit?: true) => {
 		for (const key of keys) {
 			state.value[key] = data[key]
 		}
+
+		void nextTick(History.clear)
 	}
 	const initValidate = () => {
 		const rules: Rules = {}
@@ -80,6 +88,17 @@ export const useAnForm = <TForm extends object>(params: Record<keyof TForm, TStr
 
 		return firstOne !== last
 	})
+	const diff = computed<Partial<TForm>>(() => {
+		const changed: Partial<TForm> = {}
+
+		for (const key of keys) {
+			if (JSON.stringify(state.value[key]) !== JSON.stringify(first.value[key])) {
+				changed[key] = state.value[key]
+			}
+		}
+
+		return changed
+	})
 
 
 	// WATCHES
@@ -94,10 +113,9 @@ export const useAnForm = <TForm extends object>(params: Record<keyof TForm, TStr
 
 	return {
 		state,
+		diff,
 
-		merge: (data: TForm) => {
-			merge(data)
-		},
+		merge,
 
 		validator: {
 			check: () => {

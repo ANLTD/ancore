@@ -66,13 +66,12 @@
 		const valid = await form.validator.check()
 		if (!valid.pass) return
 		list.filter.info = form.state.value.info
+		list.filter.skip = 0
 	})
 
 
 	// INIT
 	list.filter.info = 'sdf'
-
-	// INIT
 	// onMounted(() => {
 	// 	list.init()
 	// })
@@ -85,8 +84,15 @@
 <template>
   <div>
     Nuxt module playground!<br>
-	  <input v-model="form.state.value.info" /><button @click="form.history.commit">Commit</button><button @click="form.history.reset">Reset</button>
+	  <div>
+
+	  <input v-model="form.state.value.info" />
+		  <button @click="form.history.commit">Commit</button>
+		  <button @click="form.history.reset">Reset</button>
+		  <button @click="form.merge({info: 'tets'})">Merge</button>
+	  </div>
 	  <div>isChanged: {{form.history.isChanged}}</div>
+	  <div>diff: {{form.diff.value}}</div>
 	  <div>valid: {{  form.validator.errors.value.info }}</div>
 
 	  <div @click="show= true"> {{list.count.value}}</div>
