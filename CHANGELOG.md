@@ -1,3 +1,15 @@
+## v1.12.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.12.0...v1.12.1)
+
+### 💅 Refactors
+
+- Code style ([2f29dd9](https://github.com/ANLTD/ancore/commit/2f29dd9))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.12.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.11.1...v1.12.0)
