@@ -1,3 +1,29 @@
+## v1.12.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.11.1...v1.12.0)
+
+### 🚀 Enhancements
+
+- TArgument - new ts generic function ([905ab7f](https://github.com/ANLTD/ancore/commit/905ab7f))
+- InfiniteScroll - new method of useAnList. Wrapper over useInfiniteScroll for a list. ([70dbac9](https://github.com/ANLTD/ancore/commit/70dbac9))
+
+### 🩹 Fixes
+
+- InfiniteScroll in onMounted ([81b31bd](https://github.com/ANLTD/ancore/commit/81b31bd))
+
+### 💅 Refactors
+
+- Rename types files ([0f15a15](https://github.com/ANLTD/ancore/commit/0f15a15))
+- Type of data useAnForm feat: diff - new computed in useAnForm ([1cf652d](https://github.com/ANLTD/ancore/commit/1cf652d))
+
+### 📦 Build
+
+- Updated package and nuxt to 4.2 ([bb13236](https://github.com/ANLTD/ancore/commit/bb13236))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.11.1
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.11.0...v1.11.1)
