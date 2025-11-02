@@ -21,6 +21,7 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 	const config = ref<TConfig<TFilter>>(initConfig)
 	const items: TData[] = reactive([])
 	const count = ref<number | null>(null)
+	let resetInfiniteScroll: undefined | (() => void)
 
 
 	// METHODS
@@ -43,11 +44,13 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 		}
 
 		setCount(data.data.value.count)
+
+		resetInfiniteScroll?.()
 	}
 	const setCount = (value: number | null) => {
 		count.value = value
 	}
-	const infiniteScroll = (scrollConfig?: TInfiniteScroll): ReturnType<typeof useInfiniteScroll> => {
+	const infiniteScroll = (scrollConfig?: TInfiniteScroll): void => {
 		const onLoadMore = scrollConfig?.onLoadMore || (() => {
 			if (!config.value.filter) config.value.filter = {} as UnwrapRef<TFilter>
 			// @ts-ignore
@@ -57,20 +60,21 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 			return (
 				(scrollConfig?.canLoadMore?.() ?? true) &&
 				inited.value &&
-				!data.loading.value &&
 				items.length < (count.value || 0) &&
 				// @ts-ignore
 				!!config.value.filter.limit
 			)
 		})
 
-		return useInfiniteScroll(
+		const { reset } = useInfiniteScroll(
 			scrollConfig?.element || window,
 			onLoadMore,
 			{
-				...(scrollConfig?.options ? scrollConfig.options : {}),
+				...scrollConfig?.options,
 				canLoadMore,
 			})
+
+		resetInfiniteScroll = reset
 	}
 
 
