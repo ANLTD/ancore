@@ -1,7 +1,8 @@
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
-import { ref, reactive, watch, computed } from 'vue'
-import type { TResponseList } from '#ancore/types'
+import { ref, reactive, watch, computed, type UnwrapRef } from 'vue'
+import type { TInfiniteScroll, TResponseList } from '#ancore/types'
 import { useAnData } from './useAnData'
+import { useInfiniteScroll } from '@vueuse/core'
 
 
 // TYPES
@@ -46,6 +47,31 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 	const setCount = (value: number | null) => {
 		count.value = value
 	}
+	const infiniteScroll = (scrollConfig?: TInfiniteScroll): ReturnType<typeof useInfiniteScroll> => {
+		const onLoadMore = scrollConfig?.onLoadMore || (() => {
+			if (!config.value.filter) config.value.filter = {} as UnwrapRef<TFilter>
+			// @ts-ignore
+			config.value.filter[config.value.skipField || 'skip'] = items.length
+		})
+		const canLoadMore = scrollConfig?.options?.canLoadMore || ((): boolean => {
+			return (
+				(scrollConfig?.canLoadMore?.() ?? true) &&
+				inited.value &&
+				!data.loading.value &&
+				items.length < (count.value || 0) &&
+				// @ts-ignore
+				!!config.value.filter.limit
+			)
+		})
+
+		return useInfiniteScroll(
+			scrollConfig?.element || window,
+			onLoadMore,
+			{
+				...(scrollConfig?.options ? scrollConfig.options : {}),
+				canLoadMore,
+			})
+	}
 
 
 	// COMPUTED
@@ -70,6 +96,7 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 
 	return {
 		init,
+		infiniteScroll,
 
 		filter: config.value.filter as TFilter,
 		params: config.value.params,

@@ -1,4 +1,17 @@
 <script setup lang="ts">
+	// TRANSLATE
+	const translate = {
+		en: {
+			GuideDashboard: 'Guide Dashboard',
+			TouristDashboard: 'Tourist Dashboard'
+		},
+		ru: {
+			GuideDashboard: 'Гид: Главная',
+			TouristDashboard: 'Турист: Главная'
+		}
+	}
+
+
 	// TYPES
 	interface TUser {
 		id: string
@@ -9,18 +22,15 @@
 		info: string
 		text?: string
 	}
-
-	const resources = {
-		en: {
-			GuideDashboard: 'Guide Dashboard',
-			TouristDashboard: 'Tourist Dashboard'
-		},
-		ru: {
-			GuideDashboard: 'Гид: Главная',
-			TouristDashboard: 'Турист: Главная'
-		}
+	interface TFilter {
+		info?: string
+		limit?: number
+		skip?: number
 	}
-	const { t, lang, set } = useAnI18n(resources)
+
+
+	// USE
+	const { t, lang, set } = useAnI18n(translate)
 
 
 	// DATA
@@ -36,22 +46,13 @@
 			default: ''
 		}
 	})
-	const list = useAnList<TUser, {info: string}>({
+	const list = useAnList<TUser, TFilter>({
 		request: '/api/users',
-		filter: {info: form.state.value.info},
-		apiConfig: {
-			onResponse: (ctx) => {
-				const arr = ctx.response._data as object[]
-				if (Array.isArray(arr)) {
-					ctx.response._data = {
-						items: arr,
-						count: arr.length
-					}
-				}
-			}
-		}
+		filter: {info: form.state.value.info, limit: 5}
 	})
 
+
+	// METHODS
 	const setLang = (lng: string) => {
 		if (set) {
 			set(lng)
@@ -60,12 +61,15 @@
 	}
 
 
+	// WATCHES
 	watch(() => form.state.value.info, async () => {
 		const valid = await form.validator.check()
 		if (!valid.pass) return
 		list.filter.info = form.state.value.info
 	})
 
+
+	// INIT
 	list.filter.info = 'sdf'
 
 	// INIT
@@ -73,8 +77,10 @@
 	// 	list.init()
 	// })
 	await asyncInit(list.init)
+	list.infiniteScroll({
+		options: {distance: 100}
+	})
 </script>
-
 
 <template>
   <div>
@@ -84,7 +90,9 @@
 	  <div>valid: {{  form.validator.errors.value.info }}</div>
 
 	  <div @click="show= true"> {{list.count.value}}</div>
-	  <div> {{list.items}}</div>
+	  <div>
+	  	<div v-for="item of list.items" :key="item.id">{{item}}</div>
+	  </div>
 
 	  <Test v-if="show" />
 
