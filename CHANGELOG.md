@@ -1,3 +1,15 @@
+## v1.12.2
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.12.1...v1.12.2)
+
+### 💅 Refactors
+
+- Type of data useAnForm feat: useAnList.infiniteScroll return reset ([a7b5a1d](https://github.com/ANLTD/ancore/commit/a7b5a1d))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.12.1
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.12.0...v1.12.1)
