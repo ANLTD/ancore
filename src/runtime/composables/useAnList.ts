@@ -50,7 +50,7 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 	const setCount = (value: number | null) => {
 		count.value = value
 	}
-	const infiniteScroll = (scrollConfig?: TInfiniteScroll): void => {
+	const infiniteScroll = (scrollConfig?: TInfiniteScroll): () => void => {
 		const onLoadMore = scrollConfig?.onLoadMore || (() => {
 			if (!config.value.filter) config.value.filter = {} as UnwrapRef<TFilter>
 			// @ts-ignore
@@ -75,6 +75,8 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 			})
 
 		resetInfiniteScroll = reset
+
+		return reset
 	}
 
 
