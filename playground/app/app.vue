@@ -37,7 +37,7 @@
 	const show = ref(false)
 	const form = useAnForm<TForm>({
 		info: {
-			default: '',
+			default: 'sdf',
 			rules: [
 				{type: 'string', required: true, message: 'enter Info'}
 			]
@@ -45,7 +45,7 @@
 		text: {
 			default: ''
 		}
-	})
+	}, {info: undefined})
 	const list = useAnList<TUser, TFilter>({
 		request: '/api/users',
 		filter: {info: form.state.value.info, limit: 5}

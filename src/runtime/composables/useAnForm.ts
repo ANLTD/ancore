@@ -26,7 +26,7 @@ export const useAnForm = <
 		Object.fromEntries(
 			Object.entries(params).map(([k, v]) => {
 				const key = k as keyof TForm
-				return [key, data?.[key] ?? (v as TStructureItem<TForm[typeof key]>).default]
+				return [key, data?.[key] !== undefined ? data?.[key] : (v as TStructureItem<TForm[typeof key]>).default]
 			})
 		) as TForm
 	)
@@ -38,20 +38,6 @@ export const useAnForm = <
 
 	// METHODS
 	const init = () => {
-		if (data) merge(data)
-		initValidate()
-		void nextTick(History.clear)
-	}
-	const merge = (data: Partial<TForm>, commit?: true) => {
-		for (const key of keys) {
-			state.value[key] = data[key]
-		}
-
-		if (commit) {
-			void nextTick(History.clear)
-		}
-	}
-	const initValidate = () => {
 		const rules: Rules = {}
 		for (const key of keys) {
 			if (!params[key].rules) continue
@@ -75,6 +61,15 @@ export const useAnForm = <
 				}
 			}
 		})
+	}
+	const merge = (data: Partial<TForm>, commit?: true) => {
+		for (const key of keys) {
+			state.value[key] = data[key]
+		}
+
+		if (commit) {
+			void nextTick(History.clear)
+		}
 	}
 
 
