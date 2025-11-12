@@ -1,3 +1,15 @@
+## v1.13.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.13.0...v1.13.1)
+
+### 📦 Build
+
+- Updated package ([c0bcb16](https://github.com/ANLTD/ancore/commit/c0bcb16))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.13.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.12.2...v1.13.0)
