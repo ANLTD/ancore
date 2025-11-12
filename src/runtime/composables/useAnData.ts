@@ -32,7 +32,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 	const error = ref<TError | undefined>(undefined)
 	const status = ref<AsyncDataRequestStatus>('idle')
 	const isMounted = ref(false)
-	const time = ref<number>(Date.now())
+	const time = ref<number>(0)
 
 
 	// METHODS
