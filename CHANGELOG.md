@@ -1,3 +1,15 @@
+## v1.13.2
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.13.1...v1.13.2)
+
+### 🩹 Fixes
+
+- Default state from data in useAnForm ([fc60687](https://github.com/ANLTD/ancore/commit/fc60687))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.13.1
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.13.0...v1.13.1)
