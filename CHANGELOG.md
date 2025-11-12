@@ -1,3 +1,15 @@
+## v1.13.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.12.2...v1.13.0)
+
+### 🚀 Enhancements
+
+- Refresh method in useAnData ([2a20a9c](https://github.com/ANLTD/ancore/commit/2a20a9c))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.12.2
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.12.1...v1.12.2)
