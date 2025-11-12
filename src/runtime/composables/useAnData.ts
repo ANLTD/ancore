@@ -14,6 +14,7 @@ interface TConfig {
 interface TUseAnData<TData, TError> {
 	init: () => Promise<void>,
 	set: (data: TData) => void,
+	refresh: () => void,
 	config: Ref<TConfig>,
 	data: ComputedRef<TData | undefined>
 	status: ComputedRef<AsyncDataRequestStatus>
@@ -31,6 +32,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 	const error = ref<TError | undefined>(undefined)
 	const status = ref<AsyncDataRequestStatus>('idle')
 	const isMounted = ref(false)
+	const time = ref<number>(Date.now())
 
 
 	// METHODS
@@ -39,7 +41,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 			const execute = () => {
 				status.value = 'pending'
 				userApi<TData, TError>(
-					key.value,
+					path.value.url,
 					{ method: 'GET', ...(config.value.apiConfig || {}) },
 				).then((response: TData) => {
 					status.value = 'success'
@@ -54,7 +56,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 			const Data = useAsyncData<TData, TError, TData>(
 				key,
 				() => userApi(
-					key.value,
+					path.value.url,
 					{ method: 'GET', ...(config.value.apiConfig || {}) },
 				), {immediate: false}
 			)
@@ -72,7 +74,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 
 
 	// COMPUTED
-	const key = computed((): string => {
+	const path = computed((): {url: string, key: string} => {
 		let url = config.value.request.toString()
 		for (const key in config.value.params) {
 			url = url.replace(`:${key}`, encodeURIComponent(String(config.value.params[key])))
@@ -83,8 +85,12 @@ export const useAnData = <TData = unknown, TError = unknown>(
 			query = '?' + toQuery(config.value.apiConfig.query)
 		}
 
-		return url + query
+		return {
+			url: url + query,
+			key: url + query + (query ? '&' : '?') + 'time=' + time.value
+		}
 	})
+	const key = computed(() => path.value.key)
 	const loading = computed((): boolean => status.value === 'pending')
 
 
@@ -97,6 +103,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 	return {
 		init,
 		set,
+		refresh: () => time.value = Date.now(),
 
 		data: data as ComputedRef<TData>,
 
