@@ -1,3 +1,15 @@
+## v1.14.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.13.3...v1.14.0)
+
+### 🚀 Enhancements
+
+- Add meta field in useAnList ([6d60565](https://github.com/ANLTD/ancore/commit/6d60565))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.13.3
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.13.2...v1.13.3)
