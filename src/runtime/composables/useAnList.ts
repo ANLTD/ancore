@@ -13,6 +13,7 @@ interface TConfig<TFilter> {
 	params?: Record<string, unknown>
 	skipField?: string
 	reverse?: boolean
+	meta?: any
 }
 
 
@@ -106,6 +107,7 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 
 		filter: config.value.filter as TFilter,
 		params: config.value.params,
+		meta: config.value.meta,
 
 		items,
 		count,
