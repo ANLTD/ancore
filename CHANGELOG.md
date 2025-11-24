@@ -1,3 +1,19 @@
+## v1.14.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.14.0...v1.14.1)
+
+### 🚀 Enhancements
+
+- Remove meta field in useAnList ([e437c46](https://github.com/ANLTD/ancore/commit/e437c46))
+
+### 📦 Build
+
+- Update package ([56eb964](https://github.com/ANLTD/ancore/commit/56eb964))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.14.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.13.3...v1.14.0)
