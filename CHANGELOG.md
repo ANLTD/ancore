@@ -1,3 +1,15 @@
+## v1.14.3
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.14.2...v1.14.3)
+
+### 🩹 Fixes
+
+- CanLoadMore in infiniteScroll ([4340567](https://github.com/ANLTD/ancore/commit/4340567))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.14.2
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.14.1...v1.14.2)
