@@ -33,13 +33,13 @@
 	},
 	"dependencies": {
 		"@nuxt/kit": "^4.2.1",
-		"@vueuse/core": "^14.0.0",
-		"@vueuse/integrations": "^14.0.0",
+		"@vueuse/core": "^14.1.0",
+		"@vueuse/integrations": "^14.1.0",
 		"async-validator": "^4.2.5",
 		"i18next": "^25.6.3"
 	},
 	"devDependencies": {
-		"@nuxt/devtools": "^3.1.0",
+		"@nuxt/devtools": "^3.1.1",
 		"@nuxt/module-builder": "^1.0.2",
 		"@nuxt/schema": "^4.2.1",
 		"@types/node": "latest",
