@@ -3,7 +3,7 @@ export default defineEventHandler(async (event): Promise<any> => {
 
 	const items = []
 
-	for (let i = 0; i < 20; i++) {
+	for (let i = 0; i < 60; i++) {
 		items.push({id: i + 1, name: 'Andrey', info: params.info})
 	}
 

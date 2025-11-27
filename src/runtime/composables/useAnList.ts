@@ -60,7 +60,7 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 			return (
 				(scrollConfig?.canLoadMore?.() ?? true) &&
 				inited.value &&
-				data.status.value === 'idle' &&
+				data.status.value !== 'pending' &&
 				items.length < (count.value || 0) &&
 				// @ts-ignore
 				!!config.value.filter.limit
