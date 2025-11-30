@@ -44,10 +44,7 @@
 	const onSwipe = () => {
 		if (!active.value) return
 
-		cancelAnimationFrame(raf)
-		raf = requestAnimationFrame(() => {
-			top.value = Math.max(0, -Swipe.lengthY.value)
-		})
+		setTop(Math.max(0, -Swipe.lengthY.value))
 	}
 	const onSwipeEnd = () => {
 		if (Math.abs(top.value) > ElementSize.height.value / 2) {
@@ -55,8 +52,14 @@
 			return
 		}
 
-		top.value = 0
 		active.value = false
+		setTop(0)
+	}
+	const setTop = (value: number) => {
+		cancelAnimationFrame(raf)
+		raf = requestAnimationFrame(() => {
+			top.value = value
+		})
 	}
 
 
