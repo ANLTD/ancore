@@ -1,4 +1,7 @@
 <script setup lang="ts">
+	import DialogTest from '~/components/DialogTest.vue'
+
+
 	// TRANSLATE
 	const translate = {
 		en: {
@@ -31,6 +34,7 @@
 
 	// USE
 	const { t, lang, set } = useAnI18n(translate)
+	const Dialogs = useAnDialogs()
 
 
 	// DATA
@@ -59,6 +63,9 @@
 			location.reload()
 		}
 	}
+	const openDialog = () =>{
+		Dialogs.open(DialogTest)
+	}
 
 
 	// WATCHES
@@ -83,7 +90,9 @@
 
 <template>
   <div>
-    Nuxt module playground!<br>
+    Nuxt module playground!<br><br>
+	  <button @click="openDialog">Open dialog</button>
+	  <br><br>
 	  <div>
 
 	  <input v-model="form.state.value.info" />
@@ -114,4 +123,11 @@
 		  333
 	  </AnTab>
   </div>
+	<AnDialogs />
 </template>
+
+<style>
+	:root {
+		--an-dialogs-background: rgba(0, 0, 0, 0.3);
+	}
+</style>

@@ -1,5 +1,6 @@
 export * from './api'
 export * from './argument'
+export * from './dialogs'
 export * from './global'
 export * from './infiniteScroll'
 export * from './responseList'
