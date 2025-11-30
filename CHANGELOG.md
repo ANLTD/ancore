@@ -1,3 +1,15 @@
+## v1.15.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.14.3...v1.15.0)
+
+### 🚀 Enhancements
+
+- New component AnDialogs and useAnDialogs ([aa579c0](https://github.com/ANLTD/ancore/commit/aa579c0))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.14.3
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.14.2...v1.14.3)
