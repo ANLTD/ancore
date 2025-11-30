@@ -1,3 +1,15 @@
+## v1.15.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.15.0...v1.15.1)
+
+### 🩹 Fixes
+
+- Close dialog ([f1b4167](https://github.com/ANLTD/ancore/commit/f1b4167))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.15.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.14.3...v1.15.0)
