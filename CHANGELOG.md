@@ -1,3 +1,15 @@
+## v1.15.2
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.15.1...v1.15.2)
+
+### 🚀 Enhancements
+
+- Add transition-group for AnDialogs ([38b5175](https://github.com/ANLTD/ancore/commit/38b5175))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.15.1
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.15.0...v1.15.1)
