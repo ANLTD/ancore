@@ -130,4 +130,17 @@
 	:root {
 		--an-dialogs-background: rgba(0, 0, 0, 0.3);
 	}
+
+	.an-dialogs-enter-active, .an-dialogs-leave-active {
+		transition: opacity 0.3s ease;
+	}
+
+	.an-dialogs-enter-from, .an-dialogs-leave-to {
+		opacity: 0;
+	}
+
+	.an-dialogs-enter-to, .an-dialogs-leave-from {
+		opacity: 1;
+	}
+
 </style>

@@ -17,9 +17,11 @@
 </script>
 
 <template>
-	<AnDialogsItem
-		v-for="dialog of Dialogs.items"
-		:key="dialog.id"
-		:dialog="dialog"
-	/>
+	<transition-group name="an-dialogs" tag="div">
+		<AnDialogsItem
+			v-for="dialog of Dialogs.items"
+			:key="dialog.id"
+			:dialog="dialog"
+		/>
+	</transition-group>
 </template>

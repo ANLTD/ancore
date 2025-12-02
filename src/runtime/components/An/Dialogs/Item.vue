@@ -94,14 +94,14 @@
 
 <template>
 	<div
-		class="dialog -flex -flex__column"
+		class="an-dialog -flex -flex__column"
 		:class="[{'-fullscreen': config.fullscreen}, config.class]"
 	>
 		<component
 			ref="refDialog"
 			:is="props.dialog.component"
 			:params="props.dialog.params"
-			class="dialog__component"
+			class="an-dialog__component"
 			:style="{transform: `translateY(${top}px)`}"
 			@close="Dialogs.close(props.dialog)"
 		/>
@@ -109,7 +109,7 @@
 </template>
 
 <style scoped>
-	.dialog {
+	.an-dialog {
 		--an-dialogs-background: inherit;
 		--an-dialogs-close: inherit;
 		--an-dialogs-backdrop-filter: inherit;
@@ -130,7 +130,7 @@
 			backdrop-filter: var(--an-dialogs-backdrop-filter, blur(6px));
 			-webkit-backdrop-filter: var(--an-dialogs-backdrop-filter, blur(6px));
 
-			& .dialog__component {
+			& .an-dialog__component {
 				@media (width < 768px) {
 					max-height: calc(100vh - 48px);
 					width: 100%;
@@ -155,14 +155,14 @@
 		}
 
 		&.-fullscreen {
-			& .dialog__component {
+			& .an-dialog__component {
 				width: 100%;
 				height: 100%;
 			}
 		}
 	}
 
-	.dialog__component {
+	.an-dialog__component {
 		box-sizing: border-box;
 		position: relative;
 		overflow-y: scroll;
