@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import { useScrollLock } from '@vueuse/core'
-	import { watch } from 'vue'
 	import { useAnDialogs } from '#imports'
 	import { AnDialogsItem } from '#components'
 
@@ -10,14 +9,19 @@
 	const isLocked = useScrollLock(window)
 
 
-	// WATCHES
-	watch(() => Dialogs.items.length, value => {
-		isLocked.value = !!value
-	})
+	// METHODS
+	const onAnimation = () => {
+		isLocked.value = !!Dialogs.items.length
+	}
 </script>
 
 <template>
-	<transition-group name="an-dialogs" tag="div">
+	<transition-group
+		name="an-dialogs"
+		tag="div"
+		@before-enter="onAnimation"
+		@after-leave="onAnimation"
+	>
 		<AnDialogsItem
 			v-for="dialog of Dialogs.items"
 			:key="dialog.id"
