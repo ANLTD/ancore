@@ -1,3 +1,15 @@
+## v1.15.3
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.15.2...v1.15.3)
+
+### 🩹 Fixes
+
+- Hide scroll before animation AnDialogs ([8ec7ff1](https://github.com/ANLTD/ancore/commit/8ec7ff1))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.15.2
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.15.1...v1.15.2)
