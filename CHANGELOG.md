@@ -1,3 +1,15 @@
+## v1.15.4
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.15.3...v1.15.4)
+
+### 🩹 Fixes
+
+- InfiniteScroll load in nextTick ([4ed34f7](https://github.com/ANLTD/ancore/commit/4ed34f7))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.15.3
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.15.2...v1.15.3)
