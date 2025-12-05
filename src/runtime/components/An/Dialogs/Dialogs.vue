@@ -19,6 +19,7 @@
 	<transition-group
 		name="an-dialogs"
 		tag="div"
+
 		@before-enter="onAnimation"
 		@after-leave="onAnimation"
 	>
