@@ -1,3 +1,15 @@
+## v1.15.7
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.15.6...v1.15.7)
+
+### 🩹 Fixes
+
+- InfiniteScroll load in nextTick ([dbcdfd8](https://github.com/ANLTD/ancore/commit/dbcdfd8))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.15.6
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.15.5...v1.15.6)
