@@ -1,5 +1,5 @@
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
-import { computed, ref, type Ref, type ComputedRef, watch, onMounted } from 'vue'
+import { computed, ref, type Ref, type ComputedRef, watch, onMounted, nextTick } from 'vue'
 import { type AsyncDataRequestStatus, useAsyncData } from '#app'
 import type { KeysOf, PickFrom } from '#app/composables/asyncData'
 import { toQuery, userApi } from '../utils'
@@ -44,8 +44,10 @@ export const useAnData = <TData = unknown, TError = unknown>(
 					path.value.url,
 					{ method: 'GET', ...(config.value.apiConfig || {}) },
 				).then((response: TData) => {
-					status.value = 'success'
 					data.value = response
+					nextTick().then(() => {
+						status.value = 'success'
+					})
 				}).catch((e: TError) => {
 					status.value = 'error'
 					error.value = e

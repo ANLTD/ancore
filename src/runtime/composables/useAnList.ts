@@ -1,5 +1,5 @@
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
-import { ref, reactive, watch, computed, type UnwrapRef, nextTick } from 'vue'
+import { ref, reactive, watch, computed, type UnwrapRef } from 'vue'
 import { useInfiniteScroll } from '@vueuse/core'
 import type { TInfiniteScroll, TResponseList } from '#ancore/types'
 import { useAnData } from './useAnData'
@@ -29,7 +29,7 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 		await data.init()
 		await refresh()
 	}
-	const refresh = async () => {
+	const refresh = () => {
 		if (!data.data.value) return
 
 		if (!config.value.apiConfig?.query?.[config.value.skipField || 'skip']) {
@@ -44,8 +44,6 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 		}
 
 		setCount(data.data.value.count)
-
-		await nextTick()
 	}
 	const setCount = (value: number | null) => {
 		count.value = value
