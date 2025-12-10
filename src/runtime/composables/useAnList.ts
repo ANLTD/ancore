@@ -10,7 +10,7 @@ interface TConfig<TFilter> {
 	request: NitroFetchRequest
 	apiConfig?: NitroFetchOptions<string>
 	filter?: TFilter
-	params?: Record<string, unknown>
+	params?: Record<string, string>
 	skipField?: string
 	reverse?: boolean
 }
@@ -21,7 +21,6 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 	const config = ref<TConfig<TFilter>>(initConfig)
 	const items: TData[] = reactive([])
 	const count = ref<number | null>(null)
-	let resetInfiniteScroll: undefined | (() => void)
 
 
 	// METHODS
@@ -72,8 +71,6 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 				...scrollConfig?.options,
 				canLoadMore,
 			})
-
-		resetInfiniteScroll = reset
 
 		return reset
 	}
