@@ -99,9 +99,11 @@ export const useAnForm = <
 
 
 	// WATCHES
-	watch(state, () => {
-		errors.value = {}
-	}, {deep: true})
+	Object.keys(state.value).forEach(key => {
+		watch(() => state.value[key], () => {
+				errors.value[key] = undefined
+		})
+	})
 
 
 	// INIT
