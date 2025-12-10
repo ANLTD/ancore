@@ -1,3 +1,16 @@
+## v1.15.8
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.15.7...v1.15.8)
+
+### 🩹 Fixes
+
+- Fix params's type of useAnList ([5dc2105](https://github.com/ANLTD/ancore/commit/5dc2105))
+- Clear error of only changed field in useAnForm ([b7e50c2](https://github.com/ANLTD/ancore/commit/b7e50c2))
+
+### ❤️ Contributors
+
+- An Ltd <contact@anweb.jp>
+
 ## v1.15.7
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.15.6...v1.15.7)
