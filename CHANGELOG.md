@@ -1,3 +1,15 @@
+## v1.15.10
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.15.9...v1.15.10)
+
+### 🩹 Fixes
+
+- Type for i18n ([103d515](https://github.com/ANLTD/ancore/commit/103d515))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.15.9
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.15.8...v1.15.9)
