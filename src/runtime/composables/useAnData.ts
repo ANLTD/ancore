@@ -2,20 +2,21 @@ import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 import { computed, ref, type Ref, type ComputedRef, watch, onMounted, nextTick } from 'vue'
 import { type AsyncDataRequestStatus, useAsyncData } from '#app'
 import type { KeysOf, PickFrom } from '#app/composables/asyncData'
-import { toQuery, userApi } from '../utils'
+import { toQuery, userApi } from '#imports'
 
 
 // TYPES
 interface TConfig {
 	request: NitroFetchRequest
 	apiConfig?: NitroFetchOptions<string>
-	params?: Record<string, unknown>
+	params: Record<string, unknown>
 }
 interface TUseAnData<TData, TError> {
 	init: () => Promise<void>,
-	set: (data: TData) => void,
-	refresh: () => void,
-	config: Ref<TConfig>,
+	set: (data: TData) => void
+	refresh: () => void
+	config: Ref<TConfig>
+	params: TConfig['params']
 	data: ComputedRef<TData | undefined>
 	status: ComputedRef<AsyncDataRequestStatus>
 	loading: ComputedRef<boolean>,
@@ -24,10 +25,10 @@ interface TUseAnData<TData, TError> {
 
 
 export const useAnData = <TData = unknown, TError = unknown>(
-	initConfig: TConfig
+	initConfig: Omit<TConfig, 'params'> & Partial<TConfig['params']>
 ): TUseAnData<TData, TError> => {
 	// DATA
-	const config = ref<TConfig>({...initConfig})
+	const config = ref<TConfig>({params: {}, ...initConfig})
 	const data = ref<TData | undefined>(undefined)
 	const error = ref<TError | undefined>(undefined)
 	const status = ref<AsyncDataRequestStatus>('idle')
@@ -110,6 +111,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 		data: data as ComputedRef<TData>,
 
 		config,
+		params: config.value.params,
 		status: status as ComputedRef<AsyncDataRequestStatus>,
 		loading,
 		error: error as ComputedRef<TError>

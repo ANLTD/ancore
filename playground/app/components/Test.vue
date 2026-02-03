@@ -4,14 +4,20 @@
 		name: string
 		info?: string
 	}
-	const user = useAnData<TUser>({ request: '/api/users/2' })
+	const user = useAnData<TUser>({ request: '/api/users/:id', params: {id: 1} })
 	const { t } = useAnI18n()
 	await asyncInit(user.init)
+
+
+	// METHODS
+	const change = () => {
+		user.params.id = 2
+	}
 </script>
 
 <template>
 	<div>
-		<div>user: {{ user.data }}</div>
+		<div @click="change">user: {{ user.data }}</div>
 
 		<div>{{t('user', {count: 3})}}</div>
 
