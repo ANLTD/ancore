@@ -1,3 +1,23 @@
+## v1.15.9
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.15.8...v1.15.9)
+
+### 🩹 Fixes
+
+- Correct params definition in useAnData ([ea6c6d7](https://github.com/ANLTD/ancore/commit/ea6c6d7))
+
+### 💅 Refactors
+
+- Refine type definitions for i18n ([2fe7c18](https://github.com/ANLTD/ancore/commit/2fe7c18))
+
+### 📦 Build
+
+- Upgrade Nuxt to 4.3.0 ([73cdaf0](https://github.com/ANLTD/ancore/commit/73cdaf0))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.15.8
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.15.7...v1.15.8)
