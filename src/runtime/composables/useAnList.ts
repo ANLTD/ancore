@@ -2,7 +2,7 @@ import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 import { ref, reactive, watch, computed, type UnwrapRef } from 'vue'
 import { useInfiniteScroll } from '@vueuse/core'
 import type { TInfiniteScroll, TResponseList } from '#ancore/types'
-import { useAnData } from './useAnData'
+import { useAnData } from '#imports'
 
 
 // TYPES
