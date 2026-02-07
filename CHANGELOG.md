@@ -1,3 +1,15 @@
+## v1.16.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.15.11...v1.16.0)
+
+### 🚀 Enhancements
+
+- New component AnDropdown ([395bc3f](https://github.com/ANLTD/ancore/commit/395bc3f))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.15.11
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.15.10...v1.15.11)
