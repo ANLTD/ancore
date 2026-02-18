@@ -1,9 +1,9 @@
-import type { Component } from '@nuxt/schema'
+import type { Component } from 'vue'
 
 
 export interface TDialog {
 	id: string
-	component: Component | Function
+	component: Component
 	params: Record<string, unknown>
 	fullscreen?: boolean
 	class?: string
