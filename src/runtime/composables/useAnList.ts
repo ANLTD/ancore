@@ -1,7 +1,8 @@
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
-import { ref, reactive, watch, computed, type UnwrapRef } from 'vue'
+import { ref, reactive, watch, computed, type UnwrapRef, type Ref, type ComputedRef } from 'vue'
 import { useInfiniteScroll } from '@vueuse/core'
 import type { TInfiniteScroll, TResponseList } from '#ancore/types'
+import { type AsyncDataRequestStatus } from '#app'
 import { useAnData } from '#imports'
 
 
@@ -14,9 +15,21 @@ interface TConfig<TFilter> {
 	skipField?: string
 	reverse?: boolean
 }
+interface TUseAnList<TData, TFilter> {
+	init: () => Promise<void>
+	infiniteScroll: (scrollConfig?: TInfiniteScroll) => () => void
+	filter: TFilter
+	params: Record<string, string> | undefined
+	items: TData[]
+	count: Ref<number | null>
+	inited: ComputedRef<boolean>
+	status: Readonly<Ref<AsyncDataRequestStatus>>
+	loading: ComputedRef<boolean>
+	error: Readonly<Ref<unknown | undefined>>
+}
 
 
-export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfig<TFilter>) => {
+export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfig<TFilter>): TUseAnList<TData, TFilter> => {
 	// DATA
 	const config = ref<TConfig<TFilter>>(initConfig)
 	const items: TData[] = reactive([])
@@ -32,7 +45,7 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 		if (!data.data.value) return
 
 		if (!config.value.apiConfig?.query?.[config.value.skipField || 'skip']) {
-			setCount(null)
+			count.value = null
 			items.length = 0
 		}
 
@@ -42,16 +55,12 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 			items.push(...data.data.value.items)
 		}
 
-		setCount(data.data.value.count)
-	}
-	const setCount = (value: number | null) => {
-		count.value = value
+		count.value = data.data.value.count
 	}
 	const infiniteScroll = (scrollConfig?: TInfiniteScroll): () => void => {
 		const onLoadMore = scrollConfig?.onLoadMore || (() => {
 			if (!config.value.filter) config.value.filter = {} as UnwrapRef<TFilter>
-			// @ts-ignore
-			config.value.filter[config.value.skipField || 'skip'] = items.length
+			;(config.value.filter as Record<string, unknown>)[config.value.skipField || 'skip'] = items.length
 		})
 		const canLoadMore = scrollConfig?.options?.canLoadMore || ((): boolean => {
 			return (
@@ -59,8 +68,7 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 				inited.value &&
 				data.status.value !== 'pending' &&
 				items.length < (count.value || 0) &&
-				// @ts-ignore
-				!!config.value.filter.limit
+				!!(config.value.filter as Record<string, unknown> | undefined)?.limit
 			)
 		})
 
