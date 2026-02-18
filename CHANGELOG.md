@@ -1,3 +1,39 @@
+## v1.16.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.17.0...v1.16.1)
+
+### 🚀 Enhancements
+
+- Escape key, ARIA and expose in AnDropdown ([020faca](https://github.com/ANLTD/ancore/commit/020faca))
+
+### 🩹 Fixes
+
+- Version ([037a61d](https://github.com/ANLTD/ancore/commit/037a61d))
+- Language switching in useAnI18n ([511630f](https://github.com/ANLTD/ancore/commit/511630f))
+- Close safety and types in useAnDialogs ([1fcd523](https://github.com/ANLTD/ancore/commit/1fcd523))
+- Dialog backdrop close and stacking ([f1146bd](https://github.com/ANLTD/ancore/commit/f1146bd))
+
+### 💅 Refactors
+
+- Improve types and dedup fetch in useAnData ([bbf188c](https://github.com/ANLTD/ancore/commit/bbf188c))
+- Remove dead try-catch in coreApi ([298baf4](https://github.com/ANLTD/ancore/commit/298baf4))
+- Improve types and add TUseAnList interface ([0824766](https://github.com/ANLTD/ancore/commit/0824766))
+- Remove any casts in AnTab ([9564dfc](https://github.com/ANLTD/ancore/commit/9564dfc))
+- Replace any with unknown in useAnForm ([71f01c9](https://github.com/ANLTD/ancore/commit/71f01c9))
+- Fix types in module and type definitions ([c8c8b55](https://github.com/ANLTD/ancore/commit/c8c8b55))
+
+### 📖 Documentation
+
+- Update README with module description and API list ([02e278f](https://github.com/ANLTD/ancore/commit/02e278f))
+
+### 🏡 Chore
+
+- Restructure playground with pages and examples ([180bf0b](https://github.com/ANLTD/ancore/commit/180bf0b))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.17.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.0...v1.17.0)
