@@ -27,9 +27,9 @@
 		"dev": "npm run dev:prepare && nuxi dev playground",
 		"dev:build": "nuxi build playground",
 		"dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-		"release:patch": "npm run prepack && changelogen --patch --release && npm publish --access public && git push --follow-tags",
-		"release:minor": "npm run prepack && changelogen --minor --release && npm publish --access public && git push --follow-tags",
-		"release:major": "npm run prepack && changelogen --major --release && npm publish --access public && git push --follow-tags"
+		"release:patch": "npm run prepack && changelogen --patch --release && npm login && npm publish --access public && git push --follow-tags",
+		"release:minor": "npm run prepack && changelogen --minor --release && npm login && npm publish --access public && git push --follow-tags",
+		"release:major": "npm run prepack && changelogen --major --release && npm login && npm publish --access public && git push --follow-tags"
 	},
 	"dependencies": {
 		"@vueuse/core": "^14.2.0",
