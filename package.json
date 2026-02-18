@@ -29,23 +29,24 @@
 		"dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
 		"release:patch": "npm run prepack && changelogen --patch --release && npm login && npm publish --access public && git push --follow-tags",
 		"release:minor": "npm run prepack && changelogen --minor --release && npm login && npm publish --access public && git push --follow-tags",
-		"release:major": "npm run prepack && changelogen --major --release && npm login && npm publish --access public && git push --follow-tags"
+		"release:major": "npm run prepack && changelogen --major --release && npm login && npm publish --access public && git push --follow-tags",
+		"update": "npx -y npm-check-updates -u"
 	},
 	"dependencies": {
-		"@vueuse/core": "^14.2.0",
-		"@vueuse/integrations": "^14.2.0",
+		"@vueuse/core": "^14.2.1",
+		"@vueuse/integrations": "^14.2.1",
 		"async-validator": "^4.2.5",
-		"i18next": "^25.8.0",
+		"i18next": "^25.8.10",
 		"uuid": "^13.0.0"
 	},
 	"devDependencies": {
-		"@nuxt/devtools": "^3.1.1",
-		"@nuxt/kit": "^4.3.0",
+		"@nuxt/devtools": "^3.2.1",
+		"@nuxt/kit": "^4.3.1",
 		"@nuxt/module-builder": "^1.0.2",
-		"@nuxt/schema": "^4.3.0",
+		"@nuxt/schema": "^4.3.1",
 		"@types/node": "latest",
 		"changelogen": "^0.6.2",
-		"nuxt": "^4.3.0",
+		"nuxt": "^4.3.1",
 		"typescript": "~5.9.3"
 	}
 }
