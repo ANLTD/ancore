@@ -16,7 +16,7 @@ interface TStructureItem<TData> {
 
 export const useAnForm = <
 	TForm extends object,
-	TData extends Partial<TForm> | null | (Record<string, any> & Partial<TForm>) = Partial<TForm> | null
+	TData extends Partial<TForm> | null | (Record<string, unknown> & Partial<TForm>) = Partial<TForm> | null
 >(
 	params: Record<keyof TForm, TStructureItem<TForm[keyof TForm]>>,
 	data?: TData
