@@ -35,6 +35,7 @@
 	const active = ref<boolean>(false)
 	const target = ref<HTMLElement | null>(null)
 	let raf: number = 0
+	let mouseDownOnBackdrop = false
 
 
 	// METHODS
@@ -78,7 +79,9 @@
 		target.value = refDialog.value?.$el || null
 
 		if (!config.value.fullscreen) {
-			onClickOutside(refDialog, () => Dialogs.close(props.dialog))
+			onClickOutside(refDialog, () => Dialogs.close(props.dialog), {
+				ignore: ['.an-dialog'],
+			})
 		}
 
 		Swipe = useSwipe(target, {
@@ -94,8 +97,13 @@
 
 <template>
 	<div
+		v-bind="$attrs"
+		role="dialog"
+		aria-modal="true"
 		class="an-dialog -flex -flex__column"
 		:class="[{'-fullscreen': config.fullscreen}, config.class]"
+		@mousedown.self="mouseDownOnBackdrop = true"
+		@click.self="mouseDownOnBackdrop && !config.fullscreen && Dialogs.close(props.dialog); mouseDownOnBackdrop = false"
 	>
 		<component
 			ref="refDialog"

@@ -6,7 +6,7 @@
 
 	// USE
 	const Dialogs = useAnDialogs()
-	const isLocked = useScrollLock(window)
+	const isLocked = useScrollLock(import.meta.client ? window : null)
 
 
 	// METHODS
@@ -17,8 +17,10 @@
 
 <template>
 	<transition-group
+		v-bind="$attrs"
 		name="an-dialogs"
 		tag="div"
+		aria-live="polite"
 
 		@before-enter="onAnimation"
 		@after-leave="onAnimation"
