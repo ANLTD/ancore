@@ -1,0 +1,3 @@
+<template>
+	<PagesUseAnData />
+</template>

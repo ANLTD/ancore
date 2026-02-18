@@ -1,0 +1,3 @@
+<template>
+	<PagesAnTab />
+</template>

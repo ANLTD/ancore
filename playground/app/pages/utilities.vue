@@ -1,0 +1,3 @@
+<template>
+	<PagesUtilities />
+</template>

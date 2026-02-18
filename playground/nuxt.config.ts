@@ -7,13 +7,13 @@ export default defineNuxtConfig({
 			lng: 'en',
 			fallbackLng: 'en',
 			cookie: 'test-lang',
-			supportedLngs: ['en', 'ru'],
+			supportedLngs: ['en', 'ja'],
 			resources: {
 				en: {
 					translation: '~~/locales/en.json'
 				},
-				ru: {
-					translation: '~~/locales/ru.json'
+				ja: {
+					translation: '~~/locales/ja.json'
 				}
 			}
 		}
