@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { v4 } from 'uuid'
 	import { computed, onMounted, ref, useTemplateRef } from 'vue'
-	import { onClickOutside } from '@vueuse/core'
+	import { onClickOutside, useEventListener } from '@vueuse/core'
 
 
 	const props = defineProps<{
@@ -22,6 +22,9 @@
 	const close = () => {
 		toggle(false)
 	}
+	const onKeydown = (e: KeyboardEvent) => {
+		if (e.key === 'Escape' && state.value) close()
+	}
 
 
 	// COMPUTED
@@ -31,6 +34,7 @@
 	const name = computed((): string => {
 		return id.value ? `--an-dropdown-${id.value}` : ''
 	})
+	const menuId = computed(() => id.value ? `an-dropdown-menu-${id.value}` : undefined)
 
 
 	// EVENTS
@@ -38,14 +42,29 @@
 		id.value = v4()
 	})
 	onClickOutside(refTarget, close)
+	useEventListener(document, 'keydown', onKeydown)
+
+
+	defineExpose({ toggle, close })
 </script>
 
 <template>
-	<div ref="refTarget" class="an-dropdown__button">
-		<slot name="button" :toggle="toggle" />
+	<div ref="refTarget" class="an-dropdown__button" v-bind="$attrs">
+		<div
+			:aria-expanded="state"
+			:aria-controls="menuId"
+			aria-haspopup="true"
+		>
+			<slot name="button" :toggle="toggle" />
+		</div>
 
 		<teleport to="body">
-			<div v-show="state" class="an-dropdown__menu">
+			<div
+				v-show="state"
+				:id="menuId"
+				role="menu"
+				class="an-dropdown__menu"
+			>
 				<slot name="menu" :close="close" />
 			</div>
 		</teleport>
