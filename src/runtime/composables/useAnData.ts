@@ -1,7 +1,6 @@
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 import { computed, ref, type Ref, type ComputedRef, watch, onMounted, nextTick } from 'vue'
 import { type AsyncDataRequestStatus, useAsyncData } from '#app'
-import type { KeysOf, PickFrom } from '#app/composables/asyncData'
 import { toQuery, userApi } from '#imports'
 
 
@@ -17,15 +16,15 @@ interface TUseAnData<TData, TError> {
 	refresh: () => void
 	config: Ref<TConfig>
 	params: TConfig['params']
-	data: ComputedRef<TData | undefined>
-	status: ComputedRef<AsyncDataRequestStatus>
+	data: Readonly<Ref<TData | undefined>>
+	status: Readonly<Ref<AsyncDataRequestStatus>>
 	loading: ComputedRef<boolean>,
-	error: ComputedRef<TError | undefined>
+	error: Readonly<Ref<TError | undefined>>
 }
 
 
 export const useAnData = <TData = unknown, TError = unknown>(
-	initConfig: Omit<TConfig, 'params'> & Partial<TConfig['params']>
+	initConfig: Omit<TConfig, 'params'> & Partial<Pick<TConfig, 'params'>>
 ): TUseAnData<TData, TError> => {
 	// DATA
 	const config = ref<TConfig>({params: {}, ...initConfig})
@@ -37,31 +36,31 @@ export const useAnData = <TData = unknown, TError = unknown>(
 
 
 	// METHODS
+	const fetchData = () => userApi<TData, TError>(
+		path.value.url,
+		{ method: 'GET', ...(config.value.apiConfig || {}) },
+	)
 	const init = async () => {
 		if (isMounted.value) {
 			const execute = () => {
 				status.value = 'pending'
-				userApi<TData, TError>(
-					path.value.url,
-					{ method: 'GET', ...(config.value.apiConfig || {}) },
-				).then((response: TData) => {
-					data.value = response
-					nextTick().then(() => {
-						status.value = 'success'
+				fetchData()
+					.then((response: TData) => {
+						data.value = response
+						nextTick().then(() => {
+							status.value = 'success'
+						})
+					}).catch((e: TError) => {
+						status.value = 'error'
+						error.value = e
 					})
-				}).catch((e: TError) => {
-					status.value = 'error'
-					error.value = e
-				})
 			}
-			watch(() => key.value, execute, { immediate: true, deep: true })
+			watch(() => key.value, execute, { immediate: true })
 		} else {
 			const Data = useAsyncData<TData, TError, TData>(
 				key,
-				() => userApi(
-					path.value.url,
-					{ method: 'GET', ...(config.value.apiConfig || {}) },
-				), {immediate: false}
+				() => fetchData(),
+				{immediate: false}
 			)
 
 			await Data.execute()
@@ -72,7 +71,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 		}
 	}
 	const set = (value: TData) => {
-		data.value = value as PickFrom<TData, KeysOf<TData>> | undefined
+		data.value = value as TData | undefined
 	}
 
 
@@ -108,12 +107,12 @@ export const useAnData = <TData = unknown, TError = unknown>(
 		set,
 		refresh: () => time.value = Date.now(),
 
-		data: data as ComputedRef<TData>,
+		data: data as Readonly<Ref<TData | undefined>>,
 
 		config,
 		params: config.value.params,
-		status: status as ComputedRef<AsyncDataRequestStatus>,
+		status: status as Readonly<Ref<AsyncDataRequestStatus>>,
 		loading,
-		error: error as ComputedRef<TError>
+		error: error as Readonly<Ref<TError | undefined>>
 	}
 }
