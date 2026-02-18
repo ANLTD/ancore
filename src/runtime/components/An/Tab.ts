@@ -1,4 +1,4 @@
-import { defineComponent, h, Fragment, watch, ref } from 'vue'
+import { defineComponent, h, Fragment, watch, ref, type Component, type VNodeArrayChildren } from 'vue'
 
 
 // TYPES
@@ -44,7 +44,7 @@ const Tab = defineComponent({
 
 			return content.map(vnode =>
 				h(
-					vnode.type as any,
+					vnode.type as string | Component,
 					{
 						...vnode.props,
 						style: {
@@ -52,7 +52,7 @@ const Tab = defineComponent({
 							display: 'none'
 						}
 					},
-					vnode.children as any
+					(vnode.children ?? undefined) as string | VNodeArrayChildren | undefined
 				)
 			)
 		}
