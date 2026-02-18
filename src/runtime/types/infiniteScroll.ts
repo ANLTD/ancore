@@ -1,4 +1,4 @@
-import type { TArgument } from '#ancore/types'
+import type { TArgument } from './argument'
 import type { useInfiniteScroll } from '@vueuse/core'
 
 

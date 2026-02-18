@@ -48,7 +48,7 @@ export default defineNuxtModule<ModuleOptions>({
 				if (!_options.i18n.resources[lng]) continue
 				const path = await resolvePath(_options.i18n.resources[lng].translation as string)
 				const fileUrl = pathToFileURL(path).href
-				_options.i18n.resources[lng].translation = structuredClone((await import(fileUrl, { assert: { type: 'json' } })).default)
+				_options.i18n.resources[lng].translation = structuredClone((await import(fileUrl, { assert: { type: 'json' } })).default) as Record<string, unknown>
 			}
 
 			addPlugin(resolve('./runtime/plugins/i18n'))
