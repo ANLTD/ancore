@@ -1,3 +1,20 @@
+## v1.16.2
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.1...v1.16.2)
+
+### 🩹 Fixes
+
+- Scroll lock in useAnDialogs ([cf3e2e4](https://github.com/ANLTD/ancore/commit/cf3e2e4))
+
+### 🏡 Chore
+
+- Add npm login to release scripts ([af73019](https://github.com/ANLTD/ancore/commit/af73019))
+- Update dependencies ([41b0943](https://github.com/ANLTD/ancore/commit/41b0943))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.1
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.17.0...v1.16.1)
