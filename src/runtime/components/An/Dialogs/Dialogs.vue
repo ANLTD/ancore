@@ -1,17 +1,45 @@
 <script setup lang="ts">
-	import { useScrollLock } from '@vueuse/core'
+	import { watch } from 'vue'
 	import { useAnDialogs } from '#imports'
 	import { AnDialogsItem } from '#components'
 
 
 	// USE
 	const Dialogs = useAnDialogs()
-	const isLocked = useScrollLock(import.meta.client ? window : null)
+
+
+	// DATA
+	let scrollY = 0
 
 
 	// METHODS
-	const onAnimation = () => {
-		isLocked.value = !!Dialogs.items.length
+	const lockScroll = () => {
+		scrollY = window.scrollY
+		document.documentElement.style.overflowY = 'scroll'
+		document.body.style.position = 'fixed'
+		document.body.style.top = `-${scrollY}px`
+		document.body.style.left = '0'
+		document.body.style.width = '100%'
+	}
+	const unlockScroll = () => {
+		document.body.style.position = ''
+		document.body.style.top = ''
+		document.body.style.left = ''
+		document.body.style.width = ''
+		document.documentElement.style.overflowY = ''
+		window.scrollTo(0, scrollY)
+	}
+
+
+	// WATCHES
+	if (import.meta.client) {
+		watch(
+			() => Dialogs.items.length,
+			(count, prev) => {
+				if (count > 0 && (!prev || prev === 0)) lockScroll()
+				else if (count === 0 && prev && prev > 0) unlockScroll()
+			}
+		)
 	}
 </script>
 
@@ -21,9 +49,6 @@
 		name="an-dialogs"
 		tag="div"
 		aria-live="polite"
-
-		@before-enter="onAnimation"
-		@after-leave="onAnimation"
 	>
 		<AnDialogsItem
 			v-for="dialog of Dialogs.items"
