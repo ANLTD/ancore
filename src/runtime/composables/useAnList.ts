@@ -1,5 +1,5 @@
-import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
-import { ref, reactive, watch, computed, type UnwrapRef, type Ref, type ComputedRef } from 'vue'
+import type { NitroFetchOptions, NitroFetchRequest, TypedInternalResponse } from 'nitropack'
+import { ref, reactive, watch, type UnwrapRef } from 'vue'
 import { useInfiniteScroll } from '@vueuse/core'
 import type { TInfiniteScroll, TResponseList } from '#ancore/types'
 import { type AsyncDataRequestStatus } from '#app'
@@ -7,8 +7,10 @@ import { useAnData } from '#imports'
 
 
 // TYPES
-interface TConfig<TFilter> {
-	request: NitroFetchRequest
+type ExtractListItem<T> = T extends TResponseList<infer U> ? U : unknown
+
+interface TConfig<TFilter, Route extends NitroFetchRequest = NitroFetchRequest> {
+	request: Route
 	apiConfig?: NitroFetchOptions<string>
 	filter?: TFilter
 	params?: Record<string, string>
@@ -21,18 +23,22 @@ interface TUseAnList<TData, TFilter> {
 	filter: TFilter
 	params: Record<string, string> | undefined
 	items: TData[]
-	count: Ref<number | null>
-	inited: ComputedRef<boolean>
-	status: Readonly<Ref<AsyncDataRequestStatus>>
-	loading: ComputedRef<boolean>
-	error: Readonly<Ref<unknown | undefined>>
+	readonly count: number | null
+	readonly status: AsyncDataRequestStatus
+	readonly loading: boolean
+	readonly error: unknown | undefined
 }
 
 
-export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfig<TFilter>): TUseAnList<TData, TFilter> => {
+export const useAnList = <
+	TData = void,
+	TFilter extends object = {},
+	Route extends NitroFetchRequest = NitroFetchRequest,
+	_TData = TData extends void ? ExtractListItem<TypedInternalResponse<Route, unknown, 'get'>> : TData
+>(initConfig: TConfig<TFilter, Route>): TUseAnList<_TData, TFilter> => {
 	// DATA
-	const config = ref<TConfig<TFilter>>(initConfig)
-	const items: TData[] = reactive([])
+	const config = ref<TConfig<TFilter>>(initConfig as any)
+	const items: _TData[] = reactive([])
 	const count = ref<number | null>(null)
 
 
@@ -42,7 +48,7 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 		await refresh()
 	}
 	const refresh = () => {
-		if (!data.data.value) return
+		if (!data.data) return
 
 		if (!config.value.apiConfig?.query?.[config.value.skipField || 'skip']) {
 			count.value = null
@@ -50,12 +56,12 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 		}
 
 		if (config.value.reverse) {
-			items.unshift(...data.data.value.items)
+			items.unshift(...data.data.items)
 		} else {
-			items.push(...data.data.value.items)
+			items.push(...data.data.items)
 		}
 
-		count.value = data.data.value.count
+		count.value = data.data.count
 	}
 	const infiniteScroll = (scrollConfig?: TInfiniteScroll): () => void => {
 		const onLoadMore = scrollConfig?.onLoadMore || (() => {
@@ -65,8 +71,8 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 		const canLoadMore = scrollConfig?.options?.canLoadMore || ((): boolean => {
 			return (
 				(scrollConfig?.canLoadMore?.() ?? true) &&
-				inited.value &&
-				data.status.value !== 'pending' &&
+				data.status !== 'idle' &&
+				data.status !== 'pending' &&
 				items.length < (count.value || 0) &&
 				!!(config.value.filter as Record<string, unknown> | undefined)?.limit
 			)
@@ -84,16 +90,12 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 	}
 
 
-	// COMPUTED
-	const inited = computed((): boolean => data.status.value !== 'idle')
-
-
 	// INIT
 	if (!config.value.apiConfig) {
 		config.value.apiConfig = {}
 	}
 	config.value.apiConfig.query = config.value.filter as Record<string, any> | undefined
-	const data = useAnData<TResponseList<TData>>({
+	const data = useAnData<TResponseList<_TData>>({
 		request: config.value.request,
 		apiConfig: config.value.apiConfig,
 		params: config.value.params
@@ -101,22 +103,27 @@ export const useAnList = <TData, TFilter extends object = {}>(initConfig: TConfi
 
 
 	// WATCHES
-	watch(data.data, refresh)
+	watch(() => data.data, refresh)
 
 
 	return {
 		init,
 		infiniteScroll,
 
-		filter: config.value.filter as TFilter,
+		get filter() { return config.value.filter as TFilter },
+		set filter(val: TFilter) {
+			config.value.filter = val as UnwrapRef<TFilter>
+			if (config.value.apiConfig) {
+				config.value.apiConfig.query = val as Record<string, any>
+			}
+		},
 		params: config.value.params,
 
 		items,
-		count,
 
-		inited,
-		status: data.status,
-		loading: data.loading,
-		error: data.error,
+		get count() { return count.value },
+		get status() { return data.status },
+		get loading() { return data.loading },
+		get error() { return data.error },
 	}
 }

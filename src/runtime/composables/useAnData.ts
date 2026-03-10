@@ -1,12 +1,12 @@
-import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
-import { computed, ref, type Ref, type ComputedRef, watch, onMounted, nextTick } from 'vue'
+import type { NitroFetchOptions, NitroFetchRequest, TypedInternalResponse } from 'nitropack'
+import { computed, ref, watch, onMounted, nextTick } from 'vue'
 import { type AsyncDataRequestStatus, useAsyncData } from '#app'
 import { toQuery, userApi } from '#imports'
 
 
 // TYPES
-interface TConfig {
-	request: NitroFetchRequest
+interface TConfig<Route extends NitroFetchRequest = NitroFetchRequest> {
+	request: Route
 	apiConfig?: NitroFetchOptions<string>
 	params: Record<string, unknown>
 }
@@ -14,18 +14,23 @@ interface TUseAnData<TData, TError> {
 	init: () => Promise<void>,
 	set: (data: TData) => void
 	refresh: () => void
-	config: Ref<TConfig>
+	config: TConfig
 	params: TConfig['params']
-	data: Readonly<Ref<TData | undefined>>
-	status: Readonly<Ref<AsyncDataRequestStatus>>
-	loading: ComputedRef<boolean>,
-	error: Readonly<Ref<TError | undefined>>
+	readonly data: TData | undefined
+	readonly status: AsyncDataRequestStatus
+	readonly loading: boolean
+	readonly error: TError | undefined
 }
 
 
-export const useAnData = <TData = unknown, TError = unknown>(
-	initConfig: Omit<TConfig, 'params'> & Partial<Pick<TConfig, 'params'>>
-): TUseAnData<TData, TError> => {
+export const useAnData = <
+	TData = void,
+	TError = unknown,
+	Route extends NitroFetchRequest = NitroFetchRequest,
+	_TData = TData extends void ? TypedInternalResponse<Route, unknown, 'get'> : TData
+>(
+	initConfig: Omit<TConfig<Route>, 'params'> & Partial<Pick<TConfig<Route>, 'params'>>
+): TUseAnData<_TData, TError> => {
 	// DATA
 	const config = ref<TConfig>({params: {}, ...initConfig})
 	const data = ref<TData | undefined>(undefined)
@@ -70,7 +75,7 @@ export const useAnData = <TData = unknown, TError = unknown>(
 			watch(Data.status, () => status.value = Data.status.value, {immediate: true})
 		}
 	}
-	const set = (value: TData) => {
+	const set = (value: _TData) => {
 		data.value = value as TData | undefined
 	}
 
@@ -105,14 +110,15 @@ export const useAnData = <TData = unknown, TError = unknown>(
 	return {
 		init,
 		set,
-		refresh: () => time.value = Date.now(),
+		refresh: () => { time.value = Date.now() },
 
-		data: data as Readonly<Ref<TData | undefined>>,
+		get data() { return data.value as _TData | undefined },
 
-		config,
+		get config() { return config.value },
+		set config(val: TConfig) { config.value = val },
 		params: config.value.params,
-		status: status as Readonly<Ref<AsyncDataRequestStatus>>,
-		loading,
-		error: error as Readonly<Ref<TError | undefined>>
+		get status() { return status.value },
+		get loading() { return loading.value || status.value === 'idle' },
+		get error() { return error.value as TError | undefined },
 	}
 }
