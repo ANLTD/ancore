@@ -1,3 +1,19 @@
+## v1.16.4
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.3...v1.16.4)
+
+### 🩹 Fixes
+
+- **AnDropdown:** Resolve SSR hydration mismatch ([5955d19](https://github.com/ANLTD/ancore/commit/5955d19))
+
+### 🏡 Chore
+
+- Add .claude to .gitignore ([ad10266](https://github.com/ANLTD/ancore/commit/ad10266))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.3
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.2...v1.16.3)
