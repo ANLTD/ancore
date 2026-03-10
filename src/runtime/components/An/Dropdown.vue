@@ -1,5 +1,4 @@
 <script setup lang="ts">
-	import { v4 } from 'uuid'
 	import { computed, onMounted, ref, useTemplateRef } from 'vue'
 	import { onClickOutside, useEventListener } from '@vueuse/core'
 
@@ -39,7 +38,7 @@
 
 	// EVENTS
 	onMounted(() => {
-		id.value = v4()
+		id.value = crypto.randomUUID()
 	})
 	onClickOutside(refTarget, close)
 	useEventListener(document, 'keydown', onKeydown)

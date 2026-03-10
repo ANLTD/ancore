@@ -1,4 +1,3 @@
-import { v4 } from 'uuid'
 import { useState } from '#app'
 import { markRaw, type Component } from 'vue'
 import type { TDialog } from '#ancore/types'
@@ -13,7 +12,7 @@ export const useAnDialogs = () => {
 	const open = (component: Component, params: Record<string, unknown> = {}, config: Partial<TDialog> = {}): TDialog => {
 		const data: TDialog = {
 			...config,
-			id: v4(),
+			id: crypto.randomUUID(),
 			component: markRaw(component),
 			params
 		}
