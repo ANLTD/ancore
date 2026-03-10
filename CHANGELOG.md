@@ -1,3 +1,28 @@
+## v1.16.3
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.2...v1.16.3)
+
+### 🔥 Performance
+
+- Use WeakMap for i18n namespace instead of JSON.stringify ([e8b8e90](https://github.com/ANLTD/ancore/commit/e8b8e90))
+
+### 🩹 Fixes
+
+- Decouple ModuleOptions from PublicRuntimeConfig i18n type ([e52df5f](https://github.com/ANLTD/ancore/commit/e52df5f))
+
+### 💅 Refactors
+
+- Use getters/setters in useAnData and useAnList ([99d20a6](https://github.com/ANLTD/ancore/commit/99d20a6))
+- Replace uuid with crypto.randomUUID() ([d08e631](https://github.com/ANLTD/ancore/commit/d08e631))
+
+### 📖 Documentation
+
+- Update playground examples for new API ([14bc075](https://github.com/ANLTD/ancore/commit/14bc075))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.2
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.1...v1.16.2)
