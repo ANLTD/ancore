@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { computed, onMounted, ref, useTemplateRef } from 'vue'
+	import { computed, ref, useTemplateRef, useId } from 'vue'
 	import { onClickOutside, useEventListener } from '@vueuse/core'
 
 
@@ -9,7 +9,7 @@
 
 
 	// DATA
-	const id = ref<string>()
+	const id = useId()
 	const state = ref<boolean>(false)
 	const refTarget = useTemplateRef('refTarget')
 
@@ -31,15 +31,12 @@
 		return props.area || 'bottom span-right'
 	})
 	const name = computed((): string => {
-		return id.value ? `--an-dropdown-${id.value}` : ''
+		return `--an-dropdown-${id}`
 	})
-	const menuId = computed(() => id.value ? `an-dropdown-menu-${id.value}` : undefined)
+	const menuId = computed(() => `an-dropdown-menu-${id}`)
 
 
 	// EVENTS
-	onMounted(() => {
-		id.value = crypto.randomUUID()
-	})
 	onClickOutside(refTarget, close)
 	useEventListener(document, 'keydown', onKeydown)
 
