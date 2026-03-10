@@ -2,6 +2,10 @@ import i18next from 'i18next'
 import { useRuntimeConfig, useCookie } from '#app'
 
 
+const nsMap = new WeakMap<object, string>()
+let nsId = 0
+
+
 export const useAnI18n = (resources?: Record<string, Record<string, string>>) => {
 	const returnObj = {
 		lang: i18next.language,
@@ -27,15 +31,16 @@ export const useAnI18n = (resources?: Record<string, Record<string, string>>) =>
 	}
 	if (!resources) return { t: i18next.t, ...returnObj}
 
-	const ns = JSON.stringify(resources)
-
-	for (const lang in resources) {
-		try {
-			if (!i18next.hasResourceBundle(lang, ns)) {
+	let ns = nsMap.get(resources)
+	if (!ns) {
+		ns = `c${nsId++}`
+		nsMap.set(resources, ns)
+		for (const lang in resources) {
+			try {
 				i18next.addResourceBundle(lang, ns, resources[lang])
+			} catch (e) {
+				console.error(`[AnI18n] Failed to add resource bundle for ${lang}:`, e)
 			}
-		} catch (e) {
-			console.error(`[AnI18n] Failed to add resource bundle for ${lang}:`, e)
 		}
 	}
 
