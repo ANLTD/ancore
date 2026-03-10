@@ -1,12 +1,16 @@
 import { addImportsDir, createResolver, defineNuxtModule, addPlugin, addComponentsDir } from '@nuxt/kit'
 import { pathToFileURL } from 'node:url'
+import type { InitOptions } from 'i18next'
 import type { PublicRuntimeConfig } from 'nuxt/schema'
 
 
 // TYPES
 export interface ModuleOptions {
 	api?: string
-	i18n?: PublicRuntimeConfig['i18n']
+	i18n?: InitOptions<unknown> & {
+		cookie?: string
+		resources?: Record<string, { translation: string | Record<string, unknown> }>
+	}
 }
 
 
@@ -22,7 +26,7 @@ export default defineNuxtModule<ModuleOptions>({
 		// CONFIG
 		_nuxt.options.runtimeConfig.public = {
 			..._nuxt.options.runtimeConfig.public,
-			i18n: _options.i18n
+			i18n: _options.i18n as PublicRuntimeConfig['i18n']
 		}
 
 		// ALIASES
