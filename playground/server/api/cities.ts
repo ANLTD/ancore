@@ -1,4 +1,7 @@
-export default defineEventHandler(async (event): Promise<any> => {
+import { TResponseList } from '#ancore/types'
+
+
+export default defineEventHandler<Promise<TResponseList<{id: number, name: string, country: string}>>>(async (event) => {
 	const params = getQuery(event)
 
 	const allCities = [

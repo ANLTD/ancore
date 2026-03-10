@@ -1,9 +1,4 @@
 <script setup lang="ts">
-	interface TCity {
-		id: number
-		name: string
-		country: string
-	}
 	interface TFilter {
 		skip: number
 		limit: number
@@ -13,14 +8,13 @@
 	const scrollEl = ref<HTMLElement | null>(null)
 	const countries = ['all', 'Japan', 'USA', 'France', 'England']
 
-	const List = useAnList<TCity, TFilter>({
+	const List = useAnList({
 		request: '/api/cities',
-		filter: { skip: 0, limit: 4, country: 'all' },
+		filter: { skip: 0, limit: 4, country: 'all' } as TFilter,
 	})
 
 	const setCountry = (country: string) => {
-		List.filter.country = country
-		List.filter.skip = 0
+		List.filter = {...List.filter, country, skip: 0}
 	}
 
 	asyncInit(async () => {
@@ -77,9 +71,9 @@
 			<div class="demo">
 				<div class="status-bar">
 					<span class="tag" :class="{
-						'tag--success': List.status.value === 'success',
-						'tag--warning': List.status.value === 'pending',
-					}">{{ List.status.value }}</span>
+						'tag--success': List.status === 'success',
+						'tag--warning': List.status === 'pending',
+					}">{{ List.status }}</span>
 					<span>{{ List.items.length }} / {{ List.count ?? '?' }} cities</span>
 				</div>
 
@@ -104,10 +98,10 @@
 						<span>#{{ city.id }} {{ city.name }}</span>
 						<span style="color: #6c7293">{{ city.country }}</span>
 					</div>
-					<div v-if="List.loading.value" style="padding: 12px; text-align: center; color: #6c7293; font-size: 13px">
+					<div v-if="List.loading" style="padding: 12px; text-align: center; color: #6c7293; font-size: 13px">
 						Loading more...
 					</div>
-					<div v-if="!List.loading.value && List.items.length === 0" style="padding: 12px; text-align: center; color: #6c7293; font-size: 13px">
+					<div v-if="!List.loading && List.items.length === 0" style="padding: 12px; text-align: center; color: #6c7293; font-size: 13px">
 						No cities found
 					</div>
 				</div>

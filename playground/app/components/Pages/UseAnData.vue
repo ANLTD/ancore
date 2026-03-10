@@ -1,10 +1,5 @@
 <script setup lang="ts">
-	interface TUser {
-		id: number
-		name: string
-	}
-
-	const User = useAnData<TUser>({
+	const User = useAnData({
 		request: '/api/users/:id',
 		params: { id: 1 }
 	})
@@ -58,12 +53,12 @@
 			<div class="demo">
 				<div class="status-bar">
 					<span class="tag" :class="{
-						'tag--info': User.status.value === 'idle',
-						'tag--warning': User.status.value === 'pending',
-						'tag--success': User.status.value === 'success',
-						'tag--error': User.status.value === 'error',
-					}">{{ User.status.value }}</span>
-					<span v-if="User.loading.value">Loading...</span>
+						'tag--info': User.status === 'idle',
+						'tag--warning': User.status === 'pending',
+						'tag--success': User.status === 'success',
+						'tag--error': User.status === 'error',
+					}">{{ User.status }}</span>
+					<span v-if="User.loading">Loading...</span>
 				</div>
 
 				<div class="field">
@@ -71,9 +66,9 @@
 					<input v-model.number="User.params.id" type="number" min="1" max="60" class="input" style="width: 120px" />
 				</div>
 
-				<div v-if="User.data.value" style="margin-top: 12px">
+				<div v-if="User.data" style="margin-top: 12px">
 					<strong>Response:</strong>
-					<pre style="background: #f4f5f7; padding: 12px; border-radius: 6px; font-size: 13px; margin-top: 4px">{{ JSON.stringify(User.data.value, null, 2) }}</pre>
+					<pre style="background: #f4f5f7; padding: 12px; border-radius: 6px; font-size: 13px; margin-top: 4px">{{ JSON.stringify(User.data, null, 2) }}</pre>
 				</div>
 
 				<div style="margin-top: 12px">
