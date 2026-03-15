@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { computed, ref, useTemplateRef, useId } from 'vue'
-	import { onClickOutside, useEventListener } from '@vueuse/core'
+	import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
 
 
 	const props = defineProps<{
