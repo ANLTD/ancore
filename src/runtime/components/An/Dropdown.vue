@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { computed, ref, useTemplateRef, useId } from 'vue'
-	import { onClickOutside, useEventListener } from '@vueuse/core'
+	import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
 
 
 	const props = defineProps<{
@@ -12,6 +12,7 @@
 	const id = useId()
 	const state = ref<boolean>(false)
 	const refTarget = useTemplateRef('refTarget')
+	const isMounted = useMounted()
 
 
 	// METHODS
@@ -54,7 +55,7 @@
 			<slot name="button" :toggle="toggle" />
 		</div>
 
-		<teleport to="body">
+		<teleport to="body" :disabled="!isMounted">
 			<div
 				v-show="state"
 				:id="menuId"
