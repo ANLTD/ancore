@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
-    "generate": "nuxi generate"
+    "generate": "nuxi generate",
+    "update": "npx -y npm-check-updates -u"
   },
   "dependencies": {
-    "nuxt": "^4.3.0"
+    "nuxt": "^4.4.2"
   }
 }
