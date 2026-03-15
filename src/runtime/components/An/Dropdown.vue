@@ -54,7 +54,7 @@
 			<slot name="button" :toggle="toggle" />
 		</div>
 
-		<teleport to="body">
+		<teleport to="body" :disabled="!import.meta.client">
 			<div
 				v-show="state"
 				:id="menuId"
