@@ -1,3 +1,21 @@
+## v1.16.5
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.4...v1.16.5)
+
+### 🩹 Fixes
+
+- **AnDropdown:** Disable teleport on server to prevent hydration mismatch ([659173c](https://github.com/ANLTD/ancore/commit/659173c))
+- **AnDropdown:** Disable teleport on server to prevent hydration mismatch ([53e19ab](https://github.com/ANLTD/ancore/commit/53e19ab))
+- **AnDropdown:** Use useMounted for teleport SSR fix ([96c9859](https://github.com/ANLTD/ancore/commit/96c9859))
+
+### 🏡 Chore
+
+- Update dependencies ([72020c6](https://github.com/ANLTD/ancore/commit/72020c6))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.4
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.3...v1.16.4)
