@@ -1,3 +1,15 @@
+## v1.16.6
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.5...v1.16.6)
+
+### 🩹 Fixes
+
+- **AnDropdown:** Prevent dropdown menu click from closing parent dialog ([c350199](https://github.com/ANLTD/ancore/commit/c350199))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.5
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.4...v1.16.5)
