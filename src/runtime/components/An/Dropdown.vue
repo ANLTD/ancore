@@ -63,7 +63,6 @@
 				:id="menuId"
 				role="menu"
 				class="an-dropdown__menu"
-				@pointerdown.stop
 			>
 				<slot name="menu" :close="close" />
 			</div>
