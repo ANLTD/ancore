@@ -1,3 +1,15 @@
+## v1.16.9
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.8...v1.16.9)
+
+### 🩹 Fixes
+
+- **AnDialogs:** Prevent pull-to-refresh when swiping inside dialog ([fd4e018](https://github.com/ANLTD/ancore/commit/fd4e018))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.8
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.7...v1.16.8)
