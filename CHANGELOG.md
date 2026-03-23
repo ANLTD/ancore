@@ -1,3 +1,15 @@
+## v1.16.8
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.7...v1.16.8)
+
+### 🩹 Fixes
+
+- **AnDropdown:** Remove redundant pointerdown.stop from menu ([5bffe6e](https://github.com/ANLTD/ancore/commit/5bffe6e))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.7
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.6...v1.16.7)
