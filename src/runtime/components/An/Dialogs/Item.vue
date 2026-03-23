@@ -174,6 +174,7 @@
 		box-sizing: border-box;
 		position: relative;
 		overflow-y: scroll;
+		overscroll-behavior: contain;
 		-ms-overflow-style: none;
 		scrollbar-width: none;
 	}
