@@ -1,3 +1,15 @@
+## v1.16.7
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.6...v1.16.7)
+
+### 🩹 Fixes
+
+- **AnDropdown:** Ignore teleported menu in onClickOutside ([2dd56fd](https://github.com/ANLTD/ancore/commit/2dd56fd))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.6
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.5...v1.16.6)
