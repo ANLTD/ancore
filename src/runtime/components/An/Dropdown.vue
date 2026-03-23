@@ -12,6 +12,7 @@
 	const id = useId()
 	const state = ref<boolean>(false)
 	const refTarget = useTemplateRef('refTarget')
+	const refMenu = useTemplateRef('refMenu')
 	const isMounted = useMounted()
 
 
@@ -38,7 +39,7 @@
 
 
 	// EVENTS
-	onClickOutside(refTarget, close)
+	onClickOutside(refTarget, close, { ignore: [refMenu] })
 	useEventListener(document, 'keydown', onKeydown)
 
 
@@ -58,6 +59,7 @@
 		<teleport to="body" :disabled="!isMounted">
 			<div
 				v-show="state"
+				ref="refMenu"
 				:id="menuId"
 				role="menu"
 				class="an-dropdown__menu"
