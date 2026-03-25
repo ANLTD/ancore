@@ -1,3 +1,17 @@
+## v1.16.10
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.9...v1.16.10)
+
+### 🩹 Fixes
+
+- **AnDialogs:** Replace onClickOutside with @click.self for backdrop close ([4e4f8e8](https://github.com/ANLTD/ancore/commit/4e4f8e8))
+- Revert dependency updates that broke unbuild resolution ([70c6dd4](https://github.com/ANLTD/ancore/commit/70c6dd4))
+- Version ([74b6322](https://github.com/ANLTD/ancore/commit/74b6322))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.9
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.8...v1.16.9)
