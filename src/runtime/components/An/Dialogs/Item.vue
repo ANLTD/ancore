@@ -78,12 +78,6 @@
 	onMounted(() => {
 		target.value = refDialog.value?.$el || null
 
-		if (!config.value.fullscreen) {
-			onClickOutside(refDialog, () => Dialogs.close(props.dialog), {
-				ignore: ['.an-dialog'],
-			})
-		}
-
 		Swipe = useSwipe(target, {
 			onSwipeStart,
 			onSwipe,
@@ -102,8 +96,7 @@
 		aria-modal="true"
 		class="an-dialog -flex -flex__column"
 		:class="[{'-fullscreen': config.fullscreen}, config.class]"
-		@mousedown.self="mouseDownOnBackdrop = true"
-		@click.self="mouseDownOnBackdrop && !config.fullscreen && Dialogs.close(props.dialog); mouseDownOnBackdrop = false"
+		@click.self="!config.fullscreen && Dialogs.close(props.dialog)"
 	>
 		<component
 			ref="refDialog"

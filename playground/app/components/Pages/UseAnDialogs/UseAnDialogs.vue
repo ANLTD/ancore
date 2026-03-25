@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import ExampleDialog from './ExampleDialog.vue'
 	import FullscreenDialog from './FullscreenDialog.vue'
+	import DropdownDialog from './DropdownDialog.vue'
 
 	const Dialogs = useAnDialogs()
 
@@ -26,6 +27,10 @@
 		}, {
 			fullscreen: true,
 		})
+	}
+
+	const openWithDropdown = () => {
+		Dialogs.open(DropdownDialog)
 	}
 
 	const openMultiple = () => {
@@ -127,6 +132,7 @@
 					<button class="btn btn--primary" @click="openBasic">Open basic dialog</button>
 					<button class="btn btn--primary" @click="openWithCallback">With onClose callback</button>
 					<button class="btn btn--primary" @click="openFullscreen">Fullscreen dialog</button>
+					<button class="btn btn--primary" @click="openWithDropdown">With AnDropdown</button>
 					<button class="btn btn--primary" @click="openMultiple">Open 2 stacked</button>
 					<button class="btn btn--danger" @click="Dialogs.closeAll()" :disabled="!Dialogs.items.length">Close all</button>
 				</div>
