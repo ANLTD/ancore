@@ -1,3 +1,15 @@
+## v1.16.11
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.10...v1.16.11)
+
+### 🩹 Fixes
+
+- **AnDropdown:** Fallback positioning for browsers without anchor positioning support ([1b24bf7](https://github.com/ANLTD/ancore/commit/1b24bf7))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.10
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.9...v1.16.10)
