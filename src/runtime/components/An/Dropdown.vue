@@ -36,6 +36,7 @@
 		return `--an-dropdown-${id}`
 	})
 	const menuId = computed(() => `an-dropdown-menu-${id}`)
+	const supportsAnchor = computed(() => !isMounted.value || CSS.supports('anchor-name', 'none'))
 
 
 	// EVENTS
@@ -56,7 +57,7 @@
 			<slot name="button" :toggle="toggle" />
 		</div>
 
-		<teleport to="body" :disabled="!isMounted">
+		<teleport to="body" :disabled="!isMounted || !supportsAnchor">
 			<div
 				v-show="state"
 				ref="refMenu"
@@ -84,5 +85,17 @@
 			top span-right,
 			bottom span-left,
 			top span-left;
+	}
+
+	@supports not (anchor-name: none) {
+		.an-dropdown__button {
+			position: relative;
+		}
+		.an-dropdown__menu {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			z-index: 1000;
+		}
 	}
 </style>

@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "nuxi dev",
+    "dev:host": "nuxi dev --host",
     "build": "nuxi build",
     "generate": "nuxi generate",
     "update": "npx -y npm-check-updates -u"
