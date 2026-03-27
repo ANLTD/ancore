@@ -111,8 +111,9 @@ export const useAnForm = <
 
 
 	return {
-		state,
-		diff,
+		get state() { return state.value },
+		set state(val: TForm) { state.value = val },
+		get diff() { return diff.value },
 
 		merge,
 
@@ -120,11 +121,11 @@ export const useAnForm = <
 			check: () => {
 				return validatorExecute()
 			},
-			errors
+			get errors() { return errors.value },
 		},
 
 		history: {
-			isChanged,
+			get isChanged() { return isChanged.value },
 			reset: () => {
 				state.value = first.value
 				void nextTick(History.clear)

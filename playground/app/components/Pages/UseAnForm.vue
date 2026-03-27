@@ -29,7 +29,7 @@
 	const onSubmit = async () => {
 		const { pass } = await Form.validator.check()
 		if (pass) {
-			alert('Form is valid! Data: ' + JSON.stringify(Form.state.value))
+			alert('Form is valid! Data: ' + JSON.stringify(Form.state))
 		}
 	}
 </script>
@@ -58,12 +58,12 @@
 			<table class="api-table">
 				<thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
 				<tbody>
-					<tr><td><code>state</code></td><td><code>Ref&lt;TForm&gt;</code></td><td>Reactive form state</td></tr>
-					<tr><td><code>diff</code></td><td><code>ComputedRef&lt;Partial&lt;TForm&gt;&gt;</code></td><td>Only changed fields</td></tr>
+					<tr><td><code>state</code></td><td><code>TForm</code></td><td>Reactive form state (get/set)</td></tr>
+					<tr><td><code>diff</code></td><td><code>Partial&lt;TForm&gt;</code></td><td>Only changed fields (readonly)</td></tr>
 					<tr><td><code>merge(data, commit?)</code></td><td><code>Function</code></td><td>Merge data into state, optionally commit history</td></tr>
 					<tr><td><code>validator.check()</code></td><td><code>() => Promise&lt;{ pass, errors }&gt;</code></td><td>Run async validation</td></tr>
-					<tr><td><code>validator.errors</code></td><td><code>Ref&lt;Record&lt;key, string&gt;&gt;</code></td><td>Per-field error messages</td></tr>
-					<tr><td><code>history.isChanged</code></td><td><code>ComputedRef&lt;boolean&gt;</code></td><td>Has the form been modified?</td></tr>
+					<tr><td><code>validator.errors</code></td><td><code>Record&lt;key, string&gt;</code></td><td>Per-field error messages (readonly)</td></tr>
+					<tr><td><code>history.isChanged</code></td><td><code>boolean</code></td><td>Has the form been modified? (readonly)</td></tr>
 					<tr><td><code>history.reset()</code></td><td><code>() => void</code></td><td>Undo all changes</td></tr>
 					<tr><td><code>history.commit()</code></td><td><code>() => void</code></td><td>Commit current state as baseline</td></tr>
 				</tbody>
@@ -76,48 +76,48 @@
 
 			<div class="demo">
 				<div class="status-bar">
-					<span class="tag" :class="Form.history.isChanged.value ? 'tag--warning' : 'tag--success'">
-						{{ Form.history.isChanged.value ? 'Changed' : 'Clean' }}
+					<span class="tag" :class="Form.history.isChanged ? 'tag--warning' : 'tag--success'">
+						{{ Form.history.isChanged ? 'Changed' : 'Clean' }}
 					</span>
 				</div>
 
 				<div class="field">
 					<label class="field__label">Name</label>
 					<input
-						v-model="Form.state.value.name"
+						v-model="Form.state.name"
 						class="input"
-						:class="{ 'input--error': Form.validator.errors.value.name }"
+						:class="{ 'input--error': Form.validator.errors.name }"
 						placeholder="Enter name"
 					/>
-					<div v-if="Form.validator.errors.value.name" class="error-text">
-						{{ Form.validator.errors.value.name }}
+					<div v-if="Form.validator.errors.name" class="error-text">
+						{{ Form.validator.errors.name }}
 					</div>
 				</div>
 
 				<div class="field">
 					<label class="field__label">Email</label>
 					<input
-						v-model="Form.state.value.email"
+						v-model="Form.state.email"
 						class="input"
-						:class="{ 'input--error': Form.validator.errors.value.email }"
+						:class="{ 'input--error': Form.validator.errors.email }"
 						placeholder="user@example.com"
 					/>
-					<div v-if="Form.validator.errors.value.email" class="error-text">
-						{{ Form.validator.errors.value.email }}
+					<div v-if="Form.validator.errors.email" class="error-text">
+						{{ Form.validator.errors.email }}
 					</div>
 				</div>
 
 				<div class="field">
 					<label class="field__label">Age</label>
 					<input
-						v-model.number="Form.state.value.age"
+						v-model.number="Form.state.age"
 						type="number"
 						class="input"
-						:class="{ 'input--error': Form.validator.errors.value.age }"
+						:class="{ 'input--error': Form.validator.errors.age }"
 						style="width: 120px"
 					/>
-					<div v-if="Form.validator.errors.value.age" class="error-text">
-						{{ Form.validator.errors.value.age }}
+					<div v-if="Form.validator.errors.age" class="error-text">
+						{{ Form.validator.errors.age }}
 					</div>
 				</div>
 
@@ -130,9 +130,9 @@
 					</button>
 				</div>
 
-				<div v-if="Object.keys(Form.diff.value).length" style="margin-top: 16px">
+				<div v-if="Object.keys(Form.diff).length" style="margin-top: 16px">
 					<strong style="font-size: 13px">Diff (changed fields):</strong>
-					<pre style="background: #f4f5f7; padding: 12px; border-radius: 6px; font-size: 13px; margin-top: 4px">{{ JSON.stringify(Form.diff.value, null, 2) }}</pre>
+					<pre style="background: #f4f5f7; padding: 12px; border-radius: 6px; font-size: 13px; margin-top: 4px">{{ JSON.stringify(Form.diff, null, 2) }}</pre>
 				</div>
 			</div>
 		</div>
