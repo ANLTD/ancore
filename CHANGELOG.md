@@ -1,3 +1,15 @@
+## v1.16.13
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.12...v1.16.13)
+
+### 🩹 Fixes
+
+- **AnDialogs:** Prevent close on drag from dialog to backdrop ([92c272e](https://github.com/ANLTD/ancore/commit/92c272e))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.12
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.11...v1.16.12)
