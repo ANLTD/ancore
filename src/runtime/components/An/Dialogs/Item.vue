@@ -35,10 +35,13 @@
 	const active = ref<boolean>(false)
 	const target = ref<HTMLElement | null>(null)
 	let raf: number = 0
-	let mouseDownOnBackdrop = false
+	let mouseDownOnBackdrop: boolean = false
 
 
 	// METHODS
+	const onMouseDown = (e: MouseEvent) => {
+		mouseDownOnBackdrop = e.target === e.currentTarget
+	}
 	const onSwipeStart = () => {
 		active.value = canSwipe.value
 	}
@@ -96,7 +99,8 @@
 		aria-modal="true"
 		class="an-dialog -flex -flex__column"
 		:class="[{'-fullscreen': config.fullscreen}, config.class]"
-		@click.self="!config.fullscreen && Dialogs.close(props.dialog)"
+		@mousedown="onMouseDown"
+		@click.self="mouseDownOnBackdrop && !config.fullscreen && Dialogs.close(props.dialog); mouseDownOnBackdrop = false"
 	>
 		<component
 			ref="refDialog"
