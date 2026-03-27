@@ -1,3 +1,20 @@
+## v1.16.12
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.11...v1.16.12)
+
+### 🚀 Enhancements
+
+- **useAnList:** Add count setter and refresh ([b12acd6](https://github.com/ANLTD/ancore/commit/b12acd6))
+
+### 💅 Refactors
+
+- **useAnForm:** Replace Ref returns with get/set accessors ([da1305c](https://github.com/ANLTD/ancore/commit/da1305c))
+- **useAnI18n:** Reactive lang, simplify return structure ([ca4526d](https://github.com/ANLTD/ancore/commit/ca4526d))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.11
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.10...v1.16.11)
