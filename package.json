@@ -36,16 +36,17 @@
 		"@vueuse/core": "^14.2.1",
 		"@vueuse/integrations": "^14.2.1",
 		"async-validator": "^4.2.5",
-		"i18next": "^25.8.18"
+		"i18next": "^25.10.10"
 	},
 	"devDependencies": {
-		"@nuxt/devtools": "^3.2.3",
+		"@nuxt/devtools": "^3.2.4",
 		"@nuxt/kit": "^4.4.2",
 		"@nuxt/module-builder": "^1.0.2",
 		"@nuxt/schema": "^4.4.2",
 		"@types/node": "latest",
 		"changelogen": "^0.6.2",
 		"nuxt": "^4.4.2",
-		"typescript": "~5.9.3"
+		"typescript": "~5.9.3",
+		"vue-tsc": "^3.2.6"
 	}
 }
