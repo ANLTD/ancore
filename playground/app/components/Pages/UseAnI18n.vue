@@ -1,17 +1,10 @@
 <script setup lang="ts">
-	const { t: tGlobal, lang, set } = useAnI18n()
+	const i18n = useAnI18n()
 
 	const { t: tLocal } = useAnI18n({
 		en: { greeting: 'Hello, World!', description: 'This is a local translation' },
 		ja: { greeting: 'こんにちは、世界！', description: 'これはローカル翻訳です' },
 	})
-
-	const currentLang = ref(lang)
-
-	const switchLang = (lng: string) => {
-		set(lng)
-		currentLang.value = lng
-	}
 </script>
 
 <template>
@@ -37,7 +30,7 @@
 				<thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
 				<tbody>
 					<tr><td><code>t</code></td><td><code>(key, options?) => string</code></td><td>Translation function (scoped or global)</td></tr>
-					<tr><td><code>lang</code></td><td><code>string</code></td><td>Current language</td></tr>
+					<tr><td><code>lang</code></td><td><code>string</code></td><td>Current language (reactive, readonly)</td></tr>
 					<tr><td><code>set</code></td><td><code>(lang: string) => void</code></td><td>Switch language (saves to cookie)</td></tr>
 				</tbody>
 			</table>
@@ -49,15 +42,15 @@
 
 			<div class="demo">
 				<div class="status-bar">
-					<span>Current language: <strong>{{ currentLang }}</strong></span>
-					<button class="btn btn--secondary" @click="switchLang('en')">EN</button>
-					<button class="btn btn--secondary" @click="switchLang('ja')">JA</button>
+					<span>Current language: <strong>{{ i18n.lang }}</strong></span>
+					<button class="btn btn--secondary" @click="i18n.set('en')">EN</button>
+					<button class="btn btn--secondary" @click="i18n.set('ja')">JA</button>
 				</div>
 
 				<div style="font-size: 14px; display: flex; flex-direction: column; gap: 6px">
-					<div>1 user: <strong>{{ tGlobal('user', { count: 1 }) }}</strong></div>
-					<div>5 users: <strong>{{ tGlobal('user', { count: 5 }) }}</strong></div>
-					<div>42 users: <strong>{{ tGlobal('user', { count: 42 }) }}</strong></div>
+					<div>1 user: <strong>{{ i18n.t('user', { count: 1 }) }}</strong></div>
+					<div>5 users: <strong>{{ i18n.t('user', { count: 5 }) }}</strong></div>
+					<div>42 users: <strong>{{ i18n.t('user', { count: 42 }) }}</strong></div>
 				</div>
 			</div>
 		</div>
