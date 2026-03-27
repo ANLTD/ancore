@@ -53,12 +53,12 @@
 				<thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
 				<tbody>
 					<tr><td><code>items</code></td><td><code>TData[]</code></td><td>Reactive array of loaded items</td></tr>
-					<tr><td><code>count</code></td><td><code>Ref&lt;number | null&gt;</code></td><td>Total items count from server</td></tr>
+					<tr><td><code>count</code></td><td><code>number | null</code></td><td>Total items count from server (get/set)</td></tr>
 					<tr><td><code>filter</code></td><td><code>TFilter</code></td><td>Current filter values</td></tr>
-					<tr><td><code>inited</code></td><td><code>ComputedRef&lt;boolean&gt;</code></td><td>true after first fetch</td></tr>
-					<tr><td><code>status</code></td><td><code>ComputedRef</code></td><td>idle | pending | success | error</td></tr>
-					<tr><td><code>loading</code></td><td><code>ComputedRef&lt;boolean&gt;</code></td><td>true when fetching</td></tr>
+					<tr><td><code>status</code></td><td><code>string</code></td><td>idle | pending | success | error (readonly)</td></tr>
+					<tr><td><code>loading</code></td><td><code>boolean</code></td><td>true when fetching (readonly)</td></tr>
 					<tr><td><code>init()</code></td><td><code>() => Promise&lt;void&gt;</code></td><td>Initialize the list</td></tr>
+					<tr><td><code>refresh()</code></td><td><code>() => void</code></td><td>Re-fetch data from server</td></tr>
 					<tr><td><code>infiniteScroll()</code></td><td><code>(config?) => () => void</code></td><td>Attach infinite scroll, returns reset function</td></tr>
 				</tbody>
 			</table>

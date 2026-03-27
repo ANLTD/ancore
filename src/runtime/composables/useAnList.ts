@@ -19,11 +19,12 @@ interface TConfig<TFilter, Route extends NitroFetchRequest = NitroFetchRequest> 
 }
 interface TUseAnList<TData, TFilter> {
 	init: () => Promise<void>
+	refresh: () => void
 	infiniteScroll: (scrollConfig?: TInfiniteScroll) => () => void
 	filter: TFilter
 	params: Record<string, string> | undefined
 	items: TData[]
-	readonly count: number | null
+	count: number | null
 	readonly status: AsyncDataRequestStatus
 	readonly loading: boolean
 	readonly error: unknown | undefined
@@ -108,6 +109,7 @@ export const useAnList = <
 
 	return {
 		init,
+		refresh: data.refresh,
 		infiniteScroll,
 
 		get filter() { return config.value.filter as TFilter },
@@ -122,6 +124,7 @@ export const useAnList = <
 		items,
 
 		get count() { return count.value },
+		set count(val: number | null) { count.value = val },
 		get status() { return data.status },
 		get loading() { return data.loading },
 		get error() { return data.error },
