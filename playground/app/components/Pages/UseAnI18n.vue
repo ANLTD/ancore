@@ -30,7 +30,7 @@
 				<thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
 				<tbody>
 					<tr><td><code>t</code></td><td><code>(key, options?) => string</code></td><td>Translation function (scoped or global)</td></tr>
-					<tr><td><code>lang</code></td><td><code>string</code></td><td>Current language (reactive, readonly)</td></tr>
+					<tr><td><code>lang</code></td><td><code>ComputedRef&lt;string&gt;</code></td><td>Current language (reactive, readonly)</td></tr>
 					<tr><td><code>set</code></td><td><code>(lang: string) => void</code></td><td>Switch language (saves to cookie)</td></tr>
 				</tbody>
 			</table>

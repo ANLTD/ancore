@@ -1,14 +1,15 @@
 import i18next from 'i18next'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRuntimeConfig, useCookie } from '#app'
 
-
+// DATA
 const nsMap = new WeakMap<object, string>()
 let nsId = 0
 const lang = ref(i18next.language)
 
 
 export const useAnI18n = (resources?: Record<string, Record<string, string>>) => {
+	// METHODS
 	const set = (value: string) => {
 		try {
 			i18next.changeLanguage(value)
@@ -29,6 +30,12 @@ export const useAnI18n = (resources?: Record<string, Record<string, string>>) =>
 		}
 	}
 
+
+	// COMPUTED
+	const langReadonly = computed(() => lang.value)
+
+
+	// INIT
 	if (resources) {
 		let ns = nsMap.get(resources)
 		if (!ns) {
@@ -46,14 +53,14 @@ export const useAnI18n = (resources?: Record<string, Record<string, string>>) =>
 		const nsRef = ns
 		return {
 			t: (key: string, options = {}) => i18next.t(key, { ns: [nsRef, 'translation'], ...options }),
-			get lang() { return lang.value },
+			lang: langReadonly,
 			set,
 		}
 	}
 
 	return {
 		t: i18next.t,
-		get lang() { return lang.value },
+		lang: langReadonly,
 		set,
 	}
 }
