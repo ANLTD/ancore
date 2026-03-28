@@ -1,3 +1,15 @@
+## v1.16.14
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.13...v1.16.14)
+
+### 💅 Refactors
+
+- **useAnI18n:** Return computed ref for lang to preserve reactivity ([f18dd7b](https://github.com/ANLTD/ancore/commit/f18dd7b))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.13
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.12...v1.16.13)
