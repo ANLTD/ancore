@@ -1,3 +1,19 @@
+## v1.16.15
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.14...v1.16.15)
+
+### 🩹 Fixes
+
+- **useAnList:** Skip infinite scroll onLoadMore when dialog is open ([150f979](https://github.com/ANLTD/ancore/commit/150f979))
+
+### 💅 Refactors
+
+- **useAnI18n:** Use content hash for stable namespace dedup ([ce740bc](https://github.com/ANLTD/ancore/commit/ce740bc))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.14
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.13...v1.16.14)
