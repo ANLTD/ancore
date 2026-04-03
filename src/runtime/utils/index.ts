@@ -1,4 +1,5 @@
 export * from './asyncInit'
 export * from './coreApi'
+export * from './fnv1a'
 export * from './toQuery'
 export * from './userApi'

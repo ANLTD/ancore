@@ -1,10 +1,10 @@
 import i18next from 'i18next'
 import { ref, computed } from 'vue'
 import { useRuntimeConfig, useCookie } from '#app'
+import { fnv1a } from '#imports'
+
 
 // DATA
-const nsMap = new WeakMap<object, string>()
-let nsId = 0
 const lang = ref(i18next.language)
 
 
@@ -37,11 +37,9 @@ export const useAnI18n = (resources?: Record<string, Record<string, string>>) =>
 
 	// INIT
 	if (resources) {
-		let ns = nsMap.get(resources)
-		if (!ns) {
-			ns = `c${nsId++}`
-			nsMap.set(resources, ns)
-			for (const l in resources) {
+		const ns = `c${fnv1a(JSON.stringify(resources))}`
+		for (const l in resources) {
+			if (!i18next.hasResourceBundle(l, ns)) {
 				try {
 					i18next.addResourceBundle(l, ns, resources[l])
 				} catch (e) {
@@ -54,13 +52,13 @@ export const useAnI18n = (resources?: Record<string, Record<string, string>>) =>
 		return {
 			t: (key: string, options = {}) => i18next.t(key, { ns: [nsRef, 'translation'], ...options }),
 			lang: langReadonly,
-			set,
+			set
 		}
 	}
 
 	return {
 		t: i18next.t,
 		lang: langReadonly,
-		set,
+		set
 	}
 }
