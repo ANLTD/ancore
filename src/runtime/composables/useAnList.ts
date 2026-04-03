@@ -66,6 +66,7 @@ export const useAnList = <
 	}
 	const infiniteScroll = (scrollConfig?: TInfiniteScroll): () => void => {
 		const onLoadMore = scrollConfig?.onLoadMore || (() => {
+			if (!scrollConfig?.element && document.body.style.position === 'fixed') return
 			if (!config.value.filter) config.value.filter = {} as UnwrapRef<TFilter>
 			;(config.value.filter as Record<string, unknown>)[config.value.skipField || 'skip'] = items.length
 		})
