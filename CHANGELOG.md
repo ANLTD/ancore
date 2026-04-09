@@ -1,3 +1,15 @@
+## v1.16.16
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.15...v1.16.16)
+
+### 🚀 Enhancements
+
+- **AnDialogs:** Close dialog on Escape key press ([b4a40cf](https://github.com/ANLTD/ancore/commit/b4a40cf))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.15
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.14...v1.16.15)
