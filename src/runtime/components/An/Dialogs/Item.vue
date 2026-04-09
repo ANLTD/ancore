@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { computed, ref, onMounted, type ComponentPublicInstance } from 'vue'
 	import {
-		onClickOutside,
+		onKeyStroke,
 		useSwipe,
 		useElementSize,
 		useScroll,
@@ -89,6 +89,12 @@
 		})
 		Scroll = useScroll(target)
 		ElementSize = useElementSize(target)
+	})
+	onKeyStroke('Escape', () => {
+		const items = Dialogs.items
+		if (items[items.length - 1] === props.dialog) {
+			Dialogs.close(props.dialog)
+		}
 	})
 </script>
 
