@@ -50,6 +50,7 @@ Both sources are merged; values set inline in `nuxt.config` override the file.
 | `useAnForm` | Form state, validation (async-validator), history and diff tracking |
 | `useAnDialogs` | Dynamic dialogs: open, close, closeAll, swipe-to-dismiss |
 | `useAnI18n` | i18next integration with per-component namespaces and language switching |
+| `useAnEventBus` | SSR-safe `useEventBus` wrapper with a typed, predefinable channel registry |
 
 ## Components
 

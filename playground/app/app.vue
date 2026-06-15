@@ -16,6 +16,7 @@
 				<NuxtLink to="/use-an-form" class="sidebar__link">useAnForm</NuxtLink>
 				<NuxtLink to="/use-an-dialogs" class="sidebar__link">useAnDialogs</NuxtLink>
 				<NuxtLink to="/use-an-i18n" class="sidebar__link">useAnI18n</NuxtLink>
+				<NuxtLink to="/use-an-event-bus" class="sidebar__link">useAnEventBus</NuxtLink>
 
 				<span class="sidebar__group">Components</span>
 				<NuxtLink to="/an-dropdown" class="sidebar__link">AnDropdown</NuxtLink>
