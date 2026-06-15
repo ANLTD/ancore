@@ -1,3 +1,17 @@
+## v1.17.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.16.16...v1.17.0)
+
+### 🚀 Enhancements
+
+- **module:** Support standalone ancore.config.ts file ([167a1f5](https://github.com/ANLTD/ancore/commit/167a1f5))
+- **useAnEventBus:** SSR-safe event bus wrapper with typed channel registry ([dc770f4](https://github.com/ANLTD/ancore/commit/dc770f4))
+- **AnDropdown:** Add matchWidth prop to size menu to trigger via anchors ([347e827](https://github.com/ANLTD/ancore/commit/347e827))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.16.16
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.15...v1.16.16)
