@@ -1,3 +1,15 @@
+## v1.17.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.17.0...v1.17.1)
+
+### 🩹 Fixes
+
+- Point types entry to dist/module.d.mts for correct defineAnCoreConfig typing ([d53f6d8](https://github.com/ANLTD/ancore/commit/d53f6d8))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.17.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.16.16...v1.17.0)
