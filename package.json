@@ -33,20 +33,21 @@
 		"update": "npx -y npm-check-updates -u"
 	},
 	"dependencies": {
-		"@vueuse/core": "^14.2.1",
-		"@vueuse/integrations": "^14.2.1",
+		"@vueuse/core": "^14.3.0",
+		"@vueuse/integrations": "^14.3.0",
 		"async-validator": "^4.2.5",
-		"i18next": "^25.10.10"
+		"c12": "^3.3.4",
+		"i18next": "^26.3.1"
 	},
 	"devDependencies": {
 		"@nuxt/devtools": "^3.2.4",
-		"@nuxt/kit": "^4.4.2",
+		"@nuxt/kit": "^4.4.8",
 		"@nuxt/module-builder": "^1.0.2",
-		"@nuxt/schema": "^4.4.2",
+		"@nuxt/schema": "^4.4.8",
 		"@types/node": "latest",
 		"changelogen": "^0.6.2",
-		"nuxt": "^4.4.2",
+		"nuxt": "^4.4.8",
 		"typescript": "~5.9.3",
-		"vue-tsc": "^3.2.6"
+		"vue-tsc": "^3.3.5"
 	}
 }

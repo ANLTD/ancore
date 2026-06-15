@@ -10,6 +10,6 @@
     "update": "npx -y npm-check-updates -u"
   },
   "dependencies": {
-    "nuxt": "^4.4.2"
+    "nuxt": "^4.4.8"
   }
 }
