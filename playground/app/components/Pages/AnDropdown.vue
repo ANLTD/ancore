@@ -15,6 +15,7 @@
 				<thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
 				<tbody>
 					<tr><td><code>area</code></td><td><code>string</code></td><td><code>bottom span-right</code></td><td>CSS position-area value</td></tr>
+					<tr><td><code>matchWidth</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Match the menu width to the trigger width via <code>anchor-size()</code></td></tr>
 				</tbody>
 			</table>
 		</div>
@@ -76,6 +77,26 @@
 						</template>
 					</AnDropdown>
 				</div>
+			</div>
+		</div>
+
+		<div class="section">
+			<h3 class="section__title">Example: Menu width matches the button</h3>
+			<p class="section__subtitle">Uses <code>match-width</code> so the menu is exactly as wide as the trigger.</p>
+			<div class="demo">
+				<AnDropdown match-width style="display: inline-block">
+					<template #button="{ toggle }">
+						<button class="btn btn--primary" style="width: 280px" @click="toggle()">
+							A fairly wide trigger button
+						</button>
+					</template>
+					<template #menu="{ close }">
+						<div class="dropdown-menu">
+							<div class="dropdown-item" @click="close">Same width as the button</div>
+							<div class="dropdown-item" @click="close">No matter the content</div>
+						</div>
+					</template>
+				</AnDropdown>
 			</div>
 		</div>
 

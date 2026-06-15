@@ -5,6 +5,7 @@
 
 	const props = defineProps<{
 		area?: string
+		matchWidth?: boolean
 	}>()
 
 
@@ -64,6 +65,7 @@
 				:id="menuId"
 				role="menu"
 				class="an-dropdown__menu"
+				:class="{ 'an-dropdown__menu--match-width': matchWidth }"
 			>
 				<slot name="menu" :close="close" />
 			</div>
@@ -87,6 +89,11 @@
 			top span-left;
 	}
 
+	/* Match the menu width to the trigger (anchor) width */
+	.an-dropdown__menu--match-width {
+		width: anchor-size(width);
+	}
+
 	@supports not (anchor-name: none) {
 		.an-dropdown__button {
 			position: relative;
@@ -96,6 +103,9 @@
 			top: 100%;
 			left: 0;
 			z-index: 1000;
+		}
+		.an-dropdown__menu--match-width {
+			width: 100%;
 		}
 	}
 </style>

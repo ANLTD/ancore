@@ -57,7 +57,7 @@ Both sources are merged; values set inline in `nuxt.config` override the file.
 | Name | Description |
 |---|---|
 | `AnTab` | Headless tab with lazy rendering and state preservation via `display: none` |
-| `AnDropdown` | Dropdown with CSS Anchor Positioning, teleport and ARIA |
+| `AnDropdown` | Dropdown with CSS Anchor Positioning, teleport and ARIA. `match-width` sizes the menu to the trigger |
 
 ## Utilities
 
