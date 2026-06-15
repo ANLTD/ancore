@@ -18,6 +18,29 @@ export default defineNuxtConfig({
 })
 ```
 
+## Configuration
+
+Options can be set inline under the `ancore` key in `nuxt.config`, or extracted
+into a standalone `ancore.config.ts` at the project root:
+
+```ts
+// ancore.config.ts
+import { defineAnCoreConfig } from '@anweb/nuxt-ancore'
+
+export default defineAnCoreConfig({
+  api: '~/utils/api',
+  i18n: {
+    lng: 'en',
+    fallbackLng: 'en',
+    resources: {
+      en: { translation: '~~/locales/en.json' }
+    }
+  }
+})
+```
+
+Both sources are merged; values set inline in `nuxt.config` override the file.
+
 ## Composables
 
 | Name | Description |
