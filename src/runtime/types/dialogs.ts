@@ -8,4 +8,5 @@ export interface TDialog {
 	fullscreen?: boolean
 	class?: string
 	onClose?: () => void
+	beforeClose?: () => boolean | void | Promise<boolean | void>
 }

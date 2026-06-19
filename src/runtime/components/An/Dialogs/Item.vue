@@ -52,7 +52,7 @@
 	}
 	const onSwipeEnd = () => {
 		if (Math.abs(top.value) > ElementSize.height.value / 2) {
-			Dialogs.close(props.dialog)
+			tryClose()
 			return
 		}
 
@@ -64,6 +64,16 @@
 		raf = requestAnimationFrame(() => {
 			top.value = value
 		})
+	}
+	const tryClose = async () => {
+		const beforeClose = config.value.beforeClose
+		if (beforeClose && (await beforeClose()) === false) return
+
+		Dialogs.close(props.dialog)
+	}
+	const onBackdropClick = () => {
+		if (mouseDownOnBackdrop && !config.value.fullscreen) tryClose()
+		mouseDownOnBackdrop = false
 	}
 
 
@@ -93,7 +103,7 @@
 	onKeyStroke('Escape', () => {
 		const items = Dialogs.items
 		if (items[items.length - 1] === props.dialog) {
-			Dialogs.close(props.dialog)
+			tryClose()
 		}
 	})
 </script>
@@ -106,7 +116,7 @@
 		class="an-dialog -flex -flex__column"
 		:class="[{'-fullscreen': config.fullscreen}, config.class]"
 		@mousedown="onMouseDown"
-		@click.self="mouseDownOnBackdrop && !config.fullscreen && Dialogs.close(props.dialog); mouseDownOnBackdrop = false"
+		@click.self="onBackdropClick"
 	>
 		<component
 			ref="refDialog"
@@ -114,7 +124,7 @@
 			:params="props.dialog.params"
 			class="an-dialog__component"
 			:style="{transform: `translateY(${top}px)`}"
-			@close="Dialogs.close(props.dialog)"
+			@close="tryClose"
 		/>
 	</div>
 </template>
