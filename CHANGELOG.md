@@ -1,3 +1,15 @@
+## v1.18.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.17.1...v1.18.0)
+
+### 🚀 Enhancements
+
+- **AnDialogs:** Add beforeClose hook to confirm before closing ([0ef6a67](https://github.com/ANLTD/ancore/commit/0ef6a67))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.17.1
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.17.0...v1.17.1)
