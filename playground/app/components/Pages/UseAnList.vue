@@ -17,12 +17,10 @@
 		List.filter = {...List.filter, country, skip: 0}
 	}
 
-	asyncInit(async () => {
-		await List.init()
-		List.infiniteScroll({
-			element: scrollEl,
-			options: { distance: 10 },
-		})
+	await asyncInit(List.init)
+	List.infiniteScroll({
+		element: scrollEl,
+		options: { distance: 10 },
 	})
 </script>
 

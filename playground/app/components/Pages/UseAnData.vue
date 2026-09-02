@@ -4,7 +4,7 @@
 		params: { id: 1 }
 	})
 
-	asyncInit(() => User.init())
+	await asyncInit(() => User.init())
 </script>
 
 <template>
