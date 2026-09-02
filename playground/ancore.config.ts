@@ -1,4 +1,4 @@
-import { defineAnCoreConfig } from '../src/module'
+import { defineAncoreConfig } from '../src/module'
 
 
 // Predefine the globally-known event bus channels and their types.
@@ -13,7 +13,7 @@ declare module '#ancore/types' {
 }
 
 
-export default defineAnCoreConfig({
+export default defineAncoreConfig({
 	api: '~/utils/api',
 	i18n: {
 		lng: 'en',

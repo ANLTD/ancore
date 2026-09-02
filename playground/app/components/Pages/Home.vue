@@ -1,8 +1,8 @@
 <template>
 	<div class="page">
-		<h1 class="page__title">AnCore Playground</h1>
+		<h1 class="page__title">Ancore Playground</h1>
 		<p class="page__desc">
-			Interactive documentation and examples for all AnCore module features.
+			Interactive documentation and examples for all Ancore module features.
 		</p>
 
 		<div class="section">

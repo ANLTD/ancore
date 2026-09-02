@@ -17,13 +17,13 @@ export interface ModuleOptions {
 
 // CONFIG HELPER
 // Lets the config live in a standalone `ancore.config.ts` with full typings:
-//   export default defineAnCoreConfig({ ... })
-export const defineAnCoreConfig = (config: ModuleOptions): ModuleOptions => config
+//   export default defineAncoreConfig({ ... })
+export const defineAncoreConfig = (config: ModuleOptions): ModuleOptions => config
 
 
 export default defineNuxtModule<ModuleOptions>({
 	meta: {
-		name: 'AnCore',
+		name: 'Ancore',
 		configKey: 'ancore',
 	},
 	defaults: {},

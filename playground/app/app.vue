@@ -6,7 +6,7 @@
 		<AnDialogs />
 
 		<aside class="sidebar">
-			<h2 class="sidebar__title">AnCore</h2>
+			<h2 class="sidebar__title">Ancore</h2>
 			<nav class="sidebar__nav">
 				<NuxtLink to="/" class="sidebar__link">Home</NuxtLink>
 

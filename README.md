@@ -1,4 +1,4 @@
-# AnCore module for Nuxt
+# Ancore module for Nuxt
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -25,9 +25,9 @@ into a standalone `ancore.config.ts` at the project root:
 
 ```ts
 // ancore.config.ts
-import { defineAnCoreConfig } from '@anweb/nuxt-ancore'
+import { defineAncoreConfig } from '@anweb/nuxt-ancore'
 
-export default defineAnCoreConfig({
+export default defineAncoreConfig({
   api: '~/utils/api',
   i18n: {
     lng: 'en',
