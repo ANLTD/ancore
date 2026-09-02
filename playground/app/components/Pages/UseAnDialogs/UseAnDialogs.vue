@@ -2,6 +2,8 @@
 	import ExampleDialog from './ExampleDialog.vue'
 	import FullscreenDialog from './FullscreenDialog.vue'
 	import DropdownDialog from './DropdownDialog.vue'
+	import ResizeDialog from './ResizeDialog.vue'
+	import type { TDialog } from '#ancore/types'
 
 	const Dialogs = useAnDialogs()
 
@@ -31,6 +33,10 @@
 
 	const openWithDropdown = () => {
 		Dialogs.open(DropdownDialog)
+	}
+
+	const openResize = (animate: TDialog['animate']) => {
+		Dialogs.open(ResizeDialog, { animate }, { animate })
 	}
 
 	const openMultiple = () => {
@@ -98,6 +104,7 @@
 				<thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
 				<tbody>
 					<tr><td><code>fullscreen</code></td><td><code>boolean</code></td><td>Take entire screen</td></tr>
+					<tr><td><code>animate</code></td><td><code>boolean | { enable, duration? }</code></td><td>Smoothly animate dialog height changes (default 200ms)</td></tr>
 					<tr><td><code>class</code></td><td><code>string</code></td><td>Custom CSS class</td></tr>
 					<tr><td><code>onClose</code></td><td><code>() => void</code></td><td>Callback when dialog closes</td></tr>
 				</tbody>
@@ -134,6 +141,9 @@
 					<button class="btn btn--primary" @click="openFullscreen">Fullscreen dialog</button>
 					<button class="btn btn--primary" @click="openWithDropdown">With AnDropdown</button>
 					<button class="btn btn--primary" @click="openMultiple">Open 2 stacked</button>
+					<button class="btn btn--primary" @click="openResize(false)">Resize: off</button>
+					<button class="btn btn--primary" @click="openResize(true)">Resize: true</button>
+					<button class="btn btn--primary" @click="openResize({ enable: true, duration: 600 })">Resize: 600ms</button>
 					<button class="btn btn--danger" @click="Dialogs.closeAll()" :disabled="!Dialogs.items.length">Close all</button>
 				</div>
 

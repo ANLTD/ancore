@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { computed, ref, onMounted, type ComponentPublicInstance } from 'vue'
+	import { computed, ref, watch, onMounted, onUnmounted, type ComponentPublicInstance } from 'vue'
 	import {
 		onKeyStroke,
 		useSwipe,
@@ -36,6 +36,9 @@
 	const target = ref<HTMLElement | null>(null)
 	let raf: number = 0
 	let mouseDownOnBackdrop: boolean = false
+	let resizeAnimation: Animation | null = null
+	let mutationObserver: MutationObserver | null = null
+	let prevHeight: number | null = null
 
 
 	// METHODS
@@ -75,6 +78,35 @@
 		if (mouseDownOnBackdrop && !config.value.fullscreen) tryClose()
 		mouseDownOnBackdrop = false
 	}
+	const onResize = () => {
+		if (resizeAnimation) return
+		prevHeight = target.value?.offsetHeight ?? null
+	}
+	const onMutate = () => {
+		const el = target.value
+		if (!el) return
+
+		if (!animate.value.enable || active.value) return
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+		const from = resizeAnimation ? el.offsetHeight : prevHeight
+		resizeAnimation?.cancel()
+		resizeAnimation = null
+
+		const to = el.offsetHeight
+		prevHeight = to
+
+		if (from === null || from === to) return
+
+		const animation = el.animate(
+			[{height: `${from}px`}, {height: `${to}px`}],
+			{duration: animate.value.duration, easing: 'ease-out'}
+		)
+		resizeAnimation = animation
+		animation.finished.catch(() => {}).finally(() => {
+			if (resizeAnimation === animation) resizeAnimation = null
+		})
+	}
 
 
 	// COMPUTED
@@ -85,6 +117,14 @@
 		}
 	})
 	const canSwipe = computed(() => Scroll.arrivedState.top && !config.value.fullscreen)
+	const animate = computed((): {enable: boolean, duration: number} => {
+		const value = config.value.animate
+
+		return {
+			enable: typeof value === 'object' ? value.enable : !!value,
+			duration: (typeof value === 'object' ? value.duration : undefined) ?? 200
+		}
+	})
 
 
 	// EVENTS
@@ -99,6 +139,23 @@
 		})
 		Scroll = useScroll(target)
 		ElementSize = useElementSize(target)
+
+		watch(() => ElementSize.height.value, onResize, {flush: 'post'})
+
+		if (target.value) {
+			mutationObserver = new MutationObserver(onMutate)
+			mutationObserver.observe(target.value, {
+				childList: true,
+				subtree: true,
+				characterData: true,
+				attributes: true,
+				attributeFilter: ['class', 'style']
+			})
+		}
+	})
+	onUnmounted(() => {
+		mutationObserver?.disconnect()
+		resizeAnimation?.cancel()
 	})
 	onKeyStroke('Escape', () => {
 		const items = Dialogs.items
