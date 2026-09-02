@@ -1,3 +1,34 @@
+## v1.19.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.18.0...v1.19.0)
+
+### 🚀 Enhancements
+
+- **module:** Fall back to a stub customApi when ancore.api is unset ([c9af955](https://github.com/ANLTD/ancore/commit/c9af955))
+- **AnDialogs:** Add animate config to smoothly resize dialog height ([acf2aa6](https://github.com/ANLTD/ancore/commit/acf2aa6))
+
+### 🩹 Fixes
+
+- **useAnData:** Keep params reactive and default it when config omits it ([dcc6025](https://github.com/ANLTD/ancore/commit/dcc6025))
+- **useAnList:** Delegate params to the inner useAnData instance ([8d15600](https://github.com/ANLTD/ancore/commit/8d15600))
+
+### 💅 Refactors
+
+- **module:** ⚠️  Rename defineAnCoreConfig to defineAncoreConfig ([28e2623](https://github.com/ANLTD/ancore/commit/28e2623))
+- Drop duplicate TApi and use function declarations in api utils ([ef37685](https://github.com/ANLTD/ancore/commit/ef37685))
+
+### 📖 Documentation
+
+- Await asyncInit in playground examples ([36f8f0c](https://github.com/ANLTD/ancore/commit/36f8f0c))
+
+#### ⚠️ Breaking Changes
+
+- **module:** ⚠️  Rename defineAnCoreConfig to defineAncoreConfig ([28e2623](https://github.com/ANLTD/ancore/commit/28e2623))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.18.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.17.1...v1.18.0)
