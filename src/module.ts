@@ -58,9 +58,9 @@ export default defineNuxtModule<ModuleOptions>({
 
 		// ALIASES
 		_nuxt.options.alias['#ancore/types'] = resolve('./runtime/types')
-		if (options.api) {
-			_nuxt.options.alias['#ancore/customApi'] = await resolvePath(options.api)
-		}
+		_nuxt.options.alias['#ancore/customApi'] = options.api
+			? await resolvePath(options.api)
+			: resolve('./runtime/customApi')
 
 		// COMPONENTS
 		addComponentsDir({

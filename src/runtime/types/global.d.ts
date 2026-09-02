@@ -1,6 +1,5 @@
 import type { InitOptions } from 'i18next'
 import type { ModuleOptions } from '../../module'
-import type { TApi } from '#ancore/types'
 
 
 declare module 'nuxt/schema' {
@@ -17,8 +16,4 @@ declare module 'nuxt/schema' {
 			resources?: Record<string, { translation: Record<string, unknown> }>
 		}
 	}
-}
-
-declare module '#ancore/customApi' {
-	export const api: TApi
 }
