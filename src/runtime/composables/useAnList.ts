@@ -120,7 +120,8 @@ export const useAnList = <
 				config.value.apiConfig.query = val as Record<string, any>
 			}
 		},
-		params: config.value.params,
+		get params() { return data.params as TConfig<TFilter>['params'] },
+		set params(val: TConfig<TFilter>['params']) { data.params = val || {} },
 
 		items,
 
