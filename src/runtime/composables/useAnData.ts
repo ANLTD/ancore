@@ -32,7 +32,7 @@ export const useAnData = <
 	initConfig: Omit<TConfig<Route>, 'params'> & Partial<Pick<TConfig<Route>, 'params'>>
 ): TUseAnData<_TData, TError> => {
 	// DATA
-	const config = ref<TConfig>({params: {}, ...initConfig})
+	const config = ref<TConfig>({...initConfig, params: initConfig.params || {}})
 	const data = ref<TData | undefined>(undefined)
 	const error = ref<TError | undefined>(undefined)
 	const status = ref<AsyncDataRequestStatus>('idle')
@@ -116,7 +116,8 @@ export const useAnData = <
 
 		get config() { return config.value },
 		set config(val: TConfig) { config.value = val },
-		params: config.value.params,
+		get params() { return config.value.params },
+		set params(val: TConfig['params']) { config.value.params = val },
 		get status() { return status.value },
 		get loading() { return loading.value || status.value === 'idle' },
 		get error() { return error.value as TError | undefined },
