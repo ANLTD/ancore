@@ -1,7 +1,4 @@
-import type { NitroFetchRequest, NitroFetchOptions } from 'nitropack'
+import type { Base$Fetch } from 'nitropack/types'
 
 
-export type TApi = <TData = unknown, TError = unknown>(
-	request: NitroFetchRequest,
-	opts: NitroFetchOptions<string>
-) => Promise<TData>
+export type TApi = Base$Fetch

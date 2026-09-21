@@ -65,7 +65,8 @@ Both sources are merged; values set inline in `nuxt.config` override the file.
 |---|---|
 | `toQuery` | Converts an object to a URL query string, filtering out null/undefined |
 | `asyncInit` | SSR-aware init helper: awaits during SSR, fires without await on CSR |
-| `coreApi` | Core API wrapper around `$fetch` with typed responses |
+| `coreApi` | Core API wrapper around `$fetch`; infers the response type from the Nitro route and method |
+| `userApi` | Routes through the app's `api` when configured, otherwise `coreApi`; same inference |
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/@anweb/nuxt-ancore/latest.svg?style=flat&colorA=020420&colorB=00DC82

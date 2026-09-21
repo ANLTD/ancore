@@ -1,9 +1,6 @@
-import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
+import type { TApi } from '#ancore/types'
 
 
-export function coreApi<TData = unknown, TError = unknown>(
-	request: NitroFetchRequest,
-	opts: NitroFetchOptions<string>
-): Promise<TData> {
-	return $fetch<TData>(request, {...opts})
+export const coreApi: TApi = (request, opts) => {
+	return $fetch(request, {...opts}) as never
 }

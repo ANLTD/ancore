@@ -41,10 +41,10 @@ export const useAnData = <
 
 
 	// METHODS
-	const fetchData = () => userApi<TData, TError>(
+	const fetchData = () => userApi<TData>(
 		path.value.url,
 		{ method: 'GET', ...(config.value.apiConfig || {}) },
-	)
+	) as Promise<TData>
 	const init = async () => {
 		if (isMounted.value) {
 			const execute = () => {
