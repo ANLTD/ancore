@@ -5,6 +5,21 @@
 	})
 
 	await asyncInit(() => User.init())
+
+
+	const country = ref('japan')
+
+	const A = useAnData({ request: '/api/dedupe/:country', params: { country: country.value } })
+	const B = useAnData({ request: '/api/dedupe/:country', params: { country: country.value } })
+
+	await asyncInit(async () => {
+		await Promise.all([A.init(), B.init()])
+	})
+
+	watch(country, value => {
+		A.params.country = value
+		B.params.country = value
+	})
 </script>
 
 <template>
@@ -74,6 +89,40 @@
 				<div style="margin-top: 12px">
 					<button class="btn btn--primary" @click="User.refresh()">Refresh</button>
 					<button class="btn btn--secondary" @click="User.set({ id: 999, name: 'Manual' })">Set manually</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Request dedupe -->
+		<div class="section">
+			<h3 class="section__title">Request dedupe</h3>
+			<p class="section__subtitle">
+				Two instances on one route. The filter changes for both at the same time, so a single request
+				is shared: <code>/api/dedupe/:country</code> counts every call it receives and answers after
+				400ms, so the same <strong>server call #</strong> in both means one request.
+				<code>Refresh</code> gives that instance its own request, and must not stop the next filter
+				change from being shared.
+			</p>
+
+			<div class="demo">
+				<div style="margin-bottom: 8px">
+					<button class="btn btn--primary" @click="country = 'japan'">japan</button>
+					<button class="btn btn--primary" @click="country = 'france'">france</button>
+					<button class="btn btn--primary" @click="country = 'usa'">usa</button>
+				</div>
+
+				<div class="status-bar">
+					<strong>A</strong>
+					<span class="tag" :class="A.loading ? 'tag--warning' : 'tag--success'">{{ A.status }}</span>
+					<span v-if="A.data">server call #{{ A.data.call }} for {{ A.data.country }}</span>
+					<button class="btn btn--secondary" style="margin-left: auto" @click="A.refresh()">Refresh</button>
+				</div>
+
+				<div class="status-bar" style="margin-bottom: 0">
+					<strong>B</strong>
+					<span class="tag" :class="B.loading ? 'tag--warning' : 'tag--success'">{{ B.status }}</span>
+					<span v-if="B.data">server call #{{ B.data.call }} for {{ B.data.country }}</span>
+					<button class="btn btn--secondary" style="margin-left: auto" @click="B.refresh()">Refresh</button>
 				</div>
 			</div>
 		</div>

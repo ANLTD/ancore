@@ -1,7 +1,14 @@
 import type { NitroFetchOptions, NitroFetchRequest, TypedInternalResponse } from 'nitropack'
 import { computed, ref, watch, onMounted, nextTick } from 'vue'
-import { type AsyncDataRequestStatus, useAsyncData } from '#app'
+import { type AsyncDataRequestStatus, useAsyncData, useNuxtApp } from '#app'
 import { toQuery, userApi } from '#imports'
+
+
+declare module '#app' {
+	interface NuxtApp {
+		_anInflight?: Map<string, Promise<unknown>>
+	}
+}
 
 
 // TYPES
@@ -38,13 +45,32 @@ export const useAnData = <
 	const status = ref<AsyncDataRequestStatus>('idle')
 	const isMounted = ref(false)
 	const time = ref<number>(0)
+	const nuxtApp = useNuxtApp()
 
 
 	// METHODS
-	const fetchData = () => userApi<TData>(
-		path.value.url,
-		{ method: 'GET', ...(config.value.apiConfig || {}) },
-	) as Promise<TData>
+	const fetchData = (): Promise<TData> => {
+		const inflight = nuxtApp._anInflight ||= new Map<string, Promise<unknown>>()
+		const inflightKey = path.value.url
+		const pending = inflight.get(inflightKey)
+
+		if (pending) {
+			return pending as Promise<TData>
+		}
+
+		const request = (userApi<TData>(
+			path.value.url,
+			{ method: 'GET', ...(config.value.apiConfig || {}) },
+		) as Promise<TData>).finally(() => {
+			if (inflight.get(inflightKey) === request) {
+				inflight.delete(inflightKey)
+			}
+		})
+
+		inflight.set(inflightKey, request)
+
+		return request
+	}
 	const init = async () => {
 		if (isMounted.value) {
 			const execute = () => {
