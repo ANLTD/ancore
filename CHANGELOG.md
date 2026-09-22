@@ -1,3 +1,20 @@
+## v1.20.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.19.0...v1.20.0)
+
+### 🚀 Enhancements
+
+- ⚠️  Infer api response type from the Nitro route and method ([8d6bcf7](https://github.com/ANLTD/ancore/commit/8d6bcf7))
+- **useAnData:** Dedupe concurrent GET requests to the same url ([f494d32](https://github.com/ANLTD/ancore/commit/f494d32))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Infer api response type from the Nitro route and method ([8d6bcf7](https://github.com/ANLTD/ancore/commit/8d6bcf7))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.19.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.18.0...v1.19.0)
