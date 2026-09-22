@@ -33,11 +33,11 @@
 		"update": "npx -y npm-check-updates -u"
 	},
 	"dependencies": {
-		"@vueuse/core": "^14.4.0",
-		"@vueuse/integrations": "^14.4.0",
+		"@vueuse/core": "^15.0.0",
+		"@vueuse/integrations": "^15.0.0",
 		"async-validator": "^4.2.5",
 		"c12": "^3.3.4",
-		"i18next": "^26.4.1"
+		"i18next": "^26.4.2"
 	},
 	"devDependencies": {
 		"@nuxt/devtools": "^3.4.2",
