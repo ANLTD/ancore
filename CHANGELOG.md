@@ -1,3 +1,15 @@
+## v1.20.1
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.20.0...v1.20.1)
+
+### 🩹 Fixes
+
+- **useAnI18n:** Sync lang with i18next on init and language change ([3727a55](https://github.com/ANLTD/ancore/commit/3727a55))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.20.0
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.19.0...v1.20.0)
