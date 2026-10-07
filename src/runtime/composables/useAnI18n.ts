@@ -7,13 +7,16 @@ import { fnv1a } from '#imports'
 // DATA
 const lang = ref(i18next.language)
 
+i18next.on('languageChanged', (value) => {
+	lang.value = value
+})
+
 
 export const useAnI18n = (resources?: Record<string, Record<string, string>>) => {
 	// METHODS
 	const set = (value: string) => {
 		try {
 			i18next.changeLanguage(value)
-			lang.value = value
 
 			const config = useRuntimeConfig().public.i18n
 			if (config?.cookie) {
