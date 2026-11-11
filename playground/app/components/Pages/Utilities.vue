@@ -69,8 +69,8 @@ asyncInit(() => UserData.init())</pre>
 			<table class="api-table">
 				<thead><tr><th>Param</th><th>Type</th><th>Description</th></tr></thead>
 				<tbody>
-					<tr><td><code>request</code></td><td><code>NitroFetchRequest</code></td><td>API endpoint</td></tr>
-					<tr><td><code>opts</code></td><td><code>NitroFetchOptions</code></td><td>Fetch options</td></tr>
+					<tr><td><code>request</code></td><td><code>TypedFetchRequest</code></td><td>API endpoint</td></tr>
+					<tr><td><code>opts</code></td><td><code>TypedFetchOptions</code></td><td>Fetch options</td></tr>
 				</tbody>
 			</table>
 			<table class="api-table" style="margin-top: 8px">

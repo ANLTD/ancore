@@ -1,17 +1,22 @@
-import type { NitroFetchOptions, NitroFetchRequest, TypedInternalResponse } from 'nitropack'
 import { ref, reactive, watch, type UnwrapRef } from 'vue'
 import { useInfiniteScroll } from '@vueuse/core'
 import type { TInfiniteScroll, TResponseList } from '#ancore/types'
-import { type AsyncDataRequestStatus } from '#app'
+import type {
+	AnyServerRouteMethod,
+	AsyncDataRequestStatus,
+	TypedFetchOptions,
+	TypedFetchRequest,
+	TypedServerResponse
+} from '#app'
 import { useAnData } from '#imports'
 
 
 // TYPES
 type ExtractListItem<T> = T extends TResponseList<infer U> ? U : unknown
 
-interface TConfig<TFilter, Route extends NitroFetchRequest = NitroFetchRequest> {
+interface TConfig<TFilter, Route extends TypedFetchRequest = TypedFetchRequest> {
 	request: Route
-	apiConfig?: NitroFetchOptions<string>
+	apiConfig?: TypedFetchOptions<string, AnyServerRouteMethod>
 	filter?: TFilter
 	params?: Record<string, string>
 	skipField?: string
@@ -34,8 +39,8 @@ interface TUseAnList<TData, TFilter> {
 export const useAnList = <
 	TData = void,
 	TFilter extends object = {},
-	Route extends NitroFetchRequest = NitroFetchRequest,
-	_TData = TData extends void ? ExtractListItem<TypedInternalResponse<Route, unknown, 'get'>> : TData
+	Route extends TypedFetchRequest = TypedFetchRequest,
+	_TData = TData extends void ? ExtractListItem<TypedServerResponse<Route, unknown, 'get'>> : TData
 >(initConfig: TConfig<TFilter, Route>): TUseAnList<_TData, TFilter> => {
 	// DATA
 	const config = ref<TConfig<TFilter>>(initConfig as any)

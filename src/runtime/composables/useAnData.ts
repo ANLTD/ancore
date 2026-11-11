@@ -1,6 +1,13 @@
-import type { NitroFetchOptions, NitroFetchRequest, TypedInternalResponse } from 'nitropack'
 import { computed, ref, watch, onMounted, nextTick } from 'vue'
-import { type AsyncDataRequestStatus, useAsyncData, useNuxtApp } from '#app'
+import {
+	type AnyServerRouteMethod,
+	type AsyncDataRequestStatus,
+	type TypedFetchOptions,
+	type TypedFetchRequest,
+	type TypedServerResponse,
+	useAsyncData,
+	useNuxtApp
+} from '#app'
 import { toQuery, userApi } from '#imports'
 
 
@@ -12,9 +19,9 @@ declare module '#app' {
 
 
 // TYPES
-interface TConfig<Route extends NitroFetchRequest = NitroFetchRequest> {
+interface TConfig<Route extends TypedFetchRequest = TypedFetchRequest> {
 	request: Route
-	apiConfig?: NitroFetchOptions<string>
+	apiConfig?: TypedFetchOptions<string, AnyServerRouteMethod>
 	params: Record<string, unknown>
 }
 interface TUseAnData<TData, TError> {
@@ -33,8 +40,8 @@ interface TUseAnData<TData, TError> {
 export const useAnData = <
 	TData = void,
 	TError = unknown,
-	Route extends NitroFetchRequest = NitroFetchRequest,
-	_TData = TData extends void ? TypedInternalResponse<Route, unknown, 'get'> : TData
+	Route extends TypedFetchRequest = TypedFetchRequest,
+	_TData = TData extends void ? TypedServerResponse<Route, unknown, 'get'> : TData
 >(
 	initConfig: Omit<TConfig<Route>, 'params'> & Partial<Pick<TConfig<Route>, 'params'>>
 ): TUseAnData<_TData, TError> => {
@@ -58,7 +65,7 @@ export const useAnData = <
 			return pending as Promise<TData>
 		}
 
-		const request = (userApi<TData>(
+		const request = (userApi<TData, string, AnyServerRouteMethod>(
 			path.value.url,
 			{ method: 'GET', ...(config.value.apiConfig || {}) },
 		) as Promise<TData>).finally(() => {

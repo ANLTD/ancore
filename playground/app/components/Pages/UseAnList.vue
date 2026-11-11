@@ -36,7 +36,7 @@
 			<table class="api-table">
 				<thead><tr><th>Param</th><th>Type</th><th>Description</th></tr></thead>
 				<tbody>
-					<tr><td><code>request</code></td><td><code>NitroFetchRequest</code></td><td>API endpoint</td></tr>
+					<tr><td><code>request</code></td><td><code>TypedFetchRequest</code></td><td>API endpoint</td></tr>
 					<tr><td><code>filter</code></td><td><code>TFilter</code></td><td>Filter object sent as query params</td></tr>
 					<tr><td><code>params</code></td><td><code>Record&lt;string, string&gt;</code></td><td>URL params for <code>:param</code></td></tr>
 					<tr><td><code>skipField</code></td><td><code>string</code></td><td>Field name for offset (default: <code>skip</code>)</td></tr>

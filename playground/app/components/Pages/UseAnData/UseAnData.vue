@@ -35,8 +35,8 @@
 			<table class="api-table">
 				<thead><tr><th>Param</th><th>Type</th><th>Description</th></tr></thead>
 				<tbody>
-					<tr><td><code>request</code></td><td><code>NitroFetchRequest</code></td><td>API endpoint. Supports <code>:param</code> placeholders</td></tr>
-					<tr><td><code>apiConfig</code></td><td><code>NitroFetchOptions</code></td><td>Fetch options: method, query, headers, etc.</td></tr>
+					<tr><td><code>request</code></td><td><code>TypedFetchRequest</code></td><td>API endpoint. Supports <code>:param</code> placeholders</td></tr>
+					<tr><td><code>apiConfig</code></td><td><code>TypedFetchOptions</code></td><td>Fetch options: method, query, headers, etc.</td></tr>
 					<tr><td><code>params</code></td><td><code>Record&lt;string, unknown&gt;</code></td><td>URL parameters for <code>:param</code> replacement</td></tr>
 				</tbody>
 			</table>
