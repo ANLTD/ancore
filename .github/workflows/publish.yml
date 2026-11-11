@@ -12,7 +12,7 @@ jobs:
 
     permissions:
       id-token: write
-      contents: read
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -34,3 +34,10 @@ jobs:
 
       - name: Publish
         run: npm publish
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          awk -v tag="## $GITHUB_REF_NAME" '$0 == tag {found=1; next} found && /^## v/ {exit} found' CHANGELOG.md > notes.md
+          gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file notes.md --verify-tag
