@@ -1,3 +1,33 @@
+## v1.21.0
+
+[compare changes](https://github.com/ANLTD/ancore/compare/v1.20.1...v1.21.0)
+
+### 🩹 Fixes
+
+- **useAnI18n:** ⚠️  Isolate the i18next instance per SSR request ([b46cbcf](https://github.com/ANLTD/ancore/commit/b46cbcf))
+
+### 💅 Refactors
+
+- **types:** ⚠️  Take fetch types from nuxt/app instead of nitropack ([6417f54](https://github.com/ANLTD/ancore/commit/6417f54))
+
+### 🏡 Chore
+
+- **deps:** ⚠️  Bump nuxt to 4.6, i18next to 27 and devtools to 4 ([453c9f1](https://github.com/ANLTD/ancore/commit/453c9f1))
+
+### 🤖 CI
+
+- Publish to npm from GitHub Actions on version tags ([49c416f](https://github.com/ANLTD/ancore/commit/49c416f))
+
+#### ⚠️ Breaking Changes
+
+- **useAnI18n:** ⚠️  Isolate the i18next instance per SSR request ([b46cbcf](https://github.com/ANLTD/ancore/commit/b46cbcf))
+- **types:** ⚠️  Take fetch types from nuxt/app instead of nitropack ([6417f54](https://github.com/ANLTD/ancore/commit/6417f54))
+- **deps:** ⚠️  Bump nuxt to 4.6, i18next to 27 and devtools to 4 ([453c9f1](https://github.com/ANLTD/ancore/commit/453c9f1))
+
+### ❤️ Contributors
+
+- An Ltd ([@ANLTD](https://github.com/ANLTD))
+
 ## v1.20.1
 
 [compare changes](https://github.com/ANLTD/ancore/compare/v1.20.0...v1.20.1)
