@@ -1,0 +1,25 @@
+{
+	"$schema": "https://unpkg.com/release-it@21/schema/release-it.json",
+	"git": {
+		"requireBranch": "master",
+		"requireCleanWorkingDir": true,
+		"requireUpstream": true,
+		"requireCommits": true,
+		"changelog": "npx changelogen",
+		"commitMessage": "chore(release): v${version}",
+		"tagName": "v${version}",
+		"tagAnnotation": "v${version}",
+		"push": true
+	},
+	"github": {
+		"release": true,
+		"releaseName": "v${version}"
+	},
+	"npm": {
+		"publish": false
+	},
+	"hooks": {
+		"before:init": "npm run dev:prepare && npx vue-tsc --noEmit && npm run prepack",
+		"after:bump": "npx changelogen -r ${version} --output CHANGELOG.md"
+	}
+}
