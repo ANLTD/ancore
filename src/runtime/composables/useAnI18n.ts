@@ -1,22 +1,19 @@
-import i18next from 'i18next'
-import { ref, computed } from 'vue'
-import { useRuntimeConfig, useCookie } from '#app'
+import i18next, { type i18n as I18n } from 'i18next'
+import { computed } from 'vue'
+import { useNuxtApp, useRuntimeConfig, useCookie, useState } from '#app'
 import { fnv1a } from '#imports'
 
 
-// DATA
-const lang = ref(i18next.language)
-
-i18next.on('languageChanged', (value) => {
-	lang.value = value
-})
-
-
 export const useAnI18n = (resources?: Record<string, Record<string, string>>) => {
+	// DATA
+	const i18n = (useNuxtApp().$anI18n as I18n | undefined) ?? i18next
+	const lang = useState<string>('an-i18n-lang', () => i18n.language)
+
+
 	// METHODS
 	const set = (value: string) => {
 		try {
-			i18next.changeLanguage(value)
+			i18n.changeLanguage(value)
 
 			const config = useRuntimeConfig().public.i18n
 			if (config?.cookie) {
@@ -42,25 +39,24 @@ export const useAnI18n = (resources?: Record<string, Record<string, string>>) =>
 	if (resources) {
 		const ns = `c${fnv1a(JSON.stringify(resources))}`
 		for (const l in resources) {
-			if (!i18next.hasResourceBundle(l, ns)) {
+			if (!i18n.hasResourceBundle(l, ns)) {
 				try {
-					i18next.addResourceBundle(l, ns, resources[l])
+					i18n.addResourceBundle(l, ns, resources[l])
 				} catch (e) {
 					console.error(`[AnI18n] Failed to add resource bundle for ${l}:`, e)
 				}
 			}
 		}
 
-		const nsRef = ns
 		return {
-			t: (key: string, options = {}) => i18next.t(key, { ns: [nsRef, 'translation'], ...options }),
+			t: (key: string, options = {}) => i18n.t(key, { ns: [ns, 'translation'], ...options }),
 			lang: langReadonly,
 			set
 		}
 	}
 
 	return {
-		t: i18next.t,
+		t: i18n.t,
 		lang: langReadonly,
 		set
 	}
